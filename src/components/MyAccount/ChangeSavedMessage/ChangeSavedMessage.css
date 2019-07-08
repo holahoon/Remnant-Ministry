@@ -1,0 +1,15 @@
+.Change-saved {
+  margin-top: 1.625rem;
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #282828;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+  display: flex;
+}
+
+.Checkmark-outline {
+  margin-right: 0.475rem;
+  width: 1.375rem;
+  height: 1.375rem;
+}

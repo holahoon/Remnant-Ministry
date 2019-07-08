@@ -1,0 +1,53 @@
+.Signup-page-container {
+  display: flex;
+}
+
+.Signup-password {
+  display: flex;
+}
+
+.Signup-password label {
+  width: 100%;
+}
+
+.Signup-password label:nth-child(1) {
+  margin-right: 0.75rem;
+}
+.Signup-password label:nth-child(2) {
+  margin-left: 0.75rem;
+}
+
+.Signup-agreement {
+  display: flex;
+  margin-top: 0.5625rem;
+  margin-bottom: 3.75rem;
+}
+
+.Signup-agreement p {
+  font-size: 0.75rem;
+  color: #282828;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+}
+
+.Next-button-signup-1 {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1.5rem;
+  background: #054ada;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: right;
+  margin-bottom: 16.75rem;
+  display: block;
+  box-sizing: border-box;
+}
+
+.Next-arrow {
+  width: 18px;
+  height: 18px;
+  fill: #ffffff;
+  padding-left: 0.5rem;
+  vertical-align: middle;
+}

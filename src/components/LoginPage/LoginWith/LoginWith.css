@@ -1,0 +1,37 @@
+.LoginPage h3 {
+  font-size: 2.25rem;
+  color: #282828;
+  line-height: 3rem;
+  font-weight: normal;
+  margin-bottom: 1.5rem;
+}
+
+.Or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #a4a4a4;
+  text-align: center;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.Or span {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.Or-line {
+  background-color: #dcdcdc;
+  height: 1px;
+  width: 100%;
+}
+
+.Close-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}

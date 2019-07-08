@@ -1,0 +1,29 @@
+.SignupPage {
+  display: flex;
+}
+
+.SignupPage-left-section {
+  box-sizing: border-box;
+  padding-right: 1.5rem;
+}
+
+.left-section {
+  background: #282828;
+  width: 100%;
+  height: 100%;
+}
+
+.SignupPage-right-section {
+  background: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+}
+
+.Create-an-account {
+  font-size: 2.25rem;
+  font-weight: normal;
+  color: #282828;
+  line-height: 3rem;
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+}

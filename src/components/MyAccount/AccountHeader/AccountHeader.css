@@ -1,0 +1,35 @@
+.MyAccount-header {
+  margin-bottom: 1.6875rem;
+}
+
+.MyAccount-page-greeting {
+  margin-top: 3.75rem;
+  margin-bottom: 3.75rem;
+}
+
+.Account-navigation-indicator {
+  display: flex;
+}
+
+.Account-navigation-indicator li div:nth-child(1) {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #282828;
+  opacity: 0.5;
+  margin-right: 3.75rem;
+  cursor: pointer;
+}
+
+.Account-navigation-indicator li div:nth-child(2) {
+  height: 0.25rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(to right, #054ada 50%, #d5d9e0 50%);
+  background-size: 210% 100%;
+  background-position: right bottom;
+  transition: all 1s ease;
+}
+
+.Account-navigation-indicator li div.selected {
+  background-position: left bottom;
+  opacity: 1;
+}

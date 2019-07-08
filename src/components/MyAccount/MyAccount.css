@@ -1,0 +1,6 @@
+.MyAccount-container {
+  display: flex;
+  flex-direction: column;
+  background: #f3f3f3;
+  padding-bottom: 7rem;
+}

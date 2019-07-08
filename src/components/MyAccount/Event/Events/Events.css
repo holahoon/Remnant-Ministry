@@ -1,0 +1,91 @@
+.Event-subject {
+  margin-top: 3.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  color: #282828;
+  font-weight: normal;
+}
+
+.Events-image-content {
+  background-image: url("../../../../assets/Images/bg-sm.jpg"),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.Events-image-content h5 {
+  font-size: 1.125rem;
+  font-weight: normal;
+  color: #e7e9f7;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  margin-bottom: 5.125rem;
+}
+
+.Event-description {
+  display: flex;
+}
+
+.Event-description h6,
+.Event-description p {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #e7e9f7;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+  margin-right: 2.875rem;
+}
+
+.Event-description p {
+  margin: 0;
+  margin-top: 0.375rem;
+}
+
+.Button-group {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* .Button-group button {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: 0;
+  padding-top: 0.9375rem;
+  padding-bottom: 1rem;
+}
+
+.View-detail {
+  width: 100%;
+  background: #373d42;
+  text-align: left;
+  padding-left: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.Register {
+  width: 100%;
+  text-align: right;
+  margin-left: 0.75rem;
+} */
+
+.true {
+  background: #dcdcdc;
+  color: #373d42 !important;
+  cursor: default !important;
+}
+
+.Checked-mark {
+  width: 18px;
+  height: 18px;
+  fill: #373d42;
+  padding-right: 0.78125rem;
+  padding-left: 0.5rem;
+  vertical-align: middle;
+}

@@ -1,0 +1,84 @@
+.Edit-container {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.Account-edit-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #282828;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  margin-top: 2.0625rem;
+  margin-bottom: 1.5rem;
+}
+
+/* .Account-edit-title span {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #054ada;
+  letter-spacing: 0;
+  margin-left: 1.3125rem;
+  cursor: pointer;
+}
+.Account-edit-title span.editing {
+  display: none;
+} */
+
+.Edit-form-row1 {
+  display: flex;
+}
+
+.Edit-form-row1 label:nth-child(2) {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.Edit-form-row2 {
+  display: flex;
+}
+
+.Edit-form-row2 label:nth-child(2) {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.Edit-form label {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Edit-form-row3 {
+  display: flex;
+}
+
+.Edit-form input,
+.Edit-form select {
+  padding-top: 0.9375rem;
+  padding-left: 0.9375rem;
+  padding-bottom: 0.9375rem;
+  /* background: #dcdcdc; */
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  /* border: 1px solid #bebebe; */
+  box-sizing: border-box;
+}
+
+/* .Edit-form input.editing-background,
+.Edit-form select.editing-background {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+} */
+
+.Edit-form input:disabled,
+.Edit-form select:disabled {
+  background-color: #dcdcdc;
+  border: 1px solid #bebebe;
+}
+
+.Button-group-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}

@@ -1,0 +1,101 @@
+.Registration-right-side-container {
+  margin-top: 3.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Register-title {
+  font-size: 2.25rem;
+  font-weight: normal;
+  color: #282828;
+  line-height: 3rem;
+  margin-bottom: 2.25rem;
+}
+
+.Registration-container {
+  display: flex;
+  /* flex-direction: column; */
+  padding-top: 0.75rem;
+}
+
+.Register-h5-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #282828;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  margin-top: 2.0625rem;
+  margin-bottom: 1.5rem;
+}
+
+.Registration-form-row1 {
+  display: flex;
+}
+
+.Registration-form-row1 label:nth-child(2) {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.Registration-form-row2 {
+  display: flex;
+}
+
+.Registration-form-row2 label:nth-child(2) {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.Registration-form label {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Registration-form-row3 {
+  display: flex;
+}
+
+.Registration-form input,
+.Registration-form select {
+  padding-top: 0.9375rem;
+  padding-left: 0.9375rem;
+  padding-bottom: 0.9375rem;
+  background: #ffffff;
+  border: 1px solid #bebebe;
+  box-sizing: border-box;
+}
+
+.Registration-button-container {
+  display: flex;
+  margin-top: 2.0625rem;
+  margin-bottom: 10rem;
+}
+
+.Registration-blue-button {
+  padding-top: 1.625rem;
+  padding-bottom: 1.6875rem;
+  margin-left: 0.75rem;
+}
+
+.Registration-dark-button {
+  padding-top: 1.625rem;
+  padding-bottom: 1.6875rem;
+  margin-right: 0.75rem;
+}
+
+.ArrowIcon-registration-next {
+  fill: #ffffff;
+  margin-left: 0.625rem;
+}
+
+.ArrowIcon-registration-back {
+  fill: #ffffff;
+  transform: rotate(180deg);
+  margin-right: 0.625rem;
+}
+
+.Complete-registration-button-container {
+  margin-top: 2.0625rem;
+  display: flex;
+  margin-bottom: 1.5rem;
+}

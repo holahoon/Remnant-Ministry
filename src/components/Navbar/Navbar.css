@@ -1,0 +1,43 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+li a {
+  font-size: 1rem;
+  color: #282828;
+  line-height: 1.25rem;
+}
+
+.NavGroup1 {
+  display: flex;
+  align-items: center;
+  /* margin-left: 4%; */
+}
+
+.Logo {
+  margin: 0.9375rem 0.6875rem 0.9375rem 1.25rem;
+  display: block;
+}
+
+.NavigationLinks {
+  display: flex;
+  align-items: center;
+}
+
+.NavigationLinks li {
+  margin-left: 2.5rem;
+  font-weight: normal;
+}
+
+.NavGroup2 {
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+}
+
+.NavGroup2 li {
+  margin-right: 2.5rem;
+  font-weight: normal;
+}

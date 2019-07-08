@@ -1,0 +1,96 @@
+.NavigationFooter {
+  display: flex;
+  background-color: #13171a;
+  box-sizing: border-box;
+}
+
+li a {
+  font-size: 1rem;
+  color: #282828;
+  line-height: 1.25rem;
+}
+
+.LogoContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 6.875rem;
+  /* margin-left: 15rem; */
+}
+
+.Navi-Logo {
+  margin-right: 0.75rem;
+  display: block;
+}
+
+.LogoContainer a:last-child {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #d8d8d8;
+  line-height: 1.25rem;
+}
+
+.NavigationLinks1,
+.NavigationLinks2 {
+  margin-top: 3.625rem;
+}
+
+.NavigationLinks1 a,
+.NavigationLinks2 a {
+  color: #a4a4a4;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+}
+
+.NavigationLinks1 li {
+  margin-bottom: 1.25rem;
+}
+
+.NavigationLinks2 li {
+  margin-bottom: 1.25rem;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.59375rem;
+  font-weight: normal;
+}
+
+.Label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #a4a4a4;
+  line-height: 1.25rem;
+  margin-bottom: 0.5625rem;
+}
+
+.SubscribeEmail {
+  background-color: transparent;
+  border: 1px solid #979797;
+  height: 3.125rem;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  color: #d8d8d8;
+  font-weight: normal;
+  outline: none;
+}
+
+.EmailIcon {
+  fill: #d5d9e0;
+  margin-right: 0.84375rem;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font: 0.875rem;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  font: 0.875rem;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font: 0.875rem;
+}

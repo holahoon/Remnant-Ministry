@@ -1,0 +1,94 @@
+.Radio-control-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dcdcdc;
+  background: #ffffff;
+  padding-right: 0.9375rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.Radio-control-container span {
+  font-size: 0.875rem;
+}
+
+.t-shirt-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.t-shirt-container label {
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.t-shirt-container label:nth-child(1) {
+  margin-right: 12px;
+}
+
+.t-shirt-container label:nth-child(2) {
+  margin-left: 12px;
+}
+
+.t-shirt-container select {
+  padding-left: 0.875rem;
+}
+
+.payment-method-container {
+  display: flex;
+}
+
+.card-info-inner-container {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.card-info-inner-container label {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.card-info-inner-container label:nth-child(2) {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.address-info-container,
+.address-info-container2 {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.address-info-container label,
+.address-info-container2 label {
+  width: 100%;
+}
+
+.address-info-container label:nth-child(1) {
+  margin-right: 12px;
+}
+
+.address-info-container label:nth-child(2) {
+  margin-left: 12px;
+}
+
+.address-info-container2 label:nth-child(2) {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.Registration-agreement {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: #282828;
+  letter-spacing: 0;
+  line-height: 1.25rem;
+  margin-bottom: 11.5rem;
+}
+
+.Registration-agreement span {
+  color: #054ada;
+  cursor: pointer;
+}

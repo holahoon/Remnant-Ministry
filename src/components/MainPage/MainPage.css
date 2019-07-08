@@ -1,0 +1,83 @@
+.Content {
+  background-image: url("../../assets/Images/bg-sm.jpg"),
+    linear-gradient(
+      -90deg,
+      rgba(19, 23, 26, 0.6) 0%,
+      rgba(19, 23, 26, 0.1) 100%
+    );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+.Header {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8.75rem;
+}
+
+.white-line {
+  width: 2rem;
+  height: 2px;
+  background-color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.Content h1 {
+  font-size: 3.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 4.5rem;
+  margin-bottom: 2.25rem;
+  margin-top: 0.75rem;
+  letter-spacing: 0;
+  line-height: 4.5rem;
+}
+
+.Content h2 {
+  font-size: 3.75rem;
+  font-weight: normal;
+  color: #ffffff;
+  line-height: 4.5rem;
+  display: inline-block;
+}
+
+.Content h3 {
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: #ffffff;
+  line-height: 1.75rem;
+  display: inline-block;
+}
+
+.RegisterButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: none;
+  background: #ffffff;
+  color: #054ada;
+  font-size: 1.25rem;
+  font-weight: normal;
+  box-sizing: border-box;
+  padding: 1.625rem 1.5rem 1.625rem 0;
+  /* text-align: right; */
+  margin-bottom: 10rem;
+}
+
+.RegisterButton:hover {
+  cursor: pointer;
+}
+
+.RegisterButton:hover .ArrowIcon {
+  transform: rotateX(540deg);
+}
+
+.ArrowIcon {
+  fill: #054ada;
+  margin-left: 0.5625rem;
+  transition: transform 0.3s ease-out;
+}

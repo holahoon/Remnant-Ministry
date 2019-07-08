@@ -1,0 +1,51 @@
+.CopyRightFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+  font-weight: normal;
+}
+
+.Copyright {
+  font-size: 0.75rem;
+  color: #8c8c8c;
+  line-height: 0.9375rem;
+  margin-top: 2.0625rem;
+  margin-bottom: 2.0625rem;
+}
+
+.Copyright a {
+  color: #d8d8d8;
+  font-size: 0.75rem;
+  line-height: 0.9375rem;
+}
+
+.SnsLinks {
+  display: flex;
+  align-items: center;
+}
+
+.SnsLinks ul {
+  display: flex;
+}
+
+.SnsLinks li:nth-child(2) {
+  margin-left: 1.25rem;
+  margin-right: 4.0625rem;
+}
+
+.SnsLinks a {
+  font-size: 0.875rem;
+  color: #dcdcdc;
+}
+
+.LanguageButton {
+  border: none;
+  background: #f2f4f8;
+  border-radius: 1.125rem;
+  font-size: 0.875rem;
+  color: #292929;
+  text-align: center;
+  line-height: 1.125rem;
+  padding: 0.5rem 1.5625rem 0.625rem 1.5625rem;
+}
