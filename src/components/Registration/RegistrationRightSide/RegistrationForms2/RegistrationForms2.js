@@ -17,20 +17,6 @@ const registrationForms2 = props => {
       <BillingAddress />
 
       <div className={"Complete-registration-button-container"}>
-        {/*<button
-          className={"Registration-dark-button button-1-1--global"}
-          onClick={props.prevStepHandler}
-        >
-          <ArrowRight16 className={"ArrowIcon-registration-back"} />
-          Back
-        </button>
-        <button
-          className={"Registration-blue-button button-1-2--global"}
-          onClick={props.completeRegistrationHandler}
-        >
-          Complete Registration
-          <ArrowRight16 className={"ArrowIcon-registration-next"} />
-        </button>*/}
         <Button
           buttonClass={"Registration-dark-button button-1-1--global"}
           handleButtonClick={props.prevStepHandler}

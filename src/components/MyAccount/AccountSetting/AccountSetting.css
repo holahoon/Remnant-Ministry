@@ -1,3 +1,10 @@
 .Account-setting-container {
   display: flex;
+  flex-direction: column;
+}
+
+.form-5 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.5rem;
 }

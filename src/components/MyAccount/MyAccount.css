@@ -4,3 +4,8 @@
   background: #f3f3f3;
   padding-bottom: 7rem;
 }
+
+.Content-container {
+  display: flex;
+  flex-direction: row;
+}

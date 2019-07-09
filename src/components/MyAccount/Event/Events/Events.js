@@ -23,7 +23,7 @@ const events = props => {
   );
 
   return (
-    <div className={"Col-6 margin-left-3 Events-container"}>
+    <div className={"Events-container"}>
       <h5 className={"Event-subject"}>{props.eventSubject}</h5>
 
       <div className={props.classNameTitle}>

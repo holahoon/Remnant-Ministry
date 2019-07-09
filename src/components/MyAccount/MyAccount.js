@@ -15,18 +15,8 @@ class MyAccount extends Component {
     category4: false,
     event1Registered: false,
     event2Registered: true,
-    editSaved: true,
-    editting: true,
-    // basicEdit: true,
-    // yourAddress: true,
-    // yourChurch: true,
-    // yourField: true,
-    password: true,
-    showEditSavedBasicEdit: false,
-    showEditSavedYourField: false,
-    showEditSavedYourChurch: false,
-    showEditSavedYourAddress: false,
-    showEditSavedPassword: false
+    editProfileEditing: false,
+    accountSettingEditing: false
   };
 
   // componentDidUpdate(prevProps, prevState) {
@@ -53,37 +43,13 @@ class MyAccount extends Component {
   //   }
   // }
 
-  enableEditHandler = (editing, showEditSaved) => {
-    // const currentEdit = this.state[editing];
-    // const showEditSaved = this.state.showEditSaved;
-    this.setState({
-      // [editing]: !currentEdit,
-      [editing]: false,
-      editSaved: false,
-      [showEditSaved]: false
-    });
+  saveEditHandler = editingField => {
+    this.setState({ editSaved: true, [editingField]: true });
+    // if editSaved === true, store the user data
   };
 
-  saveEditHandler = (editing, showEditSaved) => {
-    // const currentEdit = this.state[editing];
-    // const showEditSaved = this.state.showEditSaved;
-    this.setState({
-      // [editing]: !currentEdit,
-      [editing]: true,
-      editSaved: true,
-      [showEditSaved]: true
-    });
-  };
-
-  cancelEditHandler = (editing, showEditSaved) => {
-    // const currentEdit = this.state[editing];
-    // const showEditSaved = this.state.showEditSaved;
-    this.setState({
-      // [editing]: !currentEdit,
-      [editing]: true,
-      editSaved: false,
-      [showEditSaved]: false
-    });
+  cancelEditHandler = editingField => {
+    this.setState({ editSaved: false, [editingField]: false });
   };
 
   classNameChangeHandler = category => {
@@ -155,7 +121,6 @@ class MyAccount extends Component {
       showContent = (
         <EditProfile
           mainStateData={this.state}
-          editHandler={this.enableEditHandler}
           saveEditHandler={this.saveEditHandler}
           cancelEditHandler={this.cancelEditHandler}
         />
@@ -164,7 +129,6 @@ class MyAccount extends Component {
       showContent = (
         <AccountSetting
           mainStateData={this.state}
-          editHandler={this.enableEditHandler}
           saveEditHandler={this.saveEditHandler}
           cancelEditHandler={this.cancelEditHandler}
         />
@@ -178,7 +142,7 @@ class MyAccount extends Component {
           classNameChangeHandler={this.classNameChangeHandler}
         />
 
-        {showContent}
+        <div className={"Content-container"}>{showContent}</div>
       </div>
     );
   }

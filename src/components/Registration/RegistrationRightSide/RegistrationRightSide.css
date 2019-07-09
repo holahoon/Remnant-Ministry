@@ -99,3 +99,21 @@
   display: flex;
   margin-bottom: 1.5rem;
 }
+
+.Regist-form-1,
+.Regist-form-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.5rem;
+}
+
+.Regist-form-3 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1.5rem;
+}
+
+.Regist-form-3 .Regist-form-item3,
+.Regist-form-3 .Regist-form-item4 {
+  grid-column: 1 / 3;
+}

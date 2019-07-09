@@ -9,18 +9,11 @@ import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 
 const registrationForms1 = props => {
   return (
-    <React.Fragment>
+    <div>
       <RegistrationBasicInfo />
       <RegistrationFieldInfo />
       <RegistrationChurchInfo />
       <div className={"Registration-button-container margin-left-6"}>
-        {/*<button
-          className={"Registration-blue-button button-1-2--global"}
-          onClick={props.nextStepHandler}
-        >
-          Next
-          <ArrowRight16 className={"ArrowIcon-registration-next"} />
-        </button>*/}
         <Button
           buttonClass={"Registration-blue-button button-1-2--global"}
           handleButtonClick={props.nextStepHandler}
@@ -29,7 +22,7 @@ const registrationForms1 = props => {
           <ArrowRight16 className={"ArrowIcon-registration-next"} />
         </Button>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
