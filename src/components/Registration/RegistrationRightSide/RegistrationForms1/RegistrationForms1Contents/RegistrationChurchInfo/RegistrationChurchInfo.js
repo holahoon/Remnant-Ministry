@@ -22,6 +22,7 @@ const registrationChurchInfo = props => {
             Select your training level
             <select name="trainingLevel">
               <option>Select from the list</option>
+              <option value="none-training">none</option>
               <option value="1cha">1 차</option>
               <option value="2cha">2 차 </option>
               <option value="3cha">3 차</option>
@@ -38,13 +39,18 @@ const registrationChurchInfo = props => {
               <option value="church3">church 3</option>
               <option value="church4">church 4</option>
               <option value="church5">church 5</option>
+              <option value="church-not-listed">Church not listed</option>
             </select>
           </label>
         </div>
         <div className={"Regist-form-item4"}>
           <label>
             Type your church
-            <input type="text" name="typeYourChurch" />
+            <input
+              type="text"
+              name="typeYourChurch"
+              placeholder="Type your church"
+            />
           </label>
         </div>
       </form>

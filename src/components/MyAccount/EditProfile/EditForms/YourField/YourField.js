@@ -1,7 +1,5 @@
 import React from "react";
 
-import ChangeSavedMessage from "../../../ChangeSavedMessage/ChangeSavedMessage";
-
 const yourField = props => {
   return (
     <div className={"Basic-form-container"}>

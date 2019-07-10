@@ -1,7 +1,5 @@
 import React from "react";
 
-import ChangeSavedMessage from "../../../ChangeSavedMessage/ChangeSavedMessage";
-
 import "react-day-picker/lib/style.css";
 
 const basic = props => {

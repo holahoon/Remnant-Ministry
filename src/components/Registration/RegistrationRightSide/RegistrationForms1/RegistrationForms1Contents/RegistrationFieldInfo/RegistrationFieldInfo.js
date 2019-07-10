@@ -9,7 +9,7 @@ const registrationFieldInfo = props => {
         <div>
           <label>
             School
-            <input type="text" name="school-register" />
+            <input type="text" name="school-register" placeholder="School" />
           </label>
         </div>
         <div>
@@ -30,7 +30,7 @@ const registrationFieldInfo = props => {
         <div>
           <label>
             Major
-            <input type="text" name="major-register" />
+            <input type="text" name="major-register" placeholder="Major" />
           </label>
         </div>
         <div>
@@ -49,13 +49,17 @@ const registrationFieldInfo = props => {
         <div>
           <label>
             Company
-            <input type="text" name="company-register" />
+            <input type="text" name="company-register" placeholder="Company" />
           </label>
         </div>
         <div>
           <label>
             Title (Company)
-            <input type="text" name="companyTitle-register" />
+            <input
+              type="text"
+              name="companyTitle-register"
+              placeholder="Title"
+            />
           </label>
         </div>
       </form>

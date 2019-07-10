@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Basic from "./EditForms/Basic/Basic";
 import YourField from "./EditForms/YourField/YourField";

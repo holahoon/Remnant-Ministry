@@ -9,31 +9,47 @@ const registrationBasicInfo = props => {
         <div>
           <label>
             First name
-            <input type="text" name="firstName-register" />
+            <input
+              type="text"
+              name="firstNameRegistration"
+              placeholder="First Name"
+            />
           </label>
         </div>
         <div>
           <label>
             Last name
-            <input type="text" name="lastName-register" />
+            <input
+              type="text"
+              name="lastNameRegistration"
+              placeholder="Last Name"
+            />
           </label>
         </div>
         <div>
           <label>
             Korean name (optional)
-            <input type="text" name="koreanName-register" />
+            <input
+              type="text"
+              name="koreanNameRegistration"
+              placeholder="Korean Name"
+            />
           </label>
         </div>
         <div>
           <label>
             Date of birth
-            <input type="text" name="dateOfBirth" />
+            <input
+              type="text"
+              name="dateOfBirthRegistration"
+              placeholder="MM/DD/YYYY"
+            />
           </label>
         </div>
         <div>
           <label>
             Gender
-            <select name="genderSelection-register">
+            <select name="genderRegistration">
               <option value="not-selected">Selected your gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -43,7 +59,7 @@ const registrationBasicInfo = props => {
         <div>
           <label>
             Preferred Language
-            <select name="langaugeSelection-register">
+            <select name="preferredLanguageRegistration">
               <option value="english">English</option>
               <option value="korean">Korean</option>
               <option value="spanish">Spanish</option>
@@ -68,29 +84,29 @@ export default registrationBasicInfo;
 //           <div className={"Registration-form-row1"}>
 //             <label>
 //               First name
-//               <input type="text" name="firstName-register" />
+//               <input type="text" name="firstNameRegistration" />
 //             </label>
 
 //             <label>
 //               Last name
-//               <input type="text" name="lastName-register" />
+//               <input type="text" name="lastNameRegistration" />
 //             </label>
 
 //             <label>
 //               Korean name (optional)
-//               <input type="text" name="koreanName-register" />
+//               <input type="text" name="koreanNameRegistration" />
 //             </label>
 //           </div>
 
 //           <div className={"Registration-form-row2"}>
 //             <label>
 //               Date of birth
-//               <input type="text" name="dateOfBirth" />
+//               <input type="text" name="dateOfBirthRegistration" />
 //             </label>
 
 //             <label>
 //               Gender
-//               <select name="genderSelection-register">
+//               <select name="genderRegistration">
 //                 <option value="not-selected">Selected your gender</option>
 //                 <option value="male">Male</option>
 //                 <option value="female">Female</option>
@@ -99,7 +115,7 @@ export default registrationBasicInfo;
 
 //             <label>
 //               Preferred Language
-//               <select name="langaugeSelection-register">
+//               <select name="preferredLanguageRegistration">
 //                 <option value="english">English</option>
 //                 <option value="korean">Korean</option>
 //                 <option value="spanish">Spanish</option>

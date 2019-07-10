@@ -12,7 +12,17 @@ class registration extends Component {
     registrationStep1: true,
     registrationStep2: false,
     registrationStep1Filled: false,
-    registrationStep2Filled: false
+    registrationStep2Filled: false,
+    formValidation: {
+      basicInfo: {
+        firstNameRegistration: "",
+        lastNameRegistration: "",
+        koreanNameRegistration: "",
+        dateOfBirthRegistration: "",
+        genderRegistration: "",
+        preferredLanguageRegistration: ""
+      }
+    }
   };
 
   completeRegistrationHandler = () => {
@@ -37,6 +47,11 @@ class registration extends Component {
       registrationStep2: !currentStep.registrationStep2,
       registrationStep1Filled: !currentStep.registrationStep1Filled
     });
+  };
+
+  onChangeHandler = event => {
+    const { name, value } = event.target;
+    // Deep clone the state object
   };
 
   render() {
