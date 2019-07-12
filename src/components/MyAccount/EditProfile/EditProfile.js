@@ -10,7 +10,6 @@ import ChangeSavedMessage from "../ChangeSavedMessage/ChangeSavedMessage";
 import "./EditProfile.css";
 
 const editProfile = props => {
-  console.log("hi");
   const buttonGroup = (
     <div className={"Button-group-container"}>
       <Button

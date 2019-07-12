@@ -1,18 +1,45 @@
 import React from "react";
 
+// import Input from "../../../../Input/Input";
+
 const registrationBasicInfo = props => {
+  // console.log("basic: ", props.formElementsArray);
+
+  // let basicForm = (
+  //   <form className={"Registration-form Regist-form-1"}>
+  //     {props.formElementsArray.map(eachEl => (
+  //       <Input
+  //         key={eachEl.id}
+  //         elementType={eachEl.config.elementType}
+  //         elementConfig={eachEl.config.elementConfig}
+  //         label={eachEl.config.elementConfig.placeholder}
+  //         value={eachEl.config.value}
+  //         onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+  //       />
+  //     ))}
+  //   </form>
+  // );
+
+  const { basicInfo, basicInfoError } = props.stateData;
+  console.log(basicInfoError.firstNameRegistration);
   return (
     <div className={"Basic-form-container"}>
       <h5 className={"Register-h5-title"}>Basic information</h5>
+      {/*basicForm*/}
 
       <form className={"Registration-form Regist-form-1"}>
         <div>
           <label>
             First name
             <input
+              className={
+                basicInfoError.firstNameRegistration ? "InputError" : null
+              }
               type="text"
               name="firstNameRegistration"
+              value={basicInfo.firstNameRegistration}
               placeholder="First Name"
+              onChange={props.onChangeHandler}
             />
           </label>
         </div>
@@ -20,9 +47,14 @@ const registrationBasicInfo = props => {
           <label>
             Last name
             <input
+              className={
+                basicInfoError.lastNameRegistration ? "InputError" : null
+              }
               type="text"
               name="lastNameRegistration"
+              value={basicInfo.lastNameRegistration}
               placeholder="Last Name"
+              onChange={props.onChangeHandler}
             />
           </label>
         </div>
@@ -32,7 +64,9 @@ const registrationBasicInfo = props => {
             <input
               type="text"
               name="koreanNameRegistration"
+              value={basicInfo.koreanNameRegistration}
               placeholder="Korean Name"
+              onChange={props.onChangeHandler}
             />
           </label>
         </div>
@@ -40,17 +74,29 @@ const registrationBasicInfo = props => {
           <label>
             Date of birth
             <input
+              className={
+                basicInfoError.dateOfBirthRegistration ? "InputError" : null
+              }
               type="text"
               name="dateOfBirthRegistration"
+              value={basicInfo.dateOfBirthRegistration}
               placeholder="MM/DD/YYYY"
+              onChange={props.onChangeHandler}
             />
           </label>
         </div>
         <div>
           <label>
             Gender
-            <select name="genderRegistration">
-              <option value="not-selected">Selected your gender</option>
+            <select
+              className={
+                basicInfoError.genderRegistration ? "InputError" : null
+              }
+              name="genderRegistration"
+              value={basicInfo.genderRegistration}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
@@ -59,7 +105,17 @@ const registrationBasicInfo = props => {
         <div>
           <label>
             Preferred Language
-            <select name="preferredLanguageRegistration">
+            <select
+              className={
+                basicInfoError.preferredLanguageRegistration
+                  ? "InputError"
+                  : null
+              }
+              name="preferredLanguageRegistration"
+              value={basicInfo.preferredLanguageRegistration}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="english">English</option>
               <option value="korean">Korean</option>
               <option value="spanish">Spanish</option>

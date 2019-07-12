@@ -41,3 +41,13 @@ li a {
   margin-right: 2.5rem;
   font-weight: normal;
 }
+
+/* For screen less than 750px */
+@media (max-width: 750px) {
+  .NavGroup1 {
+    display: none;
+  }
+  .NavGroup2 {
+    display: none;
+  }
+}

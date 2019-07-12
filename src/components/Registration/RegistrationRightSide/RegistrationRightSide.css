@@ -65,6 +65,11 @@
   box-sizing: border-box;
 }
 
+.Registration-form input.InputError,
+.Registration-form select.InputError {
+  border: 1px solid red;
+}
+
 .Registration-button-container {
   display: flex;
   margin-top: 2.0625rem;

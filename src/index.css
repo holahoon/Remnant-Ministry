@@ -35,6 +35,10 @@ button:hover {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 input {
   outline: none;
   font-family: whitney;

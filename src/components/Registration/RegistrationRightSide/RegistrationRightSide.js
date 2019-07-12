@@ -8,7 +8,11 @@ import "./RegistrationRightSide.css";
 
 const registrationRightSide = props => {
   const registration1 = (
-    <RegistrationForms1 nextStepHandler={props.nextStepHandler} />
+    <RegistrationForms1
+      nextStepHandler={props.nextStepHandler}
+      onChangeHandler={props.onChangeHandler}
+      stateData={props.stateData}
+    />
   );
   const registration2 = (
     <RegistrationForms2
