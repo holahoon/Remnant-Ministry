@@ -24,13 +24,20 @@ const registrationForms1 = props => {
         onChangeHandler={props.onChangeHandler}
         stateData={props.stateData}
       />
-      <RegistrationFieldInfo />
-      <RegistrationChurchInfo />
+      <RegistrationFieldInfo
+        onChangeHandler={props.onChangeHandler}
+        stateData={props.stateData}
+      />
+      <RegistrationChurchInfo
+        onChangeHandler={props.onChangeHandler}
+        stateData={props.stateData}
+      />
+
       <div className={"Registration-button-container margin-left-6"}>
         <Button
           buttonClass={"Registration-blue-button button-1-2--global"}
           handleButtonClick={props.nextStepHandler}
-          disable={!props.stateData.registrationStep1Filled}
+          disable={!props.stateData.formStep1Valid}
         >
           Next
           <ArrowRight16 className={"ArrowIcon-registration-next"} />

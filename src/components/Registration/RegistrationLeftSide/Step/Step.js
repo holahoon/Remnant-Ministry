@@ -36,8 +36,8 @@ const step = props => {
             : "step-1-title"
         }
       >
-        {props.stateData.registrationStep1Filled ? checked : null}
-        {props.stateData.registrationStep1Filled ? null : arrow1}
+        {props.stateData.formStep1Valid ? checked : null}
+        {props.stateData.formStep1Valid ? null : arrow1}
         General information
       </p>
 

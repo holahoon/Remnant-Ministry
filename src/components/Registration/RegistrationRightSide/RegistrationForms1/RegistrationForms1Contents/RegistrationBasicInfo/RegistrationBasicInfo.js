@@ -20,8 +20,14 @@ const registrationBasicInfo = props => {
   //   </form>
   // );
 
-  const { basicInfo, basicInfoError } = props.stateData;
-  console.log(basicInfoError.firstNameRegistration);
+  const {
+    firstNameRegistration,
+    lastNameRegistration,
+    koreanNameRegistration,
+    dateOfBirthRegistration,
+    genderRegistration,
+    preferredLanguageRegistration
+  } = props.stateData.registrationFormValidation;
   return (
     <div className={"Basic-form-container"}>
       <h5 className={"Register-h5-title"}>Basic information</h5>
@@ -33,11 +39,15 @@ const registrationBasicInfo = props => {
             First name
             <input
               className={
-                basicInfoError.firstNameRegistration ? "InputError" : null
+                !firstNameRegistration.touched
+                  ? null
+                  : firstNameRegistration.valid
+                  ? null
+                  : "InputError"
               }
               type="text"
               name="firstNameRegistration"
-              value={basicInfo.firstNameRegistration}
+              value={firstNameRegistration.value}
               placeholder="First Name"
               onChange={props.onChangeHandler}
             />
@@ -48,11 +58,15 @@ const registrationBasicInfo = props => {
             Last name
             <input
               className={
-                basicInfoError.lastNameRegistration ? "InputError" : null
+                !lastNameRegistration.touched
+                  ? null
+                  : lastNameRegistration.valid
+                  ? null
+                  : "InputError"
               }
               type="text"
               name="lastNameRegistration"
-              value={basicInfo.lastNameRegistration}
+              value={lastNameRegistration.value}
               placeholder="Last Name"
               onChange={props.onChangeHandler}
             />
@@ -64,7 +78,7 @@ const registrationBasicInfo = props => {
             <input
               type="text"
               name="koreanNameRegistration"
-              value={basicInfo.koreanNameRegistration}
+              value={koreanNameRegistration.value}
               placeholder="Korean Name"
               onChange={props.onChangeHandler}
             />
@@ -75,11 +89,15 @@ const registrationBasicInfo = props => {
             Date of birth
             <input
               className={
-                basicInfoError.dateOfBirthRegistration ? "InputError" : null
+                !dateOfBirthRegistration.touched
+                  ? null
+                  : dateOfBirthRegistration.valid
+                  ? null
+                  : "InputError"
               }
               type="text"
               name="dateOfBirthRegistration"
-              value={basicInfo.dateOfBirthRegistration}
+              value={dateOfBirthRegistration.value}
               placeholder="MM/DD/YYYY"
               onChange={props.onChangeHandler}
             />
@@ -90,10 +108,14 @@ const registrationBasicInfo = props => {
             Gender
             <select
               className={
-                basicInfoError.genderRegistration ? "InputError" : null
+                !genderRegistration.touched
+                  ? null
+                  : genderRegistration.valid
+                  ? null
+                  : "InputError"
               }
               name="genderRegistration"
-              value={basicInfo.genderRegistration}
+              value={genderRegistration.value}
               onChange={props.onChangeHandler}
             >
               <option value="">Select</option>
@@ -107,12 +129,14 @@ const registrationBasicInfo = props => {
             Preferred Language
             <select
               className={
-                basicInfoError.preferredLanguageRegistration
-                  ? "InputError"
-                  : null
+                !preferredLanguageRegistration.touched
+                  ? null
+                  : preferredLanguageRegistration.valid
+                  ? null
+                  : "InputError"
               }
               name="preferredLanguageRegistration"
-              value={basicInfo.preferredLanguageRegistration}
+              value={preferredLanguageRegistration.value}
               onChange={props.onChangeHandler}
             >
               <option value="">Select</option>
