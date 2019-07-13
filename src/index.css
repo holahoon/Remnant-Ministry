@@ -68,7 +68,7 @@ select {
   font-family: whitney;
   font-size: 0.875rem;
   font-weight: normal;
-  color: #282828;
+  color: #bebebe;
   letter-spacing: 0;
   line-height: 1.25rem;
   background: #ffffff;
@@ -81,6 +81,13 @@ select {
   height: 3.125rem;
   padding-left: 0.9375rem;
   box-sizing: border-box;
+}
+
+option[value=""] {
+  color: #bebebe;
+}
+option {
+  color: #282828;
 }
 
 label {

@@ -192,6 +192,31 @@ class Registration extends Component {
         required: true,
         valid: false,
         touched: false
+      },
+
+      positionInChurchRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      trainingLevelRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      selectChurchRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false,
+        showTypeChurchRegistration: false
+      },
+      typeChurchRegistration: {
+        value: "",
+        required: false,
+        valid: true
       }
     },
     formStep1Valid: false
@@ -280,11 +305,6 @@ class Registration extends Component {
       ...this.state.registrationFormValidation
     };
     const deepUpdatedRegistrationForm = { ...updatedRegistrationForm[name] };
-    // const basicInfo = { ...this.state.basicInfo };
-    // const deepBasicInfo = { ...basicInfo[name] };
-
-    // const fieldInfo = { ...this.state.fieldInfo };
-    // const deepFieldInfo = { ...fieldInfo };
 
     const nameRegex = RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g);
     const DOBRegex = RegExp(/^(\d{2,2})(\/)(\d{2,2})\2(\d{4}|\d{4})$/);
@@ -338,27 +358,42 @@ class Registration extends Component {
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
         break;
+      case "positionInChurchRegistration":
+        deepUpdatedRegistrationForm.touched = true;
+        deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        break;
+      case "trainingLevelRegistration":
+        deepUpdatedRegistrationForm.touched = true;
+        deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        break;
+      case "selectChurchRegistration":
+        deepUpdatedRegistrationForm.touched = true;
+        if (value === "") {
+          deepUpdatedRegistrationForm.valid = false;
+          deepUpdatedRegistrationForm.showTypeChurchRegistration = false;
+        } else if (value === "church-not-listed") {
+          deepUpdatedRegistrationForm.valid = true;
+          deepUpdatedRegistrationForm.showTypeChurchRegistration = true;
+        } else {
+          deepUpdatedRegistrationForm.valid = true;
+          deepUpdatedRegistrationForm.showTypeChurchRegistration = false;
+        }
+        break;
       default:
         break;
     }
 
-    // Update the input values first in the deep cloned variable and update it into the basicInfo to update the state.basicInfo
+    // Update the input values first in the deep cloned variable and update it into the basicInfo to update the state
     deepUpdatedRegistrationForm.value = value;
     updatedRegistrationForm[name] = deepUpdatedRegistrationForm;
 
     // Check to see if ALL inputs are valid in order to proceed to next registration
     let formStep1Valid = true;
     for (let name in updatedRegistrationForm) {
-      formStep1Valid = updatedRegistrationForm[name].valid && formStep1Valid;
+      if (updatedRegistrationForm[name].required) {
+        formStep1Valid = updatedRegistrationForm[name].valid && formStep1Valid;
+      }
     }
-    // for (let name in basicInfo && fieldInfo) {
-    //   formStep1Valid =
-    //     basicInfo[name].valid && fieldInfo[name].valid && formStep1Valid;
-    // }
-
-    // for (let name in basicInfo) {
-    //   formStep1Valid = basicInfo[name].valid && formStep1Valid;
-    // }
 
     this.setState({
       registrationFormValidation: updatedRegistrationForm,

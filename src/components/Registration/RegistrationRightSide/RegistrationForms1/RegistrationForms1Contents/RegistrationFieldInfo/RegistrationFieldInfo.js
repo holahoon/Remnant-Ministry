@@ -45,6 +45,7 @@ const registrationFieldInfo = props => {
                   ? null
                   : "InputError"
               }
+              style={gradeRegistration.touched ? { color: "#282828" } : null}
               name="gradeRegistration"
               value={gradeRegistration.value}
               onChange={props.onChangeHandler}
@@ -92,6 +93,9 @@ const registrationFieldInfo = props => {
                   : specialtyRegistration.valid
                   ? null
                   : "InputError"
+              }
+              style={
+                specialtyRegistration.touched ? { color: "#282828" } : null
               }
               name="specialtyRegistration"
               value={specialtyRegistration.value}

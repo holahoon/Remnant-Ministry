@@ -114,6 +114,7 @@ const registrationBasicInfo = props => {
                   ? null
                   : "InputError"
               }
+              style={genderRegistration.touched ? { color: "#282828" } : null}
               name="genderRegistration"
               value={genderRegistration.value}
               onChange={props.onChangeHandler}
@@ -135,6 +136,7 @@ const registrationBasicInfo = props => {
                   ? null
                   : "InputError"
               }
+              style={preferredLanguageRegistration.touched ? { color: "#282828" } : null}
               name="preferredLanguageRegistration"
               value={preferredLanguageRegistration.value}
               onChange={props.onChangeHandler}

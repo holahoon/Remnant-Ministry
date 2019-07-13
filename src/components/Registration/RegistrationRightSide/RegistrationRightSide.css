@@ -122,3 +122,11 @@
 .Regist-form-3 .Regist-form-item4 {
   grid-column: 1 / 3;
 }
+
+.hideInput {
+  display: none;
+}
+
+.showInput {
+  display: block;
+}

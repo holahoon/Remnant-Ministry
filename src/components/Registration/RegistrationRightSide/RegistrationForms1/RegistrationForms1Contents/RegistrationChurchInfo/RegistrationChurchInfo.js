@@ -1,6 +1,12 @@
 import React from "react";
 
 const registrationChurchInfo = props => {
+  const {
+    positionInChurchRegistration,
+    trainingLevelRegistration,
+    selectChurchRegistration,
+    typeChurchRegistration
+  } = props.stateData.registrationFormValidation;
   return (
     <div>
       <h5 className={"Register-h5-title"}>Your church information</h5>
@@ -9,8 +15,24 @@ const registrationChurchInfo = props => {
         <div className={"Regist-form-item1"}>
           <label>
             Select your position in church
-            <select name="positionInChurch">
-              <option>Select from the list</option>
+            <select
+              className={
+                !positionInChurchRegistration.touched
+                  ? null
+                  : positionInChurchRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              style={
+                positionInChurchRegistration.touched
+                  ? { color: "#282828" }
+                  : null
+              }
+              name="positionInChurchRegistration"
+              value={positionInChurchRegistration.value}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="position1">position 1</option>
               <option value="position2">position 2</option>
               <option value="position3">position 3</option>
@@ -20,9 +42,23 @@ const registrationChurchInfo = props => {
         <div className={"Regist-form-item2"}>
           <label>
             Select your training level
-            <select name="trainingLevel">
-              <option>Select from the list</option>
-              <option value="none-training">none</option>
+            <select
+              className={
+                !trainingLevelRegistration.touched
+                  ? null
+                  : trainingLevelRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              style={
+                trainingLevelRegistration.touched ? { color: "#282828" } : null
+              }
+              name="trainingLevelRegistration"
+              value={trainingLevelRegistration.value}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
+              <option value="no-training">none</option>
               <option value="1cha">1 차</option>
               <option value="2cha">2 차 </option>
               <option value="3cha">3 차</option>
@@ -32,8 +68,22 @@ const registrationChurchInfo = props => {
         <div className={"Regist-form-item3"}>
           <label>
             Select your church
-            <select name="selectYourChurch">
-              <option>Select from the list</option>
+            <select
+              className={
+                !selectChurchRegistration.touched
+                  ? null
+                  : selectChurchRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              style={
+                selectChurchRegistration.touched ? { color: "#282828" } : null
+              }
+              name="selectChurchRegistration"
+              value={selectChurchRegistration.value}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="church1">church 1</option>
               <option value="church2">church 2</option>
               <option value="church3">church 3</option>
@@ -43,13 +93,26 @@ const registrationChurchInfo = props => {
             </select>
           </label>
         </div>
-        <div className={"Regist-form-item4"}>
+        <div
+          className={
+            !selectChurchRegistration.showTypeChurchRegistration
+              ? "Regist-form-item4 hideInput"
+              : "Regist-form-item4 showInput"
+          }
+        >
           <label>
             Type your church
             <input
+              className={
+                !selectChurchRegistration.showTypeChurchRegistration
+                  ? "Regist-form-item4 hideInput"
+                  : "Regist-form-item4 showInput"
+              }
               type="text"
-              name="typeYourChurch"
+              name="typeChurchRegistration"
+              value={typeChurchRegistration.value}
               placeholder="Type your church"
+              onChange={props.onChangeHandler}
             />
           </label>
         </div>
