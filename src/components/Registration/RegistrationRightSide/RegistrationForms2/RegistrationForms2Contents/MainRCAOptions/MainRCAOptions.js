@@ -60,6 +60,9 @@ const mainRCAOptions = props => {
     healthConditionRegistration,
     prayerTopicRegistration
   } = props.stateData.registrationFormValidation2;
+  const {
+    dateOfBirthRegistration
+  } = props.stateData.registrationFormValidation;
 
   return (
     <div>
@@ -81,18 +84,19 @@ const mainRCAOptions = props => {
               control={<BlueRadio />}
               label="4 people / room"
             />
-            <span>$ 0.00</span>
+            <span>$ 109.99</span>
           </div>
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
               value="2people"
               control={<BlueRadio />}
               label="2 people / room "
+              disabled={lodgingOptionRegistration.disable}
             />
             <span style={{ color: "#DA1E28" }}>
               Only the participants born before 1990 can choose
             </span>
-            <span>$ 0.00</span>
+            <span>$ 139.99</span>
           </div>
         </RadioGroup>
 

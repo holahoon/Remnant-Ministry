@@ -224,7 +224,8 @@ class Registration extends Component {
     registrationFormValidation2: {
       lodgingOptionRegistration: {
         value: "4people",
-        price: "",
+        price: "109.99",
+        disable: false,
         required: true,
         valid: false,
         touched: false
@@ -297,7 +298,7 @@ class Registration extends Component {
         touched: false
       }
     },
-    formStep1Valid: true,
+    formStep1Valid: false,
     formStep2Valid: false
   };
 
@@ -368,6 +369,13 @@ class Registration extends Component {
         deepUpdatedRegistrationForm.valid = DOBRegex.test(value) ? true : false;
         deepUpdatedRegistrationForm.value = value;
         deepUpdatedRegistrationForm.age = this.dateOfBirthFormatHandler(value);
+        if (deepUpdatedRegistrationForm.age < 30) {
+          updatedRegistrationForm2.lodgingOptionRegistration.disable = true;
+          updatedRegistrationForm2.lodgingOptionRegistration.value = "4people";
+          updatedRegistrationForm2.lodgingOptionRegistration.price = "109.99"
+        } else {
+          updatedRegistrationForm2.lodgingOptionRegistration.disable = false;
+        }
         break;
       case "genderRegistration":
         deepUpdatedRegistrationForm.touched = true;
@@ -442,6 +450,11 @@ class Registration extends Component {
         deepUpdatedRegistrationForm2.touched = true;
         deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
         deepUpdatedRegistrationForm2.value = value;
+        if (value === "4people") {
+          deepUpdatedRegistrationForm2.price = "109.99";
+        } else if (value === "2people") {
+          deepUpdatedRegistrationForm2.price = "139.99";
+        }
         break;
       case "shirtSizeRegistration":
         deepUpdatedRegistrationForm2.touched = true;

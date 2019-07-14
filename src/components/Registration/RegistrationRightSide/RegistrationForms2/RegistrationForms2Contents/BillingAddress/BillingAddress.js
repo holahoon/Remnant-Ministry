@@ -63,7 +63,7 @@ const billingAddress = props => {
               onChange={props.onChangeHandler}
             />
           }
-          label="Billing address is same as My address"
+          label="Billing address is same as my address"
         />
 
         <div style={{ gridColumn: "1 / 4" }}>
