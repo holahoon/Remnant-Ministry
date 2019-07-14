@@ -1,17 +1,15 @@
 # Remnant Ministry Web app
 
-### Designed by Jun Sung An, being developed by David Myung Hoon Kim.
+- Designed by Jun Sung An, being developed by David Myung Hoon Kim.
 
-#### Let's go Remnants!
+## ---- Currently being developed.. ----
 
-##### material-ui used
+1.  User login page - Not completed
 
-##### ---- Currently being developed.. ----
+2.  User signup page - Not completed
 
-### 1. User login page - Not completed
+3.  Event registration page - Progress..(expected to be completed by 7/15)
 
-### 2. User signup page - Not completed
+4.  User account page - Not completed
 
-### 3. Event registration page - Progress..(expected to be completed by 7/14)
-
-### 4. User account page - Not completed
+5.  Redux to be used to manage the state
