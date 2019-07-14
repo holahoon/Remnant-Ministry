@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 
@@ -13,16 +12,6 @@ const CustomFormControl = withStyles({
     display: "flex"
   }
 })(props => <FormControl {...props} />);
-
-// const CustomFormControlLabel = withStyles({
-//   root: { marginRight: "0", marginBottom: "48px" },
-//   label: {
-//     color: "#282828",
-//     fontSize: "14px",
-//     letterSpacing: "0",
-//     lineHeight: "20px"
-//   }
-// })(props => <FormControlLabel {...props} />);
 
 // Custom Radio CSS
 const CustomRadioFormControlLabel = withStyles({
@@ -64,6 +53,14 @@ const BlueRadio = withStyles({
 })(props => <Radio color="default" {...props} />);
 
 const mainRCAOptions = props => {
+  const {
+    lodgingOptionRegistration,
+    shirtSizeRegistration,
+    staffVolunteerRegistration,
+    healthConditionRegistration,
+    prayerTopicRegistration
+  } = props.stateData.registrationFormValidation2;
+
   return (
     <div>
       <h5 className={"Register-h5-title"}>Main RCA options</h5>
@@ -74,8 +71,9 @@ const mainRCAOptions = props => {
         </CustomFormLabel>
         <RadioGroup
           aria-label="Lodging option"
-          name="lodgingOption"
-          // value={props.value}
+          name="lodgingOptionRegistration"
+          value={lodgingOptionRegistration.value}
+          onChange={props.onChangeHandler}
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
@@ -101,7 +99,22 @@ const mainRCAOptions = props => {
         <div className={"t-shirt-container"}>
           <label>
             T-shirt size
-            <select name="t-shirt-size">
+            <select
+              className={
+                !shirtSizeRegistration.touched
+                  ? null
+                  : shirtSizeRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              style={
+                shirtSizeRegistration.touched ? { color: "#282828" } : null
+              }
+              name="shirtSizeRegistration"
+              value={shirtSizeRegistration.value}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="x-small-size">X-Small</option>
               <option value="small-size">Small</option>
               <option value="medium-size">Medium</option>
@@ -114,7 +127,22 @@ const mainRCAOptions = props => {
 
           <label>
             Volunteer to serve as a staff
-            <select name="volunteer-staff">
+            <select
+              className={
+                !staffVolunteerRegistration.touched
+                  ? null
+                  : staffVolunteerRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              style={
+                staffVolunteerRegistration.touched ? { color: "#282828" } : null
+              }
+              name="staffVolunteerRegistration"
+              value={staffVolunteerRegistration.value}
+              onChange={props.onChangeHandler}
+            >
+              <option value="">Select</option>
               <option value="volunteer-staff-yes">
                 Yes, I'd like to volunteer
               </option>
@@ -128,14 +156,23 @@ const mainRCAOptions = props => {
         <label>
           Health Condition
           <input
+            name="healthConditionRegistration"
+            value={healthConditionRegistration.value}
             type="text"
             placeholder="Tell us if you have special condition"
+            onChange={props.onChangeHandler}
           />
         </label>
 
         <label>
           Prayer topic
-          <input type="text" placeholder="Write your prayer topic" />
+          <input
+            name="prayerTopicRegistration"
+            value={prayerTopicRegistration.value}
+            type="text"
+            placeholder="Write your prayer topic"
+            onChange={props.onChangeHandler}
+          />
         </label>
       </CustomFormControl>
     </div>

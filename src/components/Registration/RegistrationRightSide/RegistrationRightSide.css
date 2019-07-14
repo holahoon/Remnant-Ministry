@@ -65,8 +65,8 @@
   box-sizing: border-box;
 }
 
-.Registration-form input.InputError,
-.Registration-form select.InputError {
+input.InputError,
+select.InputError {
   border: 1px solid red;
 }
 

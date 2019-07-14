@@ -12,9 +12,18 @@ import "./RegistrationForms2.css";
 const registrationForms2 = props => {
   return (
     <React.Fragment>
-      <MainRCAOptions />
-      <Payment />
-      <BillingAddress />
+      <MainRCAOptions
+        onChangeHandler={props.onChangeHandler}
+        stateData={props.stateData}
+      />
+      <Payment
+        onChangeHandler={props.onChangeHandler}
+        stateData={props.stateData}
+      />
+      <BillingAddress
+        onChangeHandler={props.onChangeHandler}
+        stateData={props.stateData}
+      />
 
       <div className={"Complete-registration-button-container"}>
         <Button

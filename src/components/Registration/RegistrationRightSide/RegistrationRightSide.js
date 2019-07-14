@@ -18,6 +18,8 @@ const registrationRightSide = props => {
     <RegistrationForms2
       prevStepHandler={props.prevStepHandler}
       completeRegistrationHandler={props.completeRegistrationHandler}
+      onChangeHandler={props.onChangeHandler}
+      stateData={props.stateData}
     />
   );
 

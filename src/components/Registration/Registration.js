@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import Layout2 from "../../Layout/Layout2";
 import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
@@ -140,6 +141,7 @@ class Registration extends Component {
       },
       dateOfBirthRegistration: {
         value: "",
+        age: "",
         required: true,
         valid: false,
         touched: false
@@ -219,7 +221,84 @@ class Registration extends Component {
         valid: true
       }
     },
-    formStep1Valid: false
+    registrationFormValidation2: {
+      lodgingOptionRegistration: {
+        value: "4people",
+        price: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      shirtSizeRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      staffVolunteerRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      healthConditionRegistration: {
+        value: "",
+        required: false,
+        valid: true
+      },
+      prayerTopicRegistration: {
+        value: "",
+        required: true,
+        valid: false
+      },
+      billingSameAsMyAddress: {
+        value: false,
+        required: false
+      },
+      billingFirstNameRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      billingLastNameRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      billingAddressRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      billingOptionalRegistration: {
+        value: "",
+        required: false,
+        valid: true
+      },
+      billingCityRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      billingStateRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      billingPostalRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      }
+    },
+    formStep1Valid: true,
+    formStep2Valid: false
   };
 
   completeRegistrationHandler = () => {
@@ -248,66 +327,23 @@ class Registration extends Component {
     });
   };
 
-  /*
-  onChangeHandler = (event, inputIdentifier) => {
-    const { value } = event.target;
-    // Deep clone the state object
-    const updatedBasicInfo = { ...this.state.basicInfo };
-    // To deep clone (because spread operator does NOT deeply clone an object)
-    const deepUpdatedBasicInfo = { ...updatedBasicInfo[inputIdentifier] };
-    // Update value
-    deepUpdatedBasicInfo.value = value;
-    // Update valid
-    deepUpdatedBasicInfo.valid = this.checkValidity(
-      deepUpdatedBasicInfo.value,
-      deepUpdatedBasicInfo.validation
-    );
-    // Update touched
-    deepUpdatedBasicInfo.touched = true;
-    updatedBasicInfo[inputIdentifier] = deepUpdatedBasicInfo;
-    // Check to see if ALL inputs are valid in order to set registrationStep1Filled to true to proceed
-    let registrationStep1IsValid = true;
-    for (let inputIdentifier in updatedBasicInfo) {
-      registrationStep1IsValid =
-        updatedBasicInfo[inputIdentifier].valid && registrationStep1IsValid;
-    }
-
-    this.setState({
-      basicInfo: updatedBasicInfo,
-      registrationStep1Filled: registrationStep1IsValid
-    });
-  };
-  
-
-  checkValidity(value, rules) {
-    let isValid = true;
-    // .trim() - to remove any whtie spaces
-    // isValid updates to true / false depending on value.trim() is not equal to an empty string
-    // if value.trim() is not an empty string, then isValid is TRUE
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-
-    // check if rules has .minLength, if it does,
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    // check if rules has .maxLength, if it does,
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-  }
-  */
-
   onChangeHandler = event => {
-    const { name, value } = event.target;
+    const { name, value, checked } = event.target;
+
     const updatedRegistrationForm = {
       ...this.state.registrationFormValidation
     };
     const deepUpdatedRegistrationForm = { ...updatedRegistrationForm[name] };
 
+    const updatedRegistrationForm2 = {
+      ...this.state.registrationFormValidation2
+    };
+    const deepUpdatedRegistrationForm2 = { ...updatedRegistrationForm2[name] };
+
+    // Check validation
     const nameRegex = RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g);
     const DOBRegex = RegExp(/^(\d{2,2})(\/)(\d{2,2})\2(\d{4}|\d{4})$/);
+    const postalRegex = RegExp(/^\d{5}([\-]\d{4})?/);
 
     switch (name) {
       case "firstNameRegistration":
@@ -315,56 +351,73 @@ class Registration extends Component {
         deepUpdatedRegistrationForm.valid = nameRegex.test(value)
           ? true
           : false;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "lastNameRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = nameRegex.test(value)
           ? true
           : false;
+        deepUpdatedRegistrationForm.value = value;
+        break;
+      case "koreanNameRegistration":
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "dateOfBirthRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = DOBRegex.test(value) ? true : false;
+        deepUpdatedRegistrationForm.value = value;
+        deepUpdatedRegistrationForm.age = this.dateOfBirthFormatHandler(value);
         break;
       case "genderRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "preferredLanguageRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "schoolRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "gradeRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "majorRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "specialtyRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "companyRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "companyTitleRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "positionInChurchRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "trainingLevelRegistration":
         deepUpdatedRegistrationForm.touched = true;
         deepUpdatedRegistrationForm.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm.value = value;
         break;
       case "selectChurchRegistration":
         deepUpdatedRegistrationForm.touched = true;
@@ -378,14 +431,83 @@ class Registration extends Component {
           deepUpdatedRegistrationForm.valid = true;
           deepUpdatedRegistrationForm.showTypeChurchRegistration = false;
         }
+        deepUpdatedRegistrationForm.value = value;
+        break;
+      case "typeChurchRegistration":
+        deepUpdatedRegistrationForm.value = value;
+        break;
+
+      // registration page 2
+      case "lodgingOptionRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "shirtSizeRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "staffVolunteerRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "healthConditionRegistration":
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "prayerTopicRegistration":
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingSameAsMyAddress":
+        deepUpdatedRegistrationForm2.value = checked;
+        break;
+      case "billingFirstNameRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = nameRegex.test(value)
+          ? true
+          : false;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingLastNameRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = nameRegex.test(value)
+          ? true
+          : false;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingAddressRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingOptionalRegistration":
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingCityRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingStateRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "billingPostalRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = postalRegex.test(value)
+          ? true
+          : false;
+        deepUpdatedRegistrationForm2.value = value;
         break;
       default:
         break;
     }
 
     // Update the input values first in the deep cloned variable and update it into the basicInfo to update the state
-    deepUpdatedRegistrationForm.value = value;
     updatedRegistrationForm[name] = deepUpdatedRegistrationForm;
+    updatedRegistrationForm2[name] = deepUpdatedRegistrationForm2;
 
     // Check to see if ALL inputs are valid in order to proceed to next registration
     let formStep1Valid = true;
@@ -395,10 +517,35 @@ class Registration extends Component {
       }
     }
 
+    let formStep2Valid = true;
+    for (let name in updatedRegistrationForm2) {
+      if (updatedRegistrationForm2[name].required) {
+        formStep2Valid = updatedRegistrationForm2[name].valid && formStep2Valid;
+      }
+    }
+
     this.setState({
       registrationFormValidation: updatedRegistrationForm,
-      formStep1Valid
+      registrationFormValidation2: updatedRegistrationForm2,
+      formStep1Valid,
+      formStep2Valid
     });
+  };
+
+  dateOfBirthFormatHandler(DOBvalue) {
+    // First check for the pattern
+    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(DOBvalue)) return false;
+
+    const formattedDOB = DOBvalue.split("/").join("-");
+    // Check what is being deprecated. This may throw a warning in the console
+    const age = moment().diff(formattedDOB, "years");
+    return age;
+  }
+
+  click = () => {
+    this.dateOfBirthFormatHandler(
+      this.state.registrationFormValidation.dateOfBirthRegistration.value
+    );
   };
 
   render() {
