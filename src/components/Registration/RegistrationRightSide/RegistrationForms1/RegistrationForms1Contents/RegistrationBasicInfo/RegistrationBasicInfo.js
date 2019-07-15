@@ -1,4 +1,5 @@
 import React from "react";
+import MaskedInput from "react-text-mask";
 
 // import Input from "../../../../Input/Input";
 
@@ -87,7 +88,7 @@ const registrationBasicInfo = props => {
         <div>
           <label>
             Date of birth
-            <input
+            {/*<input
               className={
                 !dateOfBirthRegistration.touched
                   ? null
@@ -99,6 +100,32 @@ const registrationBasicInfo = props => {
               name="dateOfBirthRegistration"
               value={dateOfBirthRegistration.value}
               placeholder="MM/DD/YYYY"
+              onChange={props.onChangeHandler}
+            />*/}
+            <MaskedInput
+              className={
+                !dateOfBirthRegistration.touched
+                  ? null
+                  : dateOfBirthRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              mask={[
+                /[0-1]/,
+                /\d/,
+                "/",
+                /[0-3]/,
+                /\d/,
+                "/",
+                /[1-2]/,
+                /\d/,
+                /\d/,
+                /\d/
+              ]}
+              placeholder="MM/DD/YYYY"
+              name="dateOfBirthRegistration"
+              value={dateOfBirthRegistration.value}
+              guide={false}
               onChange={props.onChangeHandler}
             />
           </label>

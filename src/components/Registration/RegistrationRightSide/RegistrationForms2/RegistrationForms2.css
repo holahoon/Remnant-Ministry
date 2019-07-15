@@ -50,8 +50,11 @@
 }
 
 .card-info-inner-container label:nth-child(2) {
-  padding-left: 24px;
-  padding-right: 24px;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+.card-info-inner-container label:nth-child(3) {
+  margin-right: 0.75rem;
 }
 
 .address-info-container,
@@ -67,16 +70,16 @@
 }
 
 .address-info-container label:nth-child(1) {
-  margin-right: 12px;
+  margin-right: 0.75rem;
 }
 
 .address-info-container label:nth-child(2) {
-  margin-left: 12px;
+  margin-left: 0.75rem;
 }
 
 .address-info-container2 label:nth-child(2) {
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .Registration-agreement {
@@ -93,3 +96,10 @@
   cursor: pointer;
 }
 
+.input-disable {
+  background-color: #dcdcdc;
+}
+
+.disable-text {
+  color: #bebebe;
+}

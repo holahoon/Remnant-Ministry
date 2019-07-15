@@ -218,7 +218,8 @@ class Registration extends Component {
       typeChurchRegistration: {
         value: "",
         required: false,
-        valid: true
+        valid: true,
+        touched: false
       }
     },
     registrationFormValidation2: {
@@ -244,13 +245,50 @@ class Registration extends Component {
       },
       healthConditionRegistration: {
         value: "",
-        required: false,
-        valid: true
+        required: true,
+        valid: false,
+        touched: false
       },
       prayerTopicRegistration: {
         value: "",
         required: true,
-        valid: false
+        valid: false,
+        touched: false
+      },
+      paymentMethodRegistration: {
+        value: "cardPaymentRegistration",
+        required: true,
+        valid: true
+      },
+      // creditCardTypeRegistration: {
+      //   value: "",
+      //   required: true,
+      //   valid: false,
+      //   touched: false
+      // },
+      creditCardNameRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      creditCardNumberRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      creditCardExpirationRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
+      },
+      creditCardSecurityRegistration: {
+        value: "",
+        required: true,
+        valid: false,
+        touched: false
       },
       billingSameAsMyAddress: {
         value: false,
@@ -298,7 +336,7 @@ class Registration extends Component {
         touched: false
       }
     },
-    formStep1Valid: false,
+    formStep1Valid: true,
     formStep2Valid: false
   };
 
@@ -344,7 +382,10 @@ class Registration extends Component {
     // Check validation
     const nameRegex = RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g);
     const DOBRegex = RegExp(/^(\d{2,2})(\/)(\d{2,2})\2(\d{4}|\d{4})$/);
-    const postalRegex = RegExp(/^\d{5}([\-]\d{4})?/);
+    const postalRegex = RegExp(/^\d{5}/);
+    // const cardRegex = RegExp(/^d{4}/);
+    const monthYearRegex = RegExp(/(0?[1-9]|1[0-2])\/(\d{2})/);
+    const cvcRegex = RegExp(/^\d{3}$/);
 
     switch (name) {
       case "firstNameRegistration":
@@ -372,7 +413,7 @@ class Registration extends Component {
         if (deepUpdatedRegistrationForm.age < 30) {
           updatedRegistrationForm2.lodgingOptionRegistration.disable = true;
           updatedRegistrationForm2.lodgingOptionRegistration.value = "4people";
-          updatedRegistrationForm2.lodgingOptionRegistration.price = "109.99"
+          updatedRegistrationForm2.lodgingOptionRegistration.price = "109.99";
         } else {
           updatedRegistrationForm2.lodgingOptionRegistration.disable = false;
         }
@@ -435,6 +476,8 @@ class Registration extends Component {
         } else if (value === "church-not-listed") {
           deepUpdatedRegistrationForm.valid = true;
           deepUpdatedRegistrationForm.showTypeChurchRegistration = true;
+          updatedRegistrationForm.typeChurchRegistration.required = true;
+          updatedRegistrationForm.typeChurchRegistration.valid = false;
         } else {
           deepUpdatedRegistrationForm.valid = true;
           deepUpdatedRegistrationForm.showTypeChurchRegistration = false;
@@ -442,6 +485,8 @@ class Registration extends Component {
         deepUpdatedRegistrationForm.value = value;
         break;
       case "typeChurchRegistration":
+        deepUpdatedRegistrationForm.touched = true;
+        deepUpdatedRegistrationForm.valid = value === "" ? false : true;
         deepUpdatedRegistrationForm.value = value;
         break;
 
@@ -467,9 +512,48 @@ class Registration extends Component {
         deepUpdatedRegistrationForm2.value = value;
         break;
       case "healthConditionRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
         deepUpdatedRegistrationForm2.value = value;
         break;
       case "prayerTopicRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "paymentMethodRegistration":
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      // case "creditCardTypeRegistration":
+      //   deepUpdatedRegistrationForm2.touched = true;
+      //   deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+      //   deepUpdatedRegistrationForm2.value = value;
+      //   break;
+      case "creditCardNameRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = nameRegex.test(value)
+          ? true
+          : false;
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "creditCardNumberRegistration":
+        // let type = updatedRegistrationForm2.creditCardTypeRegistration.value;
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        // deepUpdatedRegistrationForm2.valid = this.creditCardValidationHandler(
+        //   type,
+        //   value
+        // );
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "creditCardExpirationRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = monthYearRegex.test(value);
+        deepUpdatedRegistrationForm2.value = value;
+        break;
+      case "creditCardSecurityRegistration":
+        deepUpdatedRegistrationForm2.touched = true;
+        deepUpdatedRegistrationForm2.valid = cvcRegex.test(value);
         deepUpdatedRegistrationForm2.value = value;
         break;
       case "billingSameAsMyAddress":
@@ -545,7 +629,7 @@ class Registration extends Component {
     });
   };
 
-  dateOfBirthFormatHandler(DOBvalue) {
+  dateOfBirthFormatHandler = DOBvalue => {
     // First check for the pattern
     if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(DOBvalue)) return false;
 
@@ -553,13 +637,35 @@ class Registration extends Component {
     // Check what is being deprecated. This may throw a warning in the console
     const age = moment().diff(formattedDOB, "years");
     return age;
-  }
-
-  click = () => {
-    this.dateOfBirthFormatHandler(
-      this.state.registrationFormValidation.dateOfBirthRegistration.value
-    );
   };
+
+  // creditCardValidationHandler = (cardType, cardNumber) => {
+  //   const formattedNumber = cardNumber.split("-");
+  //   const americanExpressCard = RegExp(/^(?:3[47][0-9]{13})$/);
+  //   const visaCard = RegExp(/^(?:4[0-9]{12}(?:[0-9]{3})?)$/);
+  //   const masterCard = RegExp(/^(?:5[1-5][0-9]{14})$/);
+  //   const discoverCard = RegExp(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/);
+
+  //   if (cardType === "americanExpressCard") {
+  //     if (americanExpressCard.test(formattedNumber)) {
+  //       return true;
+  //     }
+  //   } else if (cardType === "visaCard") {
+  //     if (visaCard.test(formattedNumber)) {
+  //       return true;
+  //     }
+  //   } else if (cardType === "masterCard") {
+  //     if (masterCard.test(formattedNumber)) {
+  //       return true;
+  //     }
+  //   } else if (cardType === "discoverCard") {
+  //     if (discoverCard.test(formattedNumber)) {
+  //       return true;
+  //     }
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
   render() {
     return (

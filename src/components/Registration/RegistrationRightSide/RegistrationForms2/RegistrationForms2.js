@@ -11,7 +11,7 @@ import "./RegistrationForms2.css";
 
 const registrationForms2 = props => {
   return (
-    <React.Fragment>
+    <div>
       <MainRCAOptions
         onChangeHandler={props.onChangeHandler}
         stateData={props.stateData}
@@ -34,8 +34,13 @@ const registrationForms2 = props => {
           Back
         </Button>
         <Button
-          buttonClass={"Registration-blue-button button-1-2--global"}
+          buttonClass={
+            !props.stateData.formStep2Valid
+              ? "Registration-blue-button button-1-2--global button-disable"
+              : "Registration-blue-button button-1-2--global"
+          }
           handleButtonClick={props.completeRegistrationHandler}
+          disable={!props.stateData.formStep2Valid}
         >
           Complete Registration
           <ArrowRight16 className={"ArrowIcon-registration-next"} />
@@ -47,7 +52,7 @@ const registrationForms2 = props => {
         <br /> you confirm that you have read and understood, and accept our
         <span>Terms and Conditions</span> and <span>Privacy Policy</span>
       </p>
-    </React.Fragment>
+    </div>
   );
 };
 

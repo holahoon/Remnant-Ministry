@@ -60,9 +60,6 @@ const mainRCAOptions = props => {
     healthConditionRegistration,
     prayerTopicRegistration
   } = props.stateData.registrationFormValidation2;
-  const {
-    dateOfBirthRegistration
-  } = props.stateData.registrationFormValidation;
 
   return (
     <div>
@@ -86,7 +83,14 @@ const mainRCAOptions = props => {
             />
             <span>$ 109.99</span>
           </div>
-          <div className={"Radio-control-container"}>
+          <div
+            className={"Radio-control-container"}
+            className={
+              lodgingOptionRegistration.disable
+                ? "Radio-control-container input-disable"
+                : "Radio-control-container"
+            }
+          >
             <CustomRadioFormControlLabel
               value="2people"
               control={<BlueRadio />}
@@ -96,7 +100,13 @@ const mainRCAOptions = props => {
             <span style={{ color: "#DA1E28" }}>
               Only the participants born before 1990 can choose
             </span>
-            <span>$ 139.99</span>
+            <span
+              className={
+                lodgingOptionRegistration.disable ? "disable-text" : null
+              }
+            >
+              $ 139.99
+            </span>
           </div>
         </RadioGroup>
 
@@ -160,6 +170,13 @@ const mainRCAOptions = props => {
         <label>
           Health Condition
           <input
+            className={
+              !healthConditionRegistration.touched
+                ? null
+                : healthConditionRegistration.valid
+                ? null
+                : "InputError"
+            }
             name="healthConditionRegistration"
             value={healthConditionRegistration.value}
             type="text"
@@ -171,6 +188,13 @@ const mainRCAOptions = props => {
         <label>
           Prayer topic
           <input
+            className={
+              !prayerTopicRegistration.touched
+                ? null
+                : prayerTopicRegistration.valid
+                ? null
+                : "InputError"
+            }
             name="prayerTopicRegistration"
             value={prayerTopicRegistration.value}
             type="text"

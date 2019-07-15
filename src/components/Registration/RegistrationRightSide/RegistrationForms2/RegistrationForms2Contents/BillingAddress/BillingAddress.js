@@ -1,4 +1,5 @@
 import React from "react";
+import MaskedInput from "react-text-mask";
 
 import { withStyles } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -231,7 +232,22 @@ const billingAddress = props => {
         <div style={{ gridColumn: "5 / 7" }}>
           <label>
             Postal code
-            <input
+            <MaskedInput
+              className={
+                !billingPostalRegistration.touched
+                  ? null
+                  : billingPostalRegistration.valid
+                  ? null
+                  : "InputError"
+              }
+              mask={[/\d/, /\d/, /\d/, /\d/, /\d/]}
+              placeholder="12345"
+              name="billingPostalRegistration"
+              value={billingPostalRegistration.value}
+              guide={false}
+              onChange={props.onChangeHandler}
+            />
+            {/*<input
               className={
                 !billingPostalRegistration.touched
                   ? null
@@ -244,7 +260,7 @@ const billingAddress = props => {
               value={billingPostalRegistration.value}
               placeholder="Postal code"
               onChange={props.onChangeHandler}
-            />
+            />*/}
           </label>
         </div>
       </CustomFormControl>

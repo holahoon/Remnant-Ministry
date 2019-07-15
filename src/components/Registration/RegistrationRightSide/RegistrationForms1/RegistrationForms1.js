@@ -35,7 +35,11 @@ const registrationForms1 = props => {
 
       <div className={"Registration-button-container margin-left-6"}>
         <Button
-          buttonClass={"Registration-blue-button button-1-2--global"}
+          buttonClass={
+            !props.stateData.formStep1Valid
+              ? "Registration-blue-button button-1-2--global button-disable"
+              : "Registration-blue-button button-1-2--global"
+          }
           handleButtonClick={props.nextStepHandler}
           disable={!props.stateData.formStep1Valid}
         >

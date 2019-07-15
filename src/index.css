@@ -39,6 +39,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button.button-disable {
+  background: #bebebe;
+}
+
 input {
   outline: none;
   font-family: whitney;
