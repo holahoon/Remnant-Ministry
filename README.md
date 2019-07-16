@@ -8,8 +8,8 @@
 
 2.  User signup page - Not completed
 
-3.  Event registration page - Progress..(expected to be completed by 7/15)
+3.  Event registration page - complete (minor checks)
 
 4.  User account page - Not completed
 
-5.  Redux to be used to manage the state
+5.  Redux to be used to manage the state - starting 07/16
