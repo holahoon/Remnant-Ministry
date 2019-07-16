@@ -23,13 +23,13 @@
   width: 100%;
 }
 
-.t-shirt-container label:nth-child(1) {
+/* .t-shirt-container label:nth-child(1) {
   margin-right: 12px;
 }
 
 .t-shirt-container label:nth-child(2) {
   margin-left: 12px;
-}
+} */
 
 .t-shirt-container select {
   padding-left: 0.875rem;
@@ -37,6 +37,7 @@
 
 .payment-method-container {
   display: flex;
+  margin-bottom: 0.75rem;
 }
 
 .card-info-inner-container {
@@ -49,13 +50,13 @@
   width: 100%;
 }
 
-.card-info-inner-container label:nth-child(2) {
+/* .card-info-inner-container label:nth-child(2) {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
 .card-info-inner-container label:nth-child(3) {
   margin-right: 0.75rem;
-}
+} */
 
 .address-info-container,
 .address-info-container2 {

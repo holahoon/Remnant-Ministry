@@ -228,8 +228,8 @@ class Registration extends Component {
         price: "109.99",
         disable: false,
         required: true,
-        valid: false,
-        touched: false
+        valid: true,
+        // touched: false
       },
       shirtSizeRegistration: {
         value: "",
@@ -336,7 +336,7 @@ class Registration extends Component {
         touched: false
       }
     },
-    formStep1Valid: true,
+    formStep1Valid: false,
     formStep2Valid: false
   };
 
@@ -412,6 +412,7 @@ class Registration extends Component {
         deepUpdatedRegistrationForm.age = this.dateOfBirthFormatHandler(value);
         if (deepUpdatedRegistrationForm.age < 30) {
           updatedRegistrationForm2.lodgingOptionRegistration.disable = true;
+          // updatedRegistrationForm2.lodgingOptionRegistration.valid = true;
           updatedRegistrationForm2.lodgingOptionRegistration.value = "4people";
           updatedRegistrationForm2.lodgingOptionRegistration.price = "109.99";
         } else {
@@ -492,8 +493,8 @@ class Registration extends Component {
 
       // registration page 2
       case "lodgingOptionRegistration":
-        deepUpdatedRegistrationForm2.touched = true;
-        deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
+        // deepUpdatedRegistrationForm2.touched = true;
+        // deepUpdatedRegistrationForm2.valid = value === "" ? false : true;
         deepUpdatedRegistrationForm2.value = value;
         if (value === "4people") {
           deepUpdatedRegistrationForm2.price = "109.99";
