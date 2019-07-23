@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 // import FacebookLogin from "react-facebook-login";
 // import GoogleLogin from "react-google-login";
@@ -6,47 +8,125 @@ import React, { Component } from "react";
 import LoginForm from "./LoginForm/LoginForm";
 import LoginWith from "./LoginWith/LoginWith";
 import Button from "../UI/Button/Button";
+import GreetingMessage from "../GreetingMessage/GreetingMessage";
 
 import Close20 from "@carbon/icons-react/es/close/20";
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 
 import "./LoginPage.css";
 
-class loginPage extends Component {
+class LoginPage extends Component {
   state = {
-    loggedInFB: false,
-    userIdFB: "",
-    emailFB: "",
-    nameFB: "",
-    loginEmail: "",
-    loginPassword: "",
-    correctId: false,
-    correctPassword: false,
-    loggedIn: false,
-    rememberMe: true
+    userEmail: {
+      loginEmail: "",
+      validEmail: false,
+      fieldTouched: false,
+      errorMessage: "Invalid Email"
+    },
+    userPassword: {
+      loginPassword: "",
+      validPassword: false,
+      fieldTouched: false,
+      errorMessage: "Invalid Password"
+    },
+    formIsValid: false,
+    rememberMe: false,
+    redirectToMainPage: false,
+    showGreetingMessage: false
   };
 
-  loginHandler = event => {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      this.setState({
-        [name]: checked
-      });
-    } else {
-      this.setState({
-        [name]: value
-      });
+  componentDidMount() {
+    this.props.onLoginPageHandler();
+  }
+
+  componentDidUpdate() {
+    // When form is valid && login successful, display greeting message then redirect to the main page
+    if (this.state.formIsValid && this.props.loggedIn) {
+      console.log("componentDidUpdate");
+      this.redirectTime = setTimeout(
+        () =>
+          this.setState({
+            ...this.state,
+            redirectToMainPage: true,
+            showGreetingMessage: false
+          }),
+        3000
+      );
     }
+  }
+
+  componentWillUnmount() {
+    this.props.offLoginPageHandler();
+    clearTimeout(this.redirectTime);
+  }
+
+  showLoginMessage() {
+    this.setState({ ...this.state, showGreetingMessage: true });
+  }
+
+  rememberMeHandler = name => event => {
+    const { checked } = event.target;
+    this.setState({ ...this.state, [name]: checked });
   };
 
-  loginButtonHandler = event => {
+  loginInputHandler = event => {
+    const { name, value } = event.target;
+    const copiedUserEmail = { ...this.state.userEmail };
+    const copiedUserPassword = { ...this.state.userPassword };
+
+    copiedUserEmail[name] = value;
+    copiedUserPassword[name] = value;
+
+    this.setState(
+      {
+        userEmail: copiedUserEmail,
+        userPassword: copiedUserPassword
+      },
+      () => this.validateField(name, value)
+    );
+  };
+
+  validateField(name, value) {
+    const userEmail = { ...this.state.userEmail };
+    const userPassword = { ...this.state.userPassword };
+
+    switch (name) {
+      case "loginEmail":
+        userEmail.validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          value
+        );
+        userEmail.fieldTouched = true;
+        break;
+      case "loginPassword":
+        userPassword.validPassword = value.length > 6;
+        userPassword.fieldTouched = true;
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ userEmail, userPassword }, this.validateForm);
+  }
+
+  validateForm() {
+    const copiedUserEmail = { ...this.state.userEmail };
+    const copiedUserPassword = { ...this.state.userPassword };
+
+    this.setState({
+      formIsValid:
+        copiedUserEmail.validEmail && copiedUserPassword.validPassword
+    });
+  }
+
+  submitHandler = event => {
     event.preventDefault();
-    if (this.state.correctId && this.state.correctPassword) {
-      this.setState({ loggedIn: true });
-    } else {
-      this.setState({ loggedIn: false });
+    if (this.state.formIsValid && this.props.correctUser) {
+      this.setState({ ...this.state, showGreetingMessage: true });
     }
+    this.props.loginHandler(this.state.formIsValid);
   };
+
+  // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
 
   // Facebook log in button function
   responseFacebook = response => {
@@ -65,82 +145,80 @@ class loginPage extends Component {
   };
 
   render() {
-    // const facebookAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
-    // const facebookAppId = "340687620162835";
-    // let fbContent = null;
-    // if (!this.state.loggedInFB) {
-    //   fbContent = (
-    //     <FacebookLogin
-    //       appId={facebookAppId}
-    //       autoLoad={true}
-    //       fields="name,email"
-    //       onClick={this.componentClicked}
-    //       callback={this.responseFacebook}
-    //     />
-    //   );
-    // }
+    return this.state.redirectToMainPage ? (
+      <Redirect to="/" exact />
+    ) : (
+      <React.Fragment>
+        <GreetingMessage
+          show={this.state.showGreetingMessage}
+          userName={"David"}
+        />
 
-    return (
-      <div className={"LoginPage-container"}>
-        <div className={"LoginPage Col-4 margin-left-4"}>
-          <Close20 className={"Close-icon"} />
-          <h3>Log in</h3>
-          {/*{fbContent}*/}
-          {/*<FacebookLogin
-            appId=""
-            fields="name,email,picture"
-            callback={responseFacebook}
-          />
-          <GoogleLogin
-            clientId=""
-            buttonText="Login with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-          />
-          */}
-          <LoginWith
-            title={"Log in"}
-            buttonText={"Continue"}
-            stateData={this.state.loggedInFB}
-            componentClicked={this.componentClicked}
-            responseFacebook={this.responseFacebook}
-          />
+        <form className={"LoginPage-container"} onSubmit={this.submitHandler}>
+          <div className={"LoginPage Col-4 margin-left-4"}>
+            <Link to="/">
+              <Close20 className={"Close-icon"} />
+            </Link>
+            <h3>Log in</h3>
+            <LoginWith
+              title={"Log in"}
+              buttonText={"Continue"}
+              stateData={this.state.loggedInFB}
+              componentClicked={this.componentClicked}
+              responseFacebook={this.responseFacebook}
+            />
 
-          <LoginForm stateData={this.state} loginHandler={this.loginHandler} />
+            <LoginForm
+              stateData={this.state}
+              loginHandler={this.loginInputHandler}
+              rememberMeHandler={this.rememberMeHandler}
+            />
 
-          <div className="Next-button-container">
-            {/*<button className={"Next-button"} onClick={this.loginButtonHandler}>
-              Next <ArrowRight20 className={"Next-arrow"} />
-        </button>*/}
-            <Button
-              buttonClass={"Next-button"}
-              handleButtonClick={this.loginButtonHandler}
-            >
-              Next <ArrowRight20 className={"Next-arrow"} />
-            </Button>
+            <div className="Next-button-container">
+              <Button
+                buttonClass={
+                  this.state.formIsValid
+                    ? "Signin-button"
+                    : "Signin-button Signin-button-disabled"
+                }
+                disable={!this.state.formIsValid}
+                // handleButtonClick={() =>
+                //   this.props.loginHandler(this.state.formIsValid)
+                // }
+              >
+                Log In <ArrowRight20 className={"Next-arrow"} />
+              </Button>
+            </div>
           </div>
-        </div>
-      </div>
+        </form>
+      </React.Fragment>
     );
   }
 }
 
-// <Close20 className={"Close-icon"} />
-//         <h3>Log in</h3>
+// Redux--
 
-//         <LoginWithButtons
-//           styleName={"LoginWithFacebook LoginButton"}
-//           buttonText={"Login with Facebook"}
-//         />
-//         <LoginWithButtons
-//           styleName={"LoginWithGoogle LoginButton"}
-//           buttonText={"Login with Google"}
-//         />
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.loggedIn,
+    onLoginPage: state.onLoginPage,
+    correctUser: state.correctUser
+  };
+};
 
-//         <div className={"Or"}>
-//           <div className={"Or-line"} />
-//           <span>or</span>
-//           <div className={"Or-line"} />
-//         </div>
+const mapDispatchToProsp = dispatch => {
+  return {
+    loginHandler: state =>
+      dispatch({
+        type: "LOGIN",
+        payload: { formValidity: state }
+      }),
+    onLoginPageHandler: () => dispatch({ type: "ONLOGINPAGE" }),
+    offLoginPageHandler: () => dispatch({ type: "OFFLOGINPAGE" })
+  };
+};
 
-export default loginPage;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProsp
+)(LoginPage);

@@ -8,7 +8,7 @@ import MainPage from "../components/MainPage/MainPage";
 import LoginPage from "../components/LoginPage/LoginPage";
 import SignupPage from "../components/SignupPage/SignupPage";
 import MyAccount from "../components/MyAccount/MyAccount";
-import Registration from "../components/Registration/Registration";
+import Registration from "./Registration";
 
 import PageUnderConstruction from "../components/PageUnderConstruction/PageUnderConstruction";
 

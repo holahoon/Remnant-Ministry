@@ -34,12 +34,20 @@ li a {
 .NavGroup2 {
   display: flex;
   align-items: center;
-  margin-right: 2.5rem;
+  /* margin-right: 1.5rem; */
 }
 
 .NavGroup2 li {
   margin-right: 2.5rem;
   font-weight: normal;
+}
+
+.Create-account li {
+  font-size: 0.875rem;
+}
+.Create-account li a {
+  font-size: 0.875rem;
+  color: #054ada;
 }
 
 /* For screen less than 750px */

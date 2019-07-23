@@ -41,7 +41,7 @@ const loginForm = props => {
             className={"Login-email"}
             type="email"
             name="loginEmail"
-            value={props.stateData.loginEmail}
+            value={props.stateData.userEmail.loginEmail}
             placeholder="email@rutc.com"
             onChange={props.loginHandler}
           />
@@ -55,7 +55,7 @@ const loginForm = props => {
             className={"Login-password"}
             type="password"
             name="loginPassword"
-            value={props.stateData.loginPassword}
+            value={props.stateData.userPassword.loginPassword}
             placeholder="******"
             onChange={props.loginHandler}
           />
@@ -69,6 +69,7 @@ const loginForm = props => {
             <BlueCheckBox
               checked={props.stateData.rememberMe}
               value="rememberMe"
+              onChange={props.rememberMeHandler("rememberMe")}
             />
           }
           label="Remember me"

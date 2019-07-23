@@ -73,7 +73,7 @@
 }
 
 .RegisterButton:hover .ArrowIcon {
-  transform: rotateX(540deg);
+  transform: translateX(0.3rem);
 }
 
 .ArrowIcon {

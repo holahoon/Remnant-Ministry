@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import moment from "moment";
 
-import Layout2 from "../../Layout/Layout2";
-import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
-import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide";
+import Layout2 from "../Layout/Layout2";
+import RegistrationLeftSide from "../components/Registration/RegistrationLeftSide/RegistrationLeftSide";
+import RegistrationRightSide from "../components/Registration/RegistrationRightSide/RegistrationRightSide";
 
 import "./Registration.css";
 
@@ -228,7 +228,7 @@ class Registration extends Component {
         price: "109.99",
         disable: false,
         required: true,
-        valid: true,
+        valid: true
         // touched: false
       },
       shirtSizeRegistration: {

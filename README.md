@@ -12,4 +12,4 @@
 
 4.  User account page - Not completed
 
-5.  Redux to be used to manage the state - starting 07/16
+5.  Redux to be used to manage the state - process..

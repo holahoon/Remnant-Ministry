@@ -1,6 +1,12 @@
 .LoginPage-container {
   display: flex;
   background-color: #d8d8d8;
+  /* z-index: 99;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0; */
 }
 
 .LoginPage {
@@ -20,16 +26,24 @@
   margin-bottom: 1.5rem;
 }
 
-.Next-button {
+.Signin-button {
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-right: 1.625rem;
   background: #054ada;
   font-size: 1rem;
   color: #ffffff;
-  text-align: right;
-  vertical-align: middle;
+  /* text-align: right;
+  vertical-align: middle; */
   margin-bottom: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Signin-button-disabled {
+  background: #dcdcdc;
 }
 
 .Next-arrow {
