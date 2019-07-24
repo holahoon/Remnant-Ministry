@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 // import FacebookLogin from "react-facebook-login";
 // import GoogleLogin from "react-google-login";
 
-import LoginForm from "./LoginForm/LoginForm";
-import LoginWith from "./LoginWith/LoginWith";
-import Button from "../UI/Button/Button";
-import GreetingMessage from "../GreetingMessage/GreetingMessage";
+import LoginForm from "../components/LoginPage/LoginForm/LoginForm";
+import LoginWith from "../components/LoginPage/LoginWith/LoginWith";
+import Button from "../components/UI/Button/Button";
+import GreetingMessage from "../components/GreetingMessage/GreetingMessage";
+import axiosInstace from "../axios-userInfo";
 
 import Close20 from "@carbon/icons-react/es/close/20";
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
@@ -17,6 +18,8 @@ import "./LoginPage.css";
 
 class LoginPage extends Component {
   state = {
+    fetchedUserData: {},
+    chosenUser: "",
     userEmail: {
       loginEmail: "",
       validEmail: false,
@@ -32,17 +35,27 @@ class LoginPage extends Component {
     formIsValid: false,
     rememberMe: false,
     redirectToMainPage: false,
-    showGreetingMessage: false
+    showGreetingMessage: false,
+    validUser: false
   };
 
   componentDidMount() {
     this.props.onLoginPageHandler();
+
+    // ** Temporary **
+    // check if the temp userEmail and userPassword matches with the user login inputs
+    axiosInstace
+      .get("/userInfo.json")
+      .then(response => {
+        this.setState({ fetchedUserData: response.data });
+      })
+      .catch(error => console.log(error));
   }
 
   componentDidUpdate() {
+    // ** Temporary **
     // When form is valid && login successful, display greeting message then redirect to the main page
-    if (this.state.formIsValid && this.props.loggedIn) {
-      console.log("componentDidUpdate");
+    if (this.state.formIsValid && this.state.validUser) {
       this.redirectTime = setTimeout(
         () =>
           this.setState({
@@ -55,13 +68,20 @@ class LoginPage extends Component {
     }
   }
 
+  // ** Temporary **
   componentWillUnmount() {
     this.props.offLoginPageHandler();
     clearTimeout(this.redirectTime);
   }
 
-  showLoginMessage() {
-    this.setState({ ...this.state, showGreetingMessage: true });
+  // ** Temporary **
+  showLoginMessage(showGreetingMessage, validUser, userName) {
+    this.setState({
+      ...this.state,
+      showGreetingMessage,
+      validUser,
+      chosenUser: userName
+    });
   }
 
   rememberMeHandler = name => event => {
@@ -120,13 +140,35 @@ class LoginPage extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    if (this.state.formIsValid && this.props.correctUser) {
-      this.setState({ ...this.state, showGreetingMessage: true });
-    }
-    this.props.loginHandler(this.state.formIsValid);
-  };
 
-  // /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
+    // ** Temporary **
+    let showGreetingMessage = this.state.showGreetingMessage;
+    let validUser = this.state.validUser;
+    let userName = this.state.chosenUser;
+
+    let userInfoArray = Object.keys(this.state.fetchedUserData).map(user => {
+      if (
+        this.state.userEmail.loginEmail ===
+          this.state.fetchedUserData[user].userEmail &&
+        this.state.userPassword.loginPassword ===
+          this.state.fetchedUserData[user].userPassword
+      ) {
+        showGreetingMessage = true;
+        validUser = true;
+        userName = this.state.fetchedUserData[user].userName;
+
+        this.props.saveUserInfoHandler(this.state.fetchedUserData[user]);
+        this.showLoginMessage(showGreetingMessage, validUser, userName);
+        this.props.loginHandler(this.state.formIsValid, validUser);
+      } else if (
+        this.state.userEmail.loginEmail !==
+          this.state.fetchedUserData[user].userEmail &&
+        this.state.userPassword.loginPassword ===
+          this.state.fetchedUserData[user].userPassword
+      ) {
+      }
+    });
+  };
 
   // Facebook log in button function
   responseFacebook = response => {
@@ -151,7 +193,7 @@ class LoginPage extends Component {
       <React.Fragment>
         <GreetingMessage
           show={this.state.showGreetingMessage}
-          userName={"David"}
+          userName={this.state.chosenUser}
         />
 
         <form className={"LoginPage-container"} onSubmit={this.submitHandler}>
@@ -182,9 +224,6 @@ class LoginPage extends Component {
                     : "Signin-button Signin-button-disabled"
                 }
                 disable={!this.state.formIsValid}
-                // handleButtonClick={() =>
-                //   this.props.loginHandler(this.state.formIsValid)
-                // }
               >
                 Log In <ArrowRight20 className={"Next-arrow"} />
               </Button>
@@ -208,13 +247,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProsp = dispatch => {
   return {
-    loginHandler: state =>
+    loginHandler: (formIsValid, validUser) =>
       dispatch({
         type: "LOGIN",
-        payload: { formValidity: state }
+        payload: { formIsValid, validUser }
       }),
     onLoginPageHandler: () => dispatch({ type: "ONLOGINPAGE" }),
-    offLoginPageHandler: () => dispatch({ type: "OFFLOGINPAGE" })
+    offLoginPageHandler: () => dispatch({ type: "OFFLOGINPAGE" }),
+    saveUserInfoHandler: user =>
+      dispatch({ type: "SAVEUSERINFO", payload: { userInfo: user } })
   };
 };
 

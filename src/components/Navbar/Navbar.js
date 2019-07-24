@@ -45,7 +45,7 @@ class Navbar extends Component {
       displayNavbar = loginNavbar;
     } else if (!this.props.loggedIn) {
       displayNavbar = initialLoginNavbar;
-    } else {
+    } else if (this.props.loggedIn && this.props.correctUser) {
       displayNavbar = signedInNavbar;
     }
 
@@ -82,7 +82,8 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   return {
     loggedIn: state.loggedIn,
-    onLoginPage: state.onLoginPage
+    onLoginPage: state.onLoginPage,
+    correctUser: state.correctUser
   };
 };
 

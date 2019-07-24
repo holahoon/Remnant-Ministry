@@ -1,23 +1,29 @@
 const initialState = {
   onLoginPage: false,
   loggedIn: false,
-  correctUser: true
+  correctUser: false,
+  userInfo: {}
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN":
-      if (!action.payload.formValidity) {
+      if (action.payload.formIsValid && action.payload.validUser) {
         return {
           ...state,
-          loggedIn: false,
-          correctUser: false
+          loggedIn: true,
+          correctUser: true
         };
       }
       return {
         ...state,
-        loggedIn: true,
-        correctUser: true
+        loggedIn: false,
+        correctUser: false
+      };
+    case "SAVEUSERINFO":
+      return {
+        ...state,
+        userInfo: action.payload.userInfo
       };
     case "LOGOUT":
       return {

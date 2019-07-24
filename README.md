@@ -4,7 +4,7 @@
 
 ## ---- Currently being developed.. ----
 
-1.  User login page - Not completed
+1.  User login page(authentication) - Not completed
 
 2.  User signup page - Not completed
 

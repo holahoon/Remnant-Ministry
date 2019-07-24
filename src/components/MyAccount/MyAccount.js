@@ -1,47 +1,27 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import AccountHeader from "./AccountHeader/AccountHeader";
 import Event from "./Event/Event";
 import EditProfile from "./EditProfile/EditProfile";
 import AccountSetting from "./AccountSetting/AccountSetting";
+import PageUnderConstruction from "../PageUnderConstruction/PageUnderConstruction";
 
 import "./MyAccount.css";
 
 class MyAccount extends Component {
   state = {
-    category1: true,
-    category2: false,
-    category3: false,
-    category4: false,
+    display: null,
+    selected: "category1",
+    // category1: true,
+    // category2: false,
+    // category3: false,
+    // category4: false,
     event1Registered: false,
     event2Registered: true,
     editProfileEditing: false,
     accountSettingEditing: false
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.showEditSavedBasicEdit) {
-  //     this.showEditSavedMessage = setTimeout(() => {
-  //       this.setState({ showEditSavedBasicEdit: false });
-  //     }, 2000);
-  //   } else if (this.state.showEditSavedYourField) {
-  //     this.showEditSavedMessage = setTimeout(() => {
-  //       this.setState({ showEditSavedYourField: false });
-  //     }, 2000);
-  //   } else if (this.state.showEditSavedYourChurch) {
-  //     this.showEditSavedMessage = setTimeout(() => {
-  //       this.setState({ showEditSavedYourChurch: false });
-  //     }, 2000);
-  //   } else if (this.state.showEditSavedYourAddress) {
-  //     this.showEditSavedMessage = setTimeout(() => {
-  //       this.setState({ showEditSavedYourAddress: false });
-  //     }, 2000);
-  //   } else if (this.state.showEditSavedPassword) {
-  //     this.showEditSavedMessage = setTimeout(() => {
-  //       this.setState({ showEditSavedPassword: false });
-  //     }, 2000);
-  //   }
-  // }
 
   saveEditHandler = editingField => {
     this.setState({ editSaved: true, [editingField]: true });
@@ -53,99 +33,168 @@ class MyAccount extends Component {
   };
 
   classNameChangeHandler = category => {
-    // Kind of hard coded.. couldn't think of a better way
-    // let selectedClass = { ...this.state };
-    switch (category) {
-      case "category1":
-        return this.setState({
-          ...this.state,
-          category1: true,
-          category2: false,
-          category3: false,
-          category4: false
-        });
-      case "category2":
-        return this.setState({
-          ...this.state,
-          category1: false,
-          category2: true,
-          category3: false,
-          category4: false
-        });
-      case "category3":
-        return this.setState({
-          ...this.state,
-          category1: false,
-          category2: false,
-          category3: true,
-          category4: false
-        });
-      case "category4":
-        return this.setState({
-          ...this.state,
-          category1: false,
-          category2: false,
-          category3: false,
-          category4: true
-        });
-      default:
-        return;
-    }
-  };
-
-  render() {
-    let showContent = (
+    const event = (
       <Event
         eventSubject={"Upcoming events"}
         stateData={this.state}
         classNameTitle={"Events-image-content"}
       />
     );
-    if (this.state.category1) {
-      showContent = (
-        <Event
-          eventSubject={"Upcoming events"}
-          stateData={this.state}
-          classNameTitle={"Events-image-content"}
-        />
-      );
-    } else if (this.state.category2) {
-      showContent = (
-        <Event
-          eventSubject={"Upcoming events"}
-          stateData={this.state}
-          classNameTitle={"Events-image-content"}
-        />
-      );
-    } else if (this.state.category3) {
-      showContent = (
-        <EditProfile
-          mainStateData={this.state}
-          saveEditHandler={this.saveEditHandler}
-          cancelEditHandler={this.cancelEditHandler}
-        />
-      );
-    } else if (this.state.category4) {
-      showContent = (
-        <AccountSetting
-          mainStateData={this.state}
-          saveEditHandler={this.saveEditHandler}
-          cancelEditHandler={this.cancelEditHandler}
-        />
-      );
+    const familyMember = <PageUnderConstruction />;
+    const editProfile = (
+      <EditProfile
+        mainStateData={this.state}
+        saveEditHandler={this.saveEditHandler}
+        cancelEditHandler={this.cancelEditHandler}
+      />
+    );
+    const accountSetting = (
+      <AccountSetting
+        mainStateData={this.state}
+        saveEditHandler={this.saveEditHandler}
+        cancelEditHandler={this.cancelEditHandler}
+      />
+    );
+
+    switch (category) {
+      case "category1":
+        return this.setState({
+          ...this.state,
+          display: event,
+          selected: "category1"
+        });
+      case "category2":
+        return this.setState({
+          ...this.state,
+          display: familyMember,
+          selected: "category2"
+        });
+      case "category3":
+        return this.setState({
+          ...this.state,
+          display: editProfile,
+          selected: "category3"
+        });
+      case "category4":
+        return this.setState({
+          ...this.state,
+          display: accountSetting,
+          selected: "category4"
+        });
+      default:
+        return;
     }
+
+    // switch (category) {
+    //   case "category1":
+    //     return this.setState({
+    //       ...this.state,
+    //       category1: true,
+    //       category2: false,
+    //       category3: false,
+    //       category4: false
+    //     });
+    //   case "category2":
+    //     return this.setState({
+    //       ...this.state,
+    //       category1: false,
+    //       category2: true,
+    //       category3: false,
+    //       category4: false
+    //     });
+    //   case "category3":
+    //     return this.setState({
+    //       ...this.state,
+    //       category1: false,
+    //       category2: false,
+    //       category3: true,
+    //       category4: false
+    //     });
+    //   case "category4":
+    //     return this.setState({
+    //       ...this.state,
+    //       category1: false,
+    //       category2: false,
+    //       category3: false,
+    //       category4: true
+    //     });
+    //   default:
+    //     return;
+    // }
+  };
+
+  render() {
+    // let showContent = (
+    //   <Event
+    //     eventSubject={"Upcoming events"}
+    //     stateData={this.state}
+    //     classNameTitle={"Events-image-content"}
+    //   />
+    // );
+    // if (this.state.category1) {
+    //   showContent = (
+    //     <Event
+    //       eventSubject={"Upcoming events"}
+    //       stateData={this.state}
+    //       classNameTitle={"Events-image-content"}
+    //     />
+    //   );
+    // } else if (this.state.category2) {
+    //   showContent = (
+    //     <Event
+    //       eventSubject={"Upcoming events"}
+    //       stateData={this.state}
+    //       classNameTitle={"Events-image-content"}
+    //     />
+    //   );
+    // } else if (this.state.category3) {
+    //   showContent = (
+    //     <EditProfile
+    //       mainStateData={this.state}
+    //       saveEditHandler={this.saveEditHandler}
+    //       cancelEditHandler={this.cancelEditHandler}
+    //     />
+    //   );
+    // } else if (this.state.category4) {
+    //   showContent = (
+    //     <AccountSetting
+    //       mainStateData={this.state}
+    //       saveEditHandler={this.saveEditHandler}
+    //       cancelEditHandler={this.cancelEditHandler}
+    //     />
+    //   );
+    // }
+
+    console.log(this.props.userInfo);
 
     return (
       <div className={"MyAccount-container"}>
         <AccountHeader
           stateData={this.state}
+          reduxData={this.props.userInfo.userName}
           classNameChangeHandler={this.classNameChangeHandler}
         />
 
-        <div className={"Content-container"}>{showContent}</div>
+        <div className={"Content-container"}>
+          {!this.state.display ? (
+            <Event
+              eventSubject={"Upcoming events"}
+              stateData={this.state}
+              classNameTitle={"Events-image-content"}
+            />
+          ) : (
+            this.state.display
+          )}
+        </div>
       </div>
     );
   }
 }
 
-export default MyAccount;
+const mapStateToProps = state => {
+  return {
+    userInfo: state.userInfo
+  };
+};
+
+export default connect(mapStateToProps)(MyAccount);

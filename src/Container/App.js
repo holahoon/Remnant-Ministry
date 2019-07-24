@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Layout from "../Layout/Layout";
 import MainPage from "../components/MainPage/MainPage";
 
-import LoginPage from "../components/LoginPage/LoginPage";
+import LoginPage from "./LoginPage";
 import SignupPage from "../components/SignupPage/SignupPage";
 import MyAccount from "../components/MyAccount/MyAccount";
 import Registration from "./Registration";
