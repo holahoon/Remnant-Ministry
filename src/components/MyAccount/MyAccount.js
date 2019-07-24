@@ -13,10 +13,6 @@ class MyAccount extends Component {
   state = {
     display: null,
     selected: "category1",
-    // category1: true,
-    // category2: false,
-    // category3: false,
-    // category4: false,
     event1Registered: false,
     event2Registered: true,
     editProfileEditing: false,
@@ -84,89 +80,9 @@ class MyAccount extends Component {
       default:
         return;
     }
-
-    // switch (category) {
-    //   case "category1":
-    //     return this.setState({
-    //       ...this.state,
-    //       category1: true,
-    //       category2: false,
-    //       category3: false,
-    //       category4: false
-    //     });
-    //   case "category2":
-    //     return this.setState({
-    //       ...this.state,
-    //       category1: false,
-    //       category2: true,
-    //       category3: false,
-    //       category4: false
-    //     });
-    //   case "category3":
-    //     return this.setState({
-    //       ...this.state,
-    //       category1: false,
-    //       category2: false,
-    //       category3: true,
-    //       category4: false
-    //     });
-    //   case "category4":
-    //     return this.setState({
-    //       ...this.state,
-    //       category1: false,
-    //       category2: false,
-    //       category3: false,
-    //       category4: true
-    //     });
-    //   default:
-    //     return;
-    // }
   };
 
   render() {
-    // let showContent = (
-    //   <Event
-    //     eventSubject={"Upcoming events"}
-    //     stateData={this.state}
-    //     classNameTitle={"Events-image-content"}
-    //   />
-    // );
-    // if (this.state.category1) {
-    //   showContent = (
-    //     <Event
-    //       eventSubject={"Upcoming events"}
-    //       stateData={this.state}
-    //       classNameTitle={"Events-image-content"}
-    //     />
-    //   );
-    // } else if (this.state.category2) {
-    //   showContent = (
-    //     <Event
-    //       eventSubject={"Upcoming events"}
-    //       stateData={this.state}
-    //       classNameTitle={"Events-image-content"}
-    //     />
-    //   );
-    // } else if (this.state.category3) {
-    //   showContent = (
-    //     <EditProfile
-    //       mainStateData={this.state}
-    //       saveEditHandler={this.saveEditHandler}
-    //       cancelEditHandler={this.cancelEditHandler}
-    //     />
-    //   );
-    // } else if (this.state.category4) {
-    //   showContent = (
-    //     <AccountSetting
-    //       mainStateData={this.state}
-    //       saveEditHandler={this.saveEditHandler}
-    //       cancelEditHandler={this.cancelEditHandler}
-    //     />
-    //   );
-    // }
-
-    console.log(this.props.userInfo);
-
     return (
       <div className={"MyAccount-container"}>
         <AccountHeader

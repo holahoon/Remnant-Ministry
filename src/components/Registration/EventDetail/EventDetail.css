@@ -1,0 +1,13 @@
+.RegisterButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: none;
+  background: #84fd8e;
+  color: #054ada;
+  font-size: 1.25rem;
+  font-weight: normal;
+  box-sizing: border-box;
+  padding: 1.625rem 1.5rem 1.625rem 0;
+  margin-bottom: 10rem;
+}

@@ -24,13 +24,13 @@ class LoginPage extends Component {
       loginEmail: "",
       validEmail: false,
       fieldTouched: false,
-      errorMessage: "Invalid Email"
+      emailError: false
     },
     userPassword: {
       loginPassword: "",
       validPassword: false,
       fieldTouched: false,
-      errorMessage: "Invalid Password"
+      passwordError: false
     },
     formIsValid: false,
     rememberMe: false,
@@ -95,7 +95,9 @@ class LoginPage extends Component {
     const copiedUserPassword = { ...this.state.userPassword };
 
     copiedUserEmail[name] = value;
+    copiedUserEmail.emailError = false;
     copiedUserPassword[name] = value;
+    copiedUserPassword.passwordError = false;
 
     this.setState(
       {
@@ -146,7 +148,9 @@ class LoginPage extends Component {
     let validUser = this.state.validUser;
     let userName = this.state.chosenUser;
 
-    let userInfoArray = Object.keys(this.state.fetchedUserData).map(user => {
+    Object.keys(this.state.fetchedUserData).map(user => {
+      const userEmail = { ...this.state.userEmail };
+      const userPassword = { ...this.state.userPassword };
       if (
         this.state.userEmail.loginEmail ===
           this.state.fetchedUserData[user].userEmail &&
@@ -166,6 +170,26 @@ class LoginPage extends Component {
         this.state.userPassword.loginPassword ===
           this.state.fetchedUserData[user].userPassword
       ) {
+        userPassword.loginPassword = "";
+        userEmail.loginEmail = "";
+        userEmail.emailError = true;
+
+        this.setState({ userEmail, userPassword });
+      } else if (
+        this.state.userEmail.loginEmail ===
+          this.state.fetchedUserData[user].userEmail &&
+        this.state.userPassword.loginPassword !==
+          this.state.fetchedUserData[user].userPassword
+      ) {
+        userPassword.loginPassword = "";
+        userPassword.passwordError = true;
+
+        this.setState({ userPassword });
+      } else {
+        userEmail.loginEmail = "";
+        userEmail.emailError = true;
+        userPassword.loginPassword = "";
+        userPassword.passwordError = true;
       }
     });
   };

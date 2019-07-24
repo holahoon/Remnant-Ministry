@@ -18,8 +18,8 @@ const mainPage = props => {
 
         <h1>Remnant Conference of America</h1>
 
-        <NavLink to="/Registration" className={"RegisterButton"}>
-          Register here <ArrowRight20 className={"ArrowIcon"} />
+        <NavLink to="/Event-details" className={"ViewEventButton"}>
+          View event here <ArrowRight20 className={"ArrowIcon"} />
         </NavLink>
       </div>
     </div>

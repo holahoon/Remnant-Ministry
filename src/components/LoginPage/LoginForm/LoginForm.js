@@ -38,7 +38,11 @@ const loginForm = props => {
         <label>
           Email
           <input
-            className={"Login-email"}
+            className={
+              props.stateData.userEmail.emailError
+                ? "Login-email Login-error"
+                : "Login-email"
+            }
             type="email"
             name="loginEmail"
             value={props.stateData.userEmail.loginEmail}
@@ -52,7 +56,11 @@ const loginForm = props => {
         <label>
           Password
           <input
-            className={"Login-password"}
+            className={
+              props.stateData.userPassword.passwordError
+                ? "Login-password Login-error"
+                : "Login-password"
+            }
             type="password"
             name="loginPassword"
             value={props.stateData.userPassword.loginPassword}

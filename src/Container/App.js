@@ -8,6 +8,7 @@ import MainPage from "../components/MainPage/MainPage";
 import LoginPage from "./LoginPage";
 import SignupPage from "../components/SignupPage/SignupPage";
 import MyAccount from "../components/MyAccount/MyAccount";
+import EventDetail from "../components/Registration/EventDetail/EventDetail";
 import Registration from "./Registration";
 
 import PageUnderConstruction from "../components/PageUnderConstruction/PageUnderConstruction";
@@ -24,6 +25,7 @@ class App extends Component {
               <Route path="/Signup" component={SignupPage} />
               <Route path="/Error" component={PageUnderConstruction} />
               <Route path="/My-Account" component={MyAccount} />
+              <Route path="/Event-details" component={EventDetail} />
               <Route path="/Registration" component={Registration} />
               <Route exact path="/" component={MainPage} />
             </Switch>

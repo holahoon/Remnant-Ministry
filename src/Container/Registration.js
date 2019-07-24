@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 
+import axiosInstance from "../axios-userInfo";
 import Layout2 from "../Layout/Layout2";
 import RegistrationLeftSide from "../components/Registration/RegistrationLeftSide/RegistrationLeftSide";
 import RegistrationRightSide from "../components/Registration/RegistrationRightSide/RegistrationRightSide";
@@ -340,19 +341,66 @@ class Registration extends Component {
     formStep2Valid: false
   };
 
+  // ** Temporary **
   completeRegistrationHandler = () => {
-    alert("Registration Complete!");
+    if (this.state.formStep1Valid && this.state.formStep2Valid) {
+      const userInfo1 = { ...this.state.registrationFormValidation };
+      const userInfo2 = { ...this.state.registrationFormValidation2 };
+      let newUserInfo1;
+      let newUserInfo2;
+
+      newUserInfo1 = Object.keys(userInfo1).map(each => {
+        if (userInfo1[each].value.length > 0 || !userInfo1[each].required) {
+          return {
+            [each]: userInfo1[each].value
+          };
+        }
+      });
+
+      newUserInfo1 = Object.keys(userInfo2).map(each => {
+        if (userInfo2[each].value.length > 0 || !userInfo2[each].required) {
+          return {
+            [each]: userInfo2[each].value
+          };
+        }
+      });
+
+      const combinedUserInfo = Object.assign(newUserInfo1, newUserInfo2);
+
+      // for (let [key, value] of Object.entries(userInfo1)) {
+      //   if (value.required && value.value.length > 0) {
+      //     console.log(`${key}: ${value.value}`);
+      //   }
+      // }
+
+      axiosInstance
+        .post("/userInfo/user1.json", combinedUserInfo)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => console.log(error));
+    }
   };
 
   nextStepHandler = () => {
     const currentStep = { ...this.state };
 
+    const userInfo1 = { ...this.state.registrationFormValidation };
+    let newUserInfo1;
+
+    newUserInfo1 = Object.keys(userInfo1).map(each => {
+      if (userInfo1[each].value.length > 0 || !userInfo1[each].required) {
+        return {
+          [each]: userInfo1[each].value
+        };
+      }
+    });
+    console.group(newUserInfo1);
+
     this.setState({
       currentStep: "2",
       registrationStep1: !currentStep.registrationStep1,
       registrationStep2: !currentStep.registrationStep2
-      // basicInfoIsValid: !currentStep.basicInfoIsValid,
-      // fieldInfoIsValid: !currentStep.fieldInfoIsValid
     });
   };
 
@@ -639,34 +687,6 @@ class Registration extends Component {
     const age = moment().diff(formattedDOB, "years");
     return age;
   };
-
-  // creditCardValidationHandler = (cardType, cardNumber) => {
-  //   const formattedNumber = cardNumber.split("-");
-  //   const americanExpressCard = RegExp(/^(?:3[47][0-9]{13})$/);
-  //   const visaCard = RegExp(/^(?:4[0-9]{12}(?:[0-9]{3})?)$/);
-  //   const masterCard = RegExp(/^(?:5[1-5][0-9]{14})$/);
-  //   const discoverCard = RegExp(/^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/);
-
-  //   if (cardType === "americanExpressCard") {
-  //     if (americanExpressCard.test(formattedNumber)) {
-  //       return true;
-  //     }
-  //   } else if (cardType === "visaCard") {
-  //     if (visaCard.test(formattedNumber)) {
-  //       return true;
-  //     }
-  //   } else if (cardType === "masterCard") {
-  //     if (masterCard.test(formattedNumber)) {
-  //       return true;
-  //     }
-  //   } else if (cardType === "discoverCard") {
-  //     if (discoverCard.test(formattedNumber)) {
-  //       return true;
-  //     }
-  //   } else {
-  //     return false;
-  //   }
-  // };
 
   render() {
     return (

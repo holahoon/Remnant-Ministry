@@ -40,9 +40,9 @@ const events = props => {
         </div>
       </div>
       <div className={"Button-group"}>
-        <Button buttonClass={"View-detail button-1-1--global"}>
+        <Link to="/Event-details" className={"View-detail button-1-1--global"}>
           View detail
-        </Button>
+        </Link>
         {props.registered ? check : arrow}
       </div>
     </div>
