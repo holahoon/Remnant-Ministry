@@ -1,6 +1,6 @@
-# Remnant Ministry Web app
+# Remnant Ministry Web
 
-- Designed by Jun Sung An, being developed by David Myung Hoon Kim.
+- Designed by *Jun Sung An*, being developed by *David Myung Hoon Kim*.
 
 ## ---- Currently being developed.. ----
 
