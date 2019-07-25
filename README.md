@@ -4,12 +4,12 @@
 
 ## ---- Currently being developed.. ----
 
-1.  User login page(authentication) - Not completed
+1.  User login page(authentication) - Page is done, but needs user authentication functionality
 
-2.  User signup page - Not completed
+2.  User signup page - Page is done, but needs functionality
 
-3.  Event registration page - complete (minor checks)
+3.  Event registration page - Page is done, but needs functionality
 
-4.  User account page - Not completed
+4.  User account page - Page is done, but needs functionality
 
 5.  Redux to be used to manage the state - process..
