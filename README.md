@@ -1,6 +1,6 @@
 # Remnant Ministry
 
-## ---- Currently being developed.. ----
+## Currently being developed
 
 1.  User login page(authentication) - Page is done, but needs user authentication functionality
 
@@ -12,6 +12,16 @@
 
 5.  Redux to be used to manage the state - process..
 
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Installing
+```
+npm install
+```
+
+
+## Features
+
 ## License
-This project an open source and available under the [MIT](MIT)
+
 - Designed by *Jun Sung An*, being developed by *David Myung Hoon Kim*.
