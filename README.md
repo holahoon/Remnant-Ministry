@@ -1,6 +1,4 @@
-# Remnant Ministry Web
-
-- Designed by *Jun Sung An*, being developed by *David Myung Hoon Kim*.
+# Remnant Ministry
 
 ## ---- Currently being developed.. ----
 
@@ -13,3 +11,7 @@
 4.  User account page - Page is done, but needs functionality
 
 5.  Redux to be used to manage the state - process..
+
+## License
+This project an open source and available under the [MIT](MIT)
+- Designed by *Jun Sung An*, being developed by *David Myung Hoon Kim*.
