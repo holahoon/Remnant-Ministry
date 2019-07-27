@@ -28,6 +28,9 @@ npm install
 
 ## Features
 
+## Authors
+* **Jun Sung An** -*Initial design* -[ZunAn](https://github.com/zunan)
+* **David Myung Hoon Kim** -*Initial Development* - [holahoon](https://github.com/holahoon)
+
 ## License
 
-- Designed by *Jun Sung An*, being developed by *David Myung Hoon Kim*.
