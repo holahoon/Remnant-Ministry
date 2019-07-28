@@ -14,6 +14,7 @@
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+* At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
 ### Installing
 ```
 npm install
