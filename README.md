@@ -12,26 +12,35 @@
 
 5.  Redux to be used to manage the state - process..
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-* At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
-### Installing
+## Project Overview
+* Gospel movement organization that started in Korea now in America as well
+* An application to view details of different events in America within the organization and register online
+* By building this particular project from scratch gave me much deeper understanding on how to use React and Redux
+
+At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
+
+## Installing
 ```
 npm install
 ```
+then to start,
+```
+npm start
+```
+## Instructions
+* Sign up with email if not registered
+* Log in to be allowed to register for upcoming events
+* When logged in, allows the user to edit the profile
+* When on view detail page, lets the user to view the details of the event
 
 ## Built with
-* [React](https://github.com/facebook/react) - The web library used
-* [Redux](https://redux.js.org/) - Library used to manage state
+* [React](https://github.com/facebook/react) - Front End library
+* [Redux](https://redux.js.org/) - used to manage state
 * [Material-UI](https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
 * [React Router](https://github.com/ReactTraining/react-router) - Routing to navigate through different components
 
 
-## Features
+### Collaboration
+* **Jun Sung An** -*Design* -[ZunAn](https://github.com/zunan)
 
-## Authors
-* **Jun Sung An** -*Initial design* -[ZunAn](https://github.com/zunan)
-* **David Myung Hoon Kim** -*Initial Development* - [holahoon](https://github.com/holahoon)
-
-## License
 
