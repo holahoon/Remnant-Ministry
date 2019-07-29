@@ -21,10 +21,10 @@ npm install
 ```
 
 ## Built with
-* [React] (https://github.com/facebook/react) - The web library used
-* [Redux] (https://redux.js.org/) - Library used to manage state
-* [Material-UI] (https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
-* [React Router] (https://github.com/ReactTraining/react-router) - Routing to navigate through different components
+* [React](https://github.com/facebook/react) - The web library used
+* [Redux](https://redux.js.org/) - Library used to manage state
+* [Material-UI](https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
+* [React Router](https://github.com/ReactTraining/react-router) - Routing to navigate through different components
 
 
 ## Features
