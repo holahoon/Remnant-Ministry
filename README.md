@@ -1,15 +1,46 @@
-# Remnant Ministry Web app
+# Remnant Ministry
 
-- Designed by Jun Sung An, being developed by David Myung Hoon Kim.
+## Currently being developed
 
-## ---- Currently being developed.. ----
+1.  User login page(authentication) - Page is done, but needs user authentication functionality
 
-1.  User login page(authentication) - Not completed
+2.  User signup page - Page is done, but needs functionality
 
-2.  User signup page - Not completed
+3.  Event registration page - Page is done, but needs functionality
 
-3.  Event registration page - complete (minor checks)
-
-4.  User account page - Not completed
+4.  User account page - Page is done, but needs functionality
 
 5.  Redux to be used to manage the state - process..
+
+## Project Overview
+* Gospel movement organization that started in Korea now in America as well
+* An application to view details of different events in America within the organization and register online
+* By building this particular project from scratch gave me much deeper understanding on how to use React and Redux
+
+At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
+
+## Installing
+```
+npm install
+```
+then to start,
+```
+npm start
+```
+## Instructions
+* Sign up with email if not registered
+* Log in to be allowed to register for upcoming events
+* When logged in, allows the user to edit the profile
+* When on view detail page, lets the user to view the details of the event
+
+## Built with
+* [React](https://github.com/facebook/react) - Front End library
+* [Redux](https://redux.js.org/) - used to manage state
+* [Material-UI](https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
+* [React Router](https://github.com/ReactTraining/react-router) - Routing to navigate through different components
+
+
+### Collaboration
+* **Jun Sung An** -*Design* -[ZunAn](https://github.com/zunan)
+
+
