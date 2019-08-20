@@ -25,8 +25,6 @@ const form = props => {
       inputElement = (
         <MaskedInput
           {...props.elementConfig}
-          mask={props.mask}
-          guide={props.guide}
           value={props.value}
           onChange={props.onChangeHandler}
         />

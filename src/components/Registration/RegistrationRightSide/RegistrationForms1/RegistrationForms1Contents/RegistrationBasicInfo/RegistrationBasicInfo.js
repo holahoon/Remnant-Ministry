@@ -10,8 +10,9 @@ class RegistrationBasicInfo extends Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "First Name",
-          warning: "Please, enter a valid First Name"
+          label: "First name",
+          placeholder: "First name",
+          warning: "Please, enter a valid name"
         },
         value: "",
         validation: {
@@ -24,8 +25,9 @@ class RegistrationBasicInfo extends Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Last Name",
-          warning: "Please, enter a valid Last Name"
+          label: "Last name",
+          placeholder: "Last name",
+          warning: "Please, enter a valid name"
         },
         value: "",
         validation: {
@@ -38,8 +40,9 @@ class RegistrationBasicInfo extends Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Korean Name",
-          warning: "Please, enter a valid Korean Name"
+          label: "한국이름 Korean name (optional)",
+          placeholder: "Korean name",
+          warning: "Please, enter a valid name"
         },
         value: "",
         validation: {
@@ -52,22 +55,23 @@ class RegistrationBasicInfo extends Component {
         elementType: "maskedInput",
         elementConfig: {
           type: "text",
+          label: "Date of birth",
           placeholder: "MM/DD/YYYY",
-          warning: "Please, enter a valid Date of Birth"
+          warning: "Please, enter a valid date",
+          mask: [
+            /[0-1]/,
+            /\d/,
+            "/",
+            /[0-3]/,
+            /\d/,
+            "/",
+            /[1-2]/,
+            /\d/,
+            /\d/,
+            /\d/
+          ],
+          guide: false
         },
-        mask: [
-          /[0-1]/,
-          /\d/,
-          "/",
-          /[0-3]/,
-          /\d/,
-          "/",
-          /[1-2]/,
-          /\d/,
-          /\d/,
-          /\d/
-        ],
-        guide: false,
         value: "",
         validation: {
           required: true
@@ -78,6 +82,7 @@ class RegistrationBasicInfo extends Component {
       gender: {
         elementType: "select",
         elementConfig: {
+          label: "Gender",
           placeholder: "Gender",
           warning: "Please, select a valid gender",
           options: [
@@ -105,7 +110,8 @@ class RegistrationBasicInfo extends Component {
       language: {
         elementType: "select",
         elementConfig: {
-          placeholder: "Preferred Language",
+          label: "Preferred language",
+          placeholder: "Language",
           warning: "Please, select a valid language",
           options: [
             {
@@ -141,13 +147,6 @@ class RegistrationBasicInfo extends Component {
     formIsValid: false
   };
 
-  checkValidity = (value, rules) => {
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-  };
-
   onChangeHandler = (event, inputIdentifier) => {
     // clone basicInfo
     const clonedBasicInfo = { ...this.state.basicInfo };
@@ -170,12 +169,19 @@ class RegistrationBasicInfo extends Component {
     clonedBasicInfo[inputIdentifier] = deepClonedBasicInfo;
 
     // check to see if all inputs are valid to set formIsValid to true to proceed
-    let formIsValid = true;
-    for (let inputIdentifier in clonedBasicInfo) {
-      formIsValid = clonedBasicInfo[inputIdentifier].valid && formIsValid;
-    }
+    // let formIsValid = true;
+    // for (let inputIdentifier in clonedBasicInfo) {
+    //   formIsValid = clonedBasicInfo[inputIdentifier].valid && formIsValid;
+    // }
 
-    this.setState({ basicInfo: clonedBasicInfo, formIsValid });
+    this.setState({ basicInfo: clonedBasicInfo });
+  };
+
+  checkValidity = (value, rules) => {
+    let isValid = true;
+    if (rules.required) {
+      isValid = value.trim() !== "" && isValid;
+    }
   };
 
   render() {
@@ -187,7 +193,6 @@ class RegistrationBasicInfo extends Component {
         config: this.state.basicInfo[key]
       });
     }
-    console.log(basicInfoArray);
 
     let registrationBasicInfo = (
       <form className={"Registration-form Regist-form-1"}>
@@ -196,7 +201,7 @@ class RegistrationBasicInfo extends Component {
             key={eachEl.id}
             elementType={eachEl.config.elementType}
             elementConfig={eachEl.config.elementConfig}
-            label={eachEl.config.elementConfig.placeholder}
+            label={eachEl.config.elementConfig.label}
             value={eachEl.config.value}
             onChangeHandler={event => this.onChangeHandler(event, eachEl.id)}
           />
@@ -208,9 +213,7 @@ class RegistrationBasicInfo extends Component {
       <div className={"Basic-form-container"}>
         <h5 className={"Register-h5-title"}>Basic information</h5>
 
-        <form className={"Registration-form Regist-form-1"}>
-          {registrationBasicInfo}
-        </form>
+        {registrationBasicInfo}
       </div>
     );
   }
