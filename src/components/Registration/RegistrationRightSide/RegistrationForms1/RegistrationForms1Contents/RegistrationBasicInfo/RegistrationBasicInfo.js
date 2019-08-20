@@ -83,7 +83,6 @@ class RegistrationBasicInfo extends Component {
         elementType: "select",
         elementConfig: {
           label: "Gender",
-          placeholder: "Gender",
           warning: "Please, select a valid gender",
           options: [
             {
@@ -111,7 +110,6 @@ class RegistrationBasicInfo extends Component {
         elementType: "select",
         elementConfig: {
           label: "Preferred language",
-          placeholder: "Language",
           warning: "Please, select a valid language",
           options: [
             {
