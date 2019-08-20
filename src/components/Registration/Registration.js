@@ -1,10 +1,32 @@
+import React from "react";
+// import moment from "moment";
+
+// import axiosInstance from "../../axios-userInfo";
+import Layout2 from "../../Layout/Layout2";
+// import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
+import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide";
+
+import "./Registration.css";
+
+const registration = () => {
+  return (
+    <Layout2
+      //left={<RegistrationLeftSide />}
+      right={<RegistrationRightSide />}
+    />
+  );
+};
+
+export default registration;
+
+/*
 import React, { Component } from "react";
 import moment from "moment";
 
-import axiosInstance from "../axios-userInfo";
-import Layout2 from "../Layout/Layout2";
-import RegistrationLeftSide from "../components/Registration/RegistrationLeftSide/RegistrationLeftSide";
-import RegistrationRightSide from "../components/Registration/RegistrationRightSide/RegistrationRightSide";
+import axiosInstance from "../../axios-userInfo";
+import Layout2 from "../../Layout/Layout2";
+import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
+import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide";
 
 import "./Registration.css";
 
@@ -344,36 +366,56 @@ class Registration extends Component {
   // ** Temporary **
   completeRegistrationHandler = () => {
     if (this.state.formStep1Valid && this.state.formStep2Valid) {
-      const userInfo1 = { ...this.state.registrationFormValidation };
-      const userInfo2 = { ...this.state.registrationFormValidation2 };
-      let newUserInfo1;
-      let newUserInfo2;
+      const formData1 = {};
+      const formData2 = {};
 
-      newUserInfo1 = Object.keys(userInfo1).map(each => {
-        if (userInfo1[each].value.length > 0) {
-          return {
-            [each]: userInfo1[each].value
-          };
-        }
-      });
+      for (let identifier in this.state.registrationFormValidation) {
+        formData1[identifier] = this.state.registrationFormValidation[
+          identifier
+        ].value;
+      }
 
-      newUserInfo1 = Object.keys(userInfo2).map(each => {
-        if (userInfo2[each].value.length > 0) {
-          return {
-            [each]: userInfo2[each].value
-          };
-        }
-      });
+      for (let identifier in this.state.registrationFormValidation2) {
+        formData2[identifier] = this.state.registrationFormValidation2[
+          identifier
+        ].value;
+      }
+
+      const registrationInformation = {
+        form1: formData1,
+        form2: formData2
+      };
+
+      // const userInfo1 = { ...this.state.registrationFormValidation };
+      // const userInfo2 = { ...this.state.registrationFormValidation2 };
+      // let newUserInfo1;
+      // let newUserInfo2;
+
+      // newUserInfo1 = Object.keys(userInfo1).map(each => {
+      //   if (userInfo1[each].value.length > 0) {
+      //     return {
+      //       [each]: userInfo1[each].value
+      //     };
+      //   }
+      // });
+
+      // newUserInfo1 = Object.keys(userInfo2).map(each => {
+      //   if (userInfo2[each].value.length > 0) {
+      //     return {
+      //       [each]: userInfo2[each].value
+      //     };
+      //   }
+      // });
 
       // Need to convert the array to an object
       //   const combinedUserInfo = Object.assign(newUserInfo1, newUserInfo2);
 
-      //   axiosInstance
-      //     .post("/userInfo/user1.json", combinedUserInfo)
-      //     .then(response => {
-      //       console.log(response.data);
-      //     })
-      //     .catch(error => console.log(error));
+      axiosInstance
+        .post("/userInfo/user1.json", registrationInformation)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => console.log(error));
     }
   };
 
@@ -709,3 +751,4 @@ class Registration extends Component {
 }
 
 export default Registration;
+*/

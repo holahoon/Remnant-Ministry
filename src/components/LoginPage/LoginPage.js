@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 // import FacebookLogin from "react-facebook-login";
 // import GoogleLogin from "react-google-login";
 
-import LoginForm from "../components/LoginPage/LoginForm/LoginForm";
-import LoginWith from "../components/LoginPage/LoginWith/LoginWith";
-import Button from "../components/UI/Button/Button";
-import GreetingMessage from "../components/GreetingMessage/GreetingMessage";
-import axiosInstace from "../axios-userInfo";
+import LoginForm from "./LoginForm/LoginForm";
+import LoginWith from "./LoginWith/LoginWith";
+import Button from "../UI/Button/Button";
+import GreetingMessage from "../GreetingMessage/GreetingMessage";
+import axiosInstace from "../../axios-userInfo";
 
 import Close20 from "@carbon/icons-react/es/close/20";
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";

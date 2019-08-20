@@ -5,11 +5,11 @@ import Navbar from "../components/Navbar/Navbar";
 import Layout from "../Layout/Layout";
 import MainPage from "../components/MainPage/MainPage";
 
-import LoginPage from "./LoginPage";
+import LoginPage from "../components/LoginPage/LoginPage";
 import SignupPage from "../components/SignupPage/SignupPage";
 import MyAccount from "../components/MyAccount/MyAccount";
 import EventDetail from "../components/Registration/EventDetail/EventDetail";
-import Registration from "./Registration";
+import Registration from "../components/Registration/Registration";
 
 import PageUnderConstruction from "../components/PageUnderConstruction/PageUnderConstruction";
 
