@@ -21,13 +21,16 @@ const registrationChurchInfo = props => {
           elementConfig={eachEl.config.elementConfig}
           label={eachEl.config.elementConfig.label}
           value={eachEl.config.value}
+          valid={eachEl.config.valid}
+          touched={eachEl.config.touched}
+          optional={eachEl.config.optional}
           onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
         />
       ))}
     </form>
   );
   return (
-    <div>
+    <div className={"Basic-form-container"}>
       <h5 className={"Register-h5-title"}>Your church information</h5>
 
       {registrationChurchInfo}

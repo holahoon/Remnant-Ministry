@@ -11,7 +11,6 @@ const registrationFieldInfo = props => {
       config: props.fieldInfo[key]
     });
   }
-  console.log(fieldInfoArray);
 
   let registrationFieldInfo = (
     <form className={"Registration-form Regist-form-2"}>
@@ -22,6 +21,8 @@ const registrationFieldInfo = props => {
           elementConfig={eachEl.config.elementConfig}
           label={eachEl.config.elementConfig.label}
           value={eachEl.config.value}
+          valid={eachEl.config.valid}
+          touched={eachEl.config.touched}
           onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
         />
       ))}

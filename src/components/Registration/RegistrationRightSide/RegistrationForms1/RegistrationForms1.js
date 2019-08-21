@@ -20,7 +20,8 @@ class RegistrationForms1 extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          nameRegex: true
         },
         valid: false,
         touched: false,
@@ -36,7 +37,8 @@ class RegistrationForms1 extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          nameRegex: true
         },
         valid: false,
         touched: false,
@@ -54,7 +56,7 @@ class RegistrationForms1 extends Component {
         validation: {
           required: false
         },
-        valid: false,
+        valid: true,
         touched: false,
         optional: false
       },
@@ -81,7 +83,9 @@ class RegistrationForms1 extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          minLength: 10,
+          maxLength: 10
         },
         valid: false,
         touched: false,
@@ -458,56 +462,6 @@ class RegistrationForms1 extends Component {
     }
   };
 
-  /*
-  onChangeHandlerBasicInfo = (event, inputIdentifier) => {
-    // clone basicInfo
-    const basicInfo = { ...this.state.basicInfo };
-    // deep clone each basicInfo of the given identifier
-    const deepClonedBasicInfo = { ...basicInfo[inputIdentifier] };
-
-    // update value
-    deepClonedBasicInfo.value = event.target.value;
-
-    // update valid by checking the validity of the input field
-    deepClonedBasicInfo.valid = this.checkValidity(
-      deepClonedBasicInfo.value,
-      deepClonedBasicInfo.validation.required
-    );
-
-    // update touched
-    deepClonedBasicInfo.touched = true;
-
-    // update the cloned basicInfo
-    basicInfo[inputIdentifier] = deepClonedBasicInfo;
-
-    // check to see if all inputs are valid to set formIsValid to true to proceed
-    // let formIsValid = true;
-    // for (let inputIdentifier in basicInfo) {
-    //   formIsValid = basicInfo[inputIdentifier].valid && formIsValid;
-    // }
-
-    return basicInfo;
-    // this.setState({ ...this.state, basicInfo });
-  };
-  */
-
-  // onChangeHandlerFieldInfo = (event, inputIdentifier) => {
-  //   const fieldInfo = { ...this.state.fieldInfo };
-  //   const deepClonedFieldInfo = { ...fieldInfo[inputIdentifier] };
-
-  //   deepClonedFieldInfo.value = event.target.value;
-
-  //   deepClonedFieldInfo.valid = this.checkValidity(
-  //     deepClonedFieldInfo.value,
-  //     deepClonedFieldInfo.validation.required
-  //   );
-
-  //   deepClonedFieldInfo.touched = true;
-  //   fieldInfo[inputIdentifier] = deepClonedFieldInfo;
-
-  //   this.setState({ ...this.state, fieldInfo });
-  // };
-
   onChangeHandler = (event, inputIdentifier, stateElement) => {
     // clone the state of the passed in element
     const stateInfo = { ...this.state[stateElement] };
@@ -518,7 +472,7 @@ class RegistrationForms1 extends Component {
     // check the validity and update the valid state
     deepClonedStateInfo.valid = this.checkValidity(
       deepClonedStateInfo.value,
-      deepClonedStateInfo.validation.required
+      deepClonedStateInfo.validation
     );
     // update touched state to true because the specific input field has been touched
     deepClonedStateInfo.touched = true;
@@ -550,9 +504,26 @@ class RegistrationForms1 extends Component {
 
   checkValidity = (value, rules) => {
     let isValid = true;
+
+    // check to see if value is not an empty string
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
+
+    // check for regex
+    if (rules.nameRegex) {
+      const nameRegex = RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g);
+      isValid = nameRegex.test(value) && isValid;
+    }
+
+    // check to see if rules has minLength and maxLength
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+
     return isValid;
   };
 
