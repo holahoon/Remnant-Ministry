@@ -24,6 +24,7 @@ const registrationBasicInfo = props => {
           value={eachEl.config.value}
           valid={eachEl.config.valid}
           touched={eachEl.config.touched}
+          optional={eachEl.config.optional}
           onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
         />
       ))}

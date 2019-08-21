@@ -18,6 +18,7 @@ const form = props => {
     case "input":
       inputElement = (
         <input
+          // className={`${props.optional ? "hide" : "show"}Input`}
           style={{
             border: `1px solid ${
               props.touched && !props.valid ? "tomato" : "#bebebe"
@@ -86,10 +87,11 @@ const form = props => {
           onChange={props.onChangeHandler}
         />
       );
+      break;
   }
 
   return (
-    <div>
+    <div style={{ display: `${props.optional ? "none" : "block"}` }}>
       <label>
         {props.label}
         {inputElement}

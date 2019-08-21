@@ -306,7 +306,7 @@ class RegistrationForms1 extends Component {
         optional: false
       },
       company: {
-        elementType: "text",
+        elementType: "input",
         elementConfig: {
           type: "text",
           label: "Company",
@@ -322,7 +322,7 @@ class RegistrationForms1 extends Component {
         optional: false
       },
       companyTitle: {
-        elementType: "text",
+        elementType: "input",
         elementConfig: {
           type: "text",
           label: "Title (Company)",
@@ -430,7 +430,7 @@ class RegistrationForms1 extends Component {
               displayValue: "Church 2"
             },
             {
-              value: "church-other",
+              value: "church-not listed",
               displayValue: "Not listed"
             }
           ]
@@ -441,10 +441,10 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: true
+        optional: false
       },
       typeChurch: {
-        elementType: "text",
+        elementType: "input",
         elementConfig: {
           type: "text",
           label: "Type your church",
@@ -455,11 +455,16 @@ class RegistrationForms1 extends Component {
         validation: {
           required: true
         },
-        valid: false,
+        valid: true,
         touched: false,
-        optional: false
+        optional: true
       }
-    }
+    },
+    form1Valid: false
+  };
+
+  capitalizeInput = input => {
+    return input.replace(/^[a-z]/, word => word.toUpperCase());
   };
 
   onChangeHandler = (event, inputIdentifier, stateElement) => {
@@ -467,8 +472,12 @@ class RegistrationForms1 extends Component {
     const stateInfo = { ...this.state[stateElement] };
     // deep clone the specified state
     const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
-    // update the value state
-    deepClonedStateInfo.value = event.target.value;
+    // update the value state (conditionally capitalize the value)
+    if (deepClonedStateInfo.elementType === "input") {
+      deepClonedStateInfo.value = this.capitalizeInput(event.target.value);
+    } else {
+      deepClonedStateInfo.value = event.target.value;
+    }
     // check the validity and update the valid state
     deepClonedStateInfo.valid = this.checkValidity(
       deepClonedStateInfo.value,
@@ -483,22 +492,32 @@ class RegistrationForms1 extends Component {
     // for (let inputIdentifier in basicInfo) {
     //   formIsValid = basicInfo[inputIdentifier].valid && formIsValid;
     // }
+
     // return the state
     return stateInfo;
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
     let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
+
     this.setState({ ...this.state, basicInfo });
   };
 
   updateFieldInfo = (event, inputIdentifier) => {
     let fieldInfo = this.onChangeHandler(event, inputIdentifier, "fieldInfo");
+
     this.setState({ ...this.state, fieldInfo });
   };
 
   updateChurchInfo = (event, inputIdentifier) => {
     let churchInfo = this.onChangeHandler(event, inputIdentifier, "churchInfo");
+    // show / hide typeChurch input
+    if (churchInfo["selectChurch"].value === "church-not listed") {
+      churchInfo["typeChurch"].optional = false;
+    } else {
+      churchInfo["typeChurch"].optional = true;
+    }
+
     this.setState({ ...this.state, churchInfo });
   };
 
@@ -512,7 +531,7 @@ class RegistrationForms1 extends Component {
 
     // check for regex
     if (rules.nameRegex) {
-      const nameRegex = RegExp(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g);
+      const nameRegex = RegExp(/^[a-zA-Z]+$/);
       isValid = nameRegex.test(value) && isValid;
     }
 
@@ -528,7 +547,7 @@ class RegistrationForms1 extends Component {
   };
 
   render() {
-    console.log(this.state.basicInfo);
+    console.log(this.state.churchInfo);
     return (
       <div>
         <RegistrationBasicInfo

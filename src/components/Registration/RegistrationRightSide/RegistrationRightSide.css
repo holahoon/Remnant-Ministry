@@ -170,10 +170,10 @@ select.InputError {
   grid-column: 1 / 5;
 }
 
-.hideInput {
+/* .hideInput {
   display: none;
 }
 
 .showInput {
   display: block;
-}
+} */
