@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import RegistrationBasicInfo from "./RegistrationForms1Contents/RegistrationBasicInfo/RegistrationBasicInfo";
 import RegistrationFieldInfo from "./RegistrationForms1Contents/RegistrationFieldInfo/RegistrationFieldInfo";
-// import RegistrationChurchInfo from "./RegistrationForms1Contents/RegistrationChurchInfo/RegistrationChurchInfo";
+import RegistrationChurchInfo from "./RegistrationForms1Contents/RegistrationChurchInfo/RegistrationChurchInfo";
 import Button from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
@@ -23,7 +23,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       lastName: {
         elementType: "input",
@@ -38,7 +39,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       koreanName: {
         elementType: "input",
@@ -53,7 +55,8 @@ class RegistrationForms1 extends Component {
           required: false
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       dateOfBirth: {
         elementType: "maskedInput",
@@ -81,7 +84,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       gender: {
         elementType: "select",
@@ -108,7 +112,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       language: {
         elementType: "select",
@@ -143,7 +148,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       }
     },
     fieldInfo: {
@@ -160,7 +166,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       grade: {
         elementType: "select",
@@ -233,7 +240,14 @@ class RegistrationForms1 extends Component {
               displayValue: "University (Grad)"
             }
           ]
-        }
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false
       },
       major: {
         elementType: "input",
@@ -248,7 +262,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       interest: {
         elementType: "select",
@@ -277,7 +292,14 @@ class RegistrationForms1 extends Component {
               displayValue: "Chemistry"
             }
           ]
-        }
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false
       },
       company: {
         elementType: "text",
@@ -292,7 +314,8 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
       },
       companyTitle: {
         elementType: "text",
@@ -307,7 +330,130 @@ class RegistrationForms1 extends Component {
           required: true
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: false
+      }
+    },
+    churchInfo: {
+      churchPosition: {
+        elementType: "select",
+        elementConfig: {
+          label: "Select your position in church",
+          warning: "Please, select a valid position",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "position-remnant",
+              displayValue: "Remnant"
+            },
+            {
+              value: "position-young adult",
+              displayValue: "Young adult"
+            },
+            {
+              value: "position-elder",
+              displayValue: "Elder"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false
+      },
+      trainingLevel: {
+        elementType: "select",
+        elementConfig: {
+          label: "Select your training level",
+          warning: "Please, select a valid training",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "training-NA",
+              displayValue: "Not Applicable"
+            },
+            {
+              value: "training-1st-level-camp",
+              displayValue: "1st level camp training"
+            },
+            {
+              value: "traning-2nd-level-camp",
+              displayValue: "2nd level camp training"
+            },
+            {
+              value: "training-3rd-level-camp",
+              displayValue: "3rd level camp training"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false
+      },
+      selectChurch: {
+        elementType: "select",
+        elementConfig: {
+          label: "Select your church",
+          warning: "Please, select a valid church",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "church-Immanuel church of Austin",
+              displayValue: "Immanuel church of Austin"
+            },
+            {
+              value: "church-1",
+              displayValue: "Church 1"
+            },
+            {
+              value: "church-2",
+              displayValue: "Church 2"
+            },
+            {
+              value: "church-other",
+              displayValue: "Not listed"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: true
+      },
+      typeChurch: {
+        elementType: "text",
+        elementConfig: {
+          type: "text",
+          label: "Type your church",
+          placeholder: "Name of the church",
+          warning: "Please, enter a valid name"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false
       }
     }
   };
@@ -391,9 +537,15 @@ class RegistrationForms1 extends Component {
     let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
     this.setState({ ...this.state, basicInfo });
   };
+
   updateFieldInfo = (event, inputIdentifier) => {
     let fieldInfo = this.onChangeHandler(event, inputIdentifier, "fieldInfo");
     this.setState({ ...this.state, fieldInfo });
+  };
+
+  updateChurchInfo = (event, inputIdentifier) => {
+    let churchInfo = this.onChangeHandler(event, inputIdentifier, "churchInfo");
+    this.setState({ ...this.state, churchInfo });
   };
 
   checkValidity = (value, rules) => {
@@ -416,10 +568,10 @@ class RegistrationForms1 extends Component {
           fieldInfo={this.state.fieldInfo}
           onChangeHandler={this.updateFieldInfo}
         />
-        {/*<RegistrationChurchInfo
-          onChangeHandler={props.onChangeHandler}
-          stateData={props.stateData}
-        />*/}
+        <RegistrationChurchInfo
+          churchInfo={this.state.churchInfo}
+          onChangeHandler={this.updateChurchInfo}
+        />
 
         <div className={"Registration-button-container margin-left-6"}>
           <Button buttonClass={"Registration-blue-button button-1-2--global"}>
