@@ -10,6 +10,7 @@ import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 class RegistrationForms1 extends Component {
   state = {
     basicInfo: {
+      formValidation: false,
       firstName: {
         elementType: "input",
         elementConfig: {
@@ -157,6 +158,7 @@ class RegistrationForms1 extends Component {
       }
     },
     fieldInfo: {
+      formValidation: false,
       school: {
         elementType: "input",
         elementConfig: {
@@ -339,6 +341,7 @@ class RegistrationForms1 extends Component {
       }
     },
     churchInfo: {
+      formValidation: false,
       churchPosition: {
         elementType: "select",
         elementConfig: {
@@ -463,6 +466,8 @@ class RegistrationForms1 extends Component {
     form1Valid: false
   };
 
+  componentDidUpdate() {}
+
   capitalizeInput = input => {
     return input.replace(/^[a-z]/, word => word.toUpperCase());
   };
@@ -488,9 +493,9 @@ class RegistrationForms1 extends Component {
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
     // check to see if all inputs are valid to set formIsValid to true to proceed
-    // let formIsValid = true;
-    // for (let inputIdentifier in basicInfo) {
-    //   formIsValid = basicInfo[inputIdentifier].valid && formIsValid;
+    let form1Valid = true;
+    // for (let inputIdentifier in stateElement) {
+    //   form1Valid = stateElement[inputIdentifier].valid && form1Valid;
     // }
 
     // return the state
@@ -498,8 +503,15 @@ class RegistrationForms1 extends Component {
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
+    let formValidation = true;
     let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
-
+    for (let key in basicInfo) {
+      if (key === "formValidation") {
+        continue;
+      }
+      formValidation = basicInfo[key].valid && formValidation;
+    }
+    basicInfo.formValidation = formValidation;
     this.setState({ ...this.state, basicInfo });
   };
 
@@ -547,7 +559,7 @@ class RegistrationForms1 extends Component {
   };
 
   render() {
-    console.log(this.state.churchInfo);
+    console.log("formValidation: ", this.state.basicInfo.formValidation);
     return (
       <div>
         <RegistrationBasicInfo
@@ -564,7 +576,10 @@ class RegistrationForms1 extends Component {
         />
 
         <div className={"Registration-button-container margin-left-6"}>
-          <Button buttonClass={"Registration-blue-button button-1-2--global"}>
+          <Button
+            buttonClass={"Registration-blue-button button-1-2--global"}
+            disable={!this.state.form1Valid}
+          >
             Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />
           </Button>

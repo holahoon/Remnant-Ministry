@@ -6,6 +6,9 @@ const registrationChurchInfo = props => {
   // turn object into an array
   const churchInfoArray = [];
   for (let key in props.churchInfo) {
+    if (key === "formValidation") {
+      continue;
+    }
     churchInfoArray.push({
       id: key,
       config: props.churchInfo[key]

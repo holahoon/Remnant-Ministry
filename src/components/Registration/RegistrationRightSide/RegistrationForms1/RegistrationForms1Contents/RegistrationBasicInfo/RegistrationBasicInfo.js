@@ -7,6 +7,9 @@ const registrationBasicInfo = props => {
   // turn object into an array
   const basicInfoArray = [];
   for (let key in props.basicInfo) {
+    if (key === "formValidation") {
+      continue;
+    }
     basicInfoArray.push({
       id: key,
       config: props.basicInfo[key]
