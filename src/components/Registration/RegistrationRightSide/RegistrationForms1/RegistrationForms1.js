@@ -466,7 +466,11 @@ class RegistrationForms1 extends Component {
     form1Valid: false
   };
 
-  componentDidUpdate() {}
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return (
+  //     this.state.basicInfo.formValidation !== nextState.basicInfo.formValidation
+  //   );
+  // }
 
   capitalizeInput = input => {
     return input.replace(/^[a-z]/, word => word.toUpperCase());
@@ -492,26 +496,23 @@ class RegistrationForms1 extends Component {
     deepClonedStateInfo.touched = true;
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
-    // check to see if all inputs are valid to set formIsValid to true to proceed
-    let form1Valid = true;
-    // for (let inputIdentifier in stateElement) {
-    //   form1Valid = stateElement[inputIdentifier].valid && form1Valid;
-    // }
+    // check to see if formValidation in basic, field, churchInfo are true to proceed to next step
+    let formValidation = true;
+    for (let key in stateInfo) {
+      if (key === "formValidation") {
+        continue;
+      }
+      formValidation = stateInfo[key].valid && formValidation;
+    }
+    stateInfo.formValidation = formValidation;
 
     // return the state
     return stateInfo;
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
-    let formValidation = true;
     let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
-    for (let key in basicInfo) {
-      if (key === "formValidation") {
-        continue;
-      }
-      formValidation = basicInfo[key].valid && formValidation;
-    }
-    basicInfo.formValidation = formValidation;
+
     this.setState({ ...this.state, basicInfo });
   };
 
@@ -559,7 +560,7 @@ class RegistrationForms1 extends Component {
   };
 
   render() {
-    console.log("formValidation: ", this.state.basicInfo.formValidation);
+    const { basicInfo, fieldInfo, churchInfo } = this.state;
     return (
       <div>
         <RegistrationBasicInfo
@@ -578,7 +579,11 @@ class RegistrationForms1 extends Component {
         <div className={"Registration-button-container margin-left-6"}>
           <Button
             buttonClass={"Registration-blue-button button-1-2--global"}
-            disable={!this.state.form1Valid}
+            disable={
+              !basicInfo.formValidation &&
+              !fieldInfo.formValidation &&
+              !churchInfo.formValidation
+            }
           >
             Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />
