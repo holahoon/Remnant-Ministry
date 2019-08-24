@@ -466,11 +466,18 @@ class RegistrationForms1 extends Component {
     form1Valid: false
   };
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return (
-  //     this.state.basicInfo.formValidation !== nextState.basicInfo.formValidation
-  //   );
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.basicInfo.formValidation !==
+        this.state.basicInfo.formValidation &&
+      prevState.fieldInfo.formValidation !==
+        this.state.fieldInfo.formValidation &&
+      prevState.churchInfo.formValidation !==
+        this.state.churchInfo.formValidation
+    ) {
+      this.setState({ ...this.state, form1Valid: true });
+    }
+  }
 
   capitalizeInput = input => {
     return input.replace(/^[a-z]/, word => word.toUpperCase());
@@ -560,7 +567,6 @@ class RegistrationForms1 extends Component {
   };
 
   render() {
-    const { basicInfo, fieldInfo, churchInfo } = this.state;
     return (
       <div>
         <RegistrationBasicInfo
@@ -579,11 +585,7 @@ class RegistrationForms1 extends Component {
         <div className={"Registration-button-container margin-left-6"}>
           <Button
             buttonClass={"Registration-blue-button button-1-2--global"}
-            disable={
-              !basicInfo.formValidation &&
-              !fieldInfo.formValidation &&
-              !churchInfo.formValidation
-            }
+            disable={!this.state.form1Valid}
           >
             Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />

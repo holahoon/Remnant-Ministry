@@ -18,7 +18,6 @@ const form = props => {
     case "input":
       inputElement = (
         <input
-          // className={`${props.optional ? "hide" : "show"}Input`}
           style={{
             border: `1px solid ${
               props.touched && !props.valid ? "tomato" : "#bebebe"

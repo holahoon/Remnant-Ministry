@@ -1,5 +1,4 @@
 import React from "react";
-// import MaskedInput from "react-text-mask";
 
 import InputForm from "../../../../../UI/InputForm/InputForm";
 

@@ -20,7 +20,7 @@
 - An application to view details of different events in America within the organization and register online
 - By building this particular project from scratch gave me much deeper understanding on how to use React and Redux
 
-![Initial page](./src/assets/images/rm1.png)
+![Initial page](/src/assets/images/rm1.png)
 
 At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
 
