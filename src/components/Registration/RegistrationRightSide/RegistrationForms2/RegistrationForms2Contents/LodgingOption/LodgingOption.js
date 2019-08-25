@@ -12,8 +12,9 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 const CustomFormControl = withStyles({
   root: {
     display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gridColumnGap: "1.5rem"
+    gridTemplateColumns: "repeat(1, 1fr)",
+    gridRowGap: "0.75rem",
+    marginBottom: "0.75rem"
   }
 })(props => <FormControl {...props} />);
 
@@ -37,7 +38,8 @@ const CustomFormLabel = withStyles({
     fontSize: "14px",
     fontFamily: "whitney",
     lineHeight: "20px",
-    letterSpacing: "0"
+    letterSpacing: "0",
+    marginBottom: "-6px"
   },
   focused: {
     "&$focused": {
@@ -56,75 +58,58 @@ const BlueRadio = withStyles({
   checked: {}
 })(props => <Radio color="default" {...props} />);
 
-// const CustomRadioFormControlLabel = withStyles({
-//   root: {
-//     marginLeft: "0",
-//     marginRight: "0"
-//   },
-//   label: {
-//     fontSize: "14px",
-//     fontFamily: "whitney",
-//     lineHeight: "20px",
-//     letterSpacing: "0"
-//   }
-// })(props => <FormControlLabel {...props} />);
-
-// const CustomFormLabel = withStyles({
-//   root: {
-//     color: "#282828",
-//     fontSize: "14px",
-//     fontFamily: "whitney",
-//     lineHeight: "20px",
-//     letterSpacing: "0"
-//   },
-//   focused: {
-//     "&$focused": {
-//       color: "#282828"
-//     }
-//   }
-// })(props => <FormLabel {...props} />);
-
-// const BlueRadio = withStyles({
-//   root: {
-//     color: "#a4a4a4",
-//     "&$checked": {
-//       color: "#054ADA"
-//     }
-//   },
-//   checked: {}
-// })(props => <Radio color="default" {...props} />);
-
-const mainRCAOptions = props => {
+const lodgingOption = props => {
   // turn object into an array
-  const RCAOptionsArray = [];
-  for (let key in props.mainRCAOptions) {
+  const extraInfoArray = [];
+  for (let key in props.extraInfo) {
     if (key === "formValidation") {
       continue;
     }
-    RCAOptionsArray.push({
+    extraInfoArray.push({
       id: key,
-      config: props.mainRCAOptions[key]
+      config: props.extraInfo[key]
     });
   }
-  console.log(RCAOptionsArray);
+
   return (
     <div>
       <h5 className={"Register-h5-title"}>Main RCA options</h5>
 
       <CustomFormControl>
+        {/* Leaders retreat lodging */}
+        <CustomFormLabel>Leaders retreat</CustomFormLabel>
         <RadioGroup
           className={"Regist-form-4-item1"}
           value={""}
-          aria-label={"Loding option"}
+          // aria-label={"Loding option"}
           // onChange={props.onChangeHandler}
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
-              value="4people"
+              value="leaders-retreat-4people-room"
               control={<BlueRadio />}
               label="4 people / room"
             />
-            <span>$ 109.99</span>
+            <span style={{ color: "#DA1E28" }}>born between 1983 and 2005</span>
+            <span>$ 150</span>
+          </div>
+        </RadioGroup>
+
+        {/* Main RCA lodging */}
+        <CustomFormLabel>Main RCA</CustomFormLabel>
+        <RadioGroup
+          className={"Regist-form-4-item1"}
+          value={""}
+          // aria-label={"Loding option"}
+          // onChange={props.onChangeHandler}
+        >
+          <div className={"Radio-control-container"}>
+            <CustomRadioFormControlLabel
+              value="main-RAC-4people-room"
+              control={<BlueRadio />}
+              label="4 people / room"
+            />
+            <span>$ 320</span>
           </div>
           <div
             // className={
@@ -135,25 +120,70 @@ const mainRCAOptions = props => {
             className={"Radio-control-container"}
           >
             <CustomRadioFormControlLabel
-              value="2people"
+              value="main-RAC-2people-room"
               control={<BlueRadio />}
               label="2 people / room "
               // disabled={lodgingOptionRegistration.disable}
             />
-            <span style={{ color: "#DA1E28" }}>
-              Only the participants born before 1990 can choose
-            </span>
+            <span style={{ color: "#DA1E28" }}>not available for LEADERS</span>
             <span
             // className={
             //   lodgingOptionRegistration.disable ? "disable-text" : null
             // }
             >
-              $ 139.99
+              $ 390
+            </span>
+          </div>
+          <div
+            // className={
+            //   lodgingOptionRegistration.disable
+            //     ? "Radio-control-container input-disable"
+            //     : "Radio-control-container"
+            // }
+            className={"Radio-control-container"}
+          >
+            <CustomRadioFormControlLabel
+              value="main-RAC-1people-room"
+              control={<BlueRadio />}
+              label="1 people / room "
+              // disabled={lodgingOptionRegistration.disable}
+            />
+            <span style={{ color: "#DA1E28" }}>not available for LEADERS</span>
+            <span
+            // className={
+            //   lodgingOptionRegistration.disable ? "disable-text" : null
+            // }
+            >
+              $ 460
             </span>
           </div>
         </RadioGroup>
 
-        {RCAOptionsArray.map(eachEl => (
+        {/* Commuter lodging */}
+        <CustomFormLabel>Commuter</CustomFormLabel>
+        <RadioGroup
+          className={"Regist-form-4-item1"}
+          value={""}
+          // aria-label={"Loding option"}
+          // onChange={props.onChangeHandler}
+        >
+          <div className={"Radio-control-container"}>
+            <CustomRadioFormControlLabel
+              value="commuter"
+              control={<BlueRadio />}
+              label="Born in/before 1983 or onsite registrants"
+            />
+            <span style={{ color: "#DA1E28" }}>
+              ** Onsite registrants = $ 250 (CASH ONLY)
+            </span>
+            <span>$ 190</span>
+          </div>
+        </RadioGroup>
+      </CustomFormControl>
+
+      {/* Below extra form */}
+      <form className={"Regist-form-3"}>
+        {extraInfoArray.map(eachEl => (
           <InputForm
             key={eachEl.id}
             elementType={eachEl.config.elementType}
@@ -167,12 +197,12 @@ const mainRCAOptions = props => {
             // onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
           />
         ))}
-      </CustomFormControl>
+      </form>
     </div>
   );
 };
 
-export default mainRCAOptions;
+export default lodgingOption;
 
 /*
 import React from "react";

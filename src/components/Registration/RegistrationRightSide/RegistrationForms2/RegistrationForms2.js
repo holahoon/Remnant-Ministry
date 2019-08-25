@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import MainRCAOptions from "./RegistrationForms2Contents/MainRCAOptions/MainRCAOptions";
-import Payment from "./RegistrationForms2Contents/Payment/Payment";
-import BillingAddress from "./RegistrationForms2Contents/BillingAddress/BillingAddress";
+import LodgingOption from "./RegistrationForms2Contents/LodgingOption/LodgingOption";
 import Button from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
@@ -11,12 +9,12 @@ import "./RegistrationForms2.css";
 
 class RegistrationForms2 extends Component {
   state = {
-    mainRCAOptions: {
+    extraInfo: {
       formValidation: false,
       shirtSize: {
         elementType: "select",
         elementConfig: {
-          label: "Select your church",
+          label: "T-shirt size",
           warning: "Please, select a valid church",
           options: [
             {
@@ -65,6 +63,69 @@ class RegistrationForms2 extends Component {
         touched: false,
         optional: true,
         visible: true
+      },
+      volunteerStaff: {
+        elementType: "select",
+        elementConfig: {
+          label: "Volunteer to serve as a staff",
+          warning: "Please, select a valid inquiry",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "staff-volunteer-yes",
+              displayValue: "Yes, I'd like to volunteer"
+            },
+            {
+              value: "staff-volunteer-no",
+              displayValue: "No, I'd not like to volunteer"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: true,
+        visible: true
+      },
+      healthCondition: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Health condition",
+          placeholder: "Tell us if you have a special condition",
+          warning: "Please, enter a valid health condition"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      prayerTopic: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Prayer topic",
+          placeholder: "Share your prayer topic",
+          warning: "Please, enter a valid prayer topic"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
       }
     }
   };
@@ -72,8 +133,8 @@ class RegistrationForms2 extends Component {
   render() {
     return (
       <div>
-        <MainRCAOptions
-          mainRCAOptions={this.state.mainRCAOptions}
+        <LodgingOption
+          extraInfo={this.state.extraInfo}
           // onChangeHandler={this.updateBasicInfo}
         />
         {/*<Payment
@@ -85,33 +146,28 @@ class RegistrationForms2 extends Component {
           stateData={props.stateData}
         />*/}
 
-        {/*<div className={"Complete-registration-button-container"}>
+        <div className={"Registration-button-container"}>
           <Button
             buttonClass={"Registration-dark-button button-1-1--global"}
-            handleButtonClick={props.prevStepHandler}
+            // handleButtonClick={""}
           >
             <ArrowRight16 className={"ArrowIcon-registration-back"} />
             Back
           </Button>
           <Button
-            buttonClass={
-              !props.stateData.formStep2Valid
-                ? "Registration-blue-button button-1-2--global button-disable"
-                : "Registration-blue-button button-1-2--global"
-            }
-            handleButtonClick={props.completeRegistrationHandler}
-            disable={!props.stateData.formStep2Valid}
+            buttonClass={"Registration-blue button-1-2--global"}
+            // buttonClass={
+            //   !props.stateData.formStep2Valid
+            //     ? "Registration-blue-button button-1-2--global button-disable"
+            //     : "Registration-blue-button button-1-2--global"
+            // }
+            // handleButtonClick={props.completeRegistrationHandler}
+            disable={""}
           >
-            Complete Registration
+            Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />
           </Button>
-          </div>*/}
-
-        <p className={"Registration-agreement"}>
-          By clicking the Complete Registration button,
-          <br /> you confirm that you have read and understood, and accept our
-          <span>Terms and Conditions</span> and <span>Privacy Policy</span>
-        </p>
+        </div>
       </div>
     );
   }
