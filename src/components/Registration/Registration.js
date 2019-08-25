@@ -11,7 +11,7 @@ import "./Registration.css";
 const registration = () => {
   return (
     <Layout2
-      //left={<RegistrationLeftSide />}
+      // left={<RegistrationLeftSide />}
       right={<RegistrationRightSide />}
     />
   );

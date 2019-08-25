@@ -26,7 +26,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       lastName: {
         elementType: "input",
@@ -43,7 +44,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       koreanName: {
         elementType: "input",
@@ -59,7 +61,8 @@ class RegistrationForms1 extends Component {
         },
         valid: true,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       dateOfBirth: {
         elementType: "maskedInput",
@@ -90,7 +93,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       gender: {
         elementType: "select",
@@ -118,7 +122,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       language: {
         elementType: "select",
@@ -154,7 +159,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       }
     },
     fieldInfo: {
@@ -173,7 +179,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       grade: {
         elementType: "select",
@@ -253,7 +260,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       major: {
         elementType: "input",
@@ -269,7 +277,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       interest: {
         elementType: "select",
@@ -305,7 +314,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       company: {
         elementType: "input",
@@ -321,7 +331,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       companyTitle: {
         elementType: "input",
@@ -337,7 +348,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       }
     },
     churchInfo: {
@@ -372,7 +384,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       trainingLevel: {
         elementType: "select",
@@ -408,7 +421,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: false,
+        visible: true
       },
       selectChurch: {
         elementType: "select",
@@ -444,7 +458,8 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false
+        optional: true,
+        visible: true
       },
       typeChurch: {
         elementType: "input",
@@ -460,7 +475,8 @@ class RegistrationForms1 extends Component {
         },
         valid: true,
         touched: false,
-        optional: true
+        optional: true,
+        visible: false
       }
     }
   };
@@ -480,27 +496,61 @@ class RegistrationForms1 extends Component {
     } else {
       deepClonedStateInfo.value = event.target.value;
     }
+
     // check the validity and update the valid state
-    deepClonedStateInfo.valid = this.checkValidity(
-      deepClonedStateInfo.value,
-      deepClonedStateInfo.validation
-    );
+    deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
     // update touched state to true because the specific input field has been touched
     deepClonedStateInfo.touched = true;
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
+
     // check to see if formValidation in basic, field, churchInfo are true to proceed to next step
     let formValidation = true;
     for (let key in stateInfo) {
       if (key === "formValidation") {
         continue;
       }
+      // if (stateInfo[key].optional) {
+      //   continue;
+      // }
+
       formValidation = stateInfo[key].valid && formValidation;
     }
     stateInfo.formValidation = formValidation;
 
     // return the state
     return stateInfo;
+  };
+
+  checkValidity = state => {
+    let isValid = true;
+
+    // check to see if state.value is not an empty string
+    if (state.validation.required) {
+      isValid = state.value.trim() !== "" && isValid;
+    }
+
+    // if (state.optional) {
+    //   isValid =
+    //     (state.value !== "church-not listed" || state.value.trim() !== "") &&
+    //     isValid;
+    // }
+
+    // check for regex
+    if (state.validation.nameRegex) {
+      const nameRegex = RegExp(/^[a-zA-Z]+$/);
+      isValid = nameRegex.test(state.value) && isValid;
+    }
+
+    // check to see if state.validation has minLength and maxLength
+    if (state.validation.minLength) {
+      isValid = state.value.length >= state.validation.minLength && isValid;
+    }
+    if (state.validation.maxLength) {
+      isValid = state.value.length <= state.validation.maxLength && isValid;
+    }
+
+    return isValid;
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
@@ -519,37 +569,14 @@ class RegistrationForms1 extends Component {
     let churchInfo = this.onChangeHandler(event, inputIdentifier, "churchInfo");
     // show / hide typeChurch input
     if (churchInfo["selectChurch"].value === "church-not listed") {
-      churchInfo["typeChurch"].optional = false;
+      churchInfo["typeChurch"].visible = true;
+      // churchInfo["typeChurch"].optional = false;
     } else {
-      churchInfo["typeChurch"].optional = true;
+      churchInfo["typeChurch"].visible = false;
+      // churchInfo["typeChurch"].optional = true;
     }
 
     this.setState({ ...this.state, churchInfo });
-  };
-
-  checkValidity = (value, rules) => {
-    let isValid = true;
-
-    // check to see if value is not an empty string
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-
-    // check for regex
-    if (rules.nameRegex) {
-      const nameRegex = RegExp(/^[a-zA-Z]+$/);
-      isValid = nameRegex.test(value) && isValid;
-    }
-
-    // check to see if rules has minLength and maxLength
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
   };
 
   render() {
@@ -573,11 +600,9 @@ class RegistrationForms1 extends Component {
           <Button
             buttonClass={"Registration-blue-button button-1-2--global"}
             disable={
-              !(
-                basicInfo.formValidation &&
-                fieldInfo.formValidation &&
-                churchInfo.formValidation
-              )
+              !// basicInfo.formValidation &&
+              // fieldInfo.formValidation &&
+              churchInfo.formValidation
             }
           >
             Next

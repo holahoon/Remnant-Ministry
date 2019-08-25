@@ -12,17 +12,13 @@
 
 5.  Redux to be used to manage the state - process..
 
-6.  Not responsive yet - no mobile / tabelt version yet
+6.  Not responsive yet - no mobile / tablet version not available yet
 
 ## Project Overview
 
 - A web application for a Chrisitan organization in both Korea and America
 - An application to view details of different events in America within the organization and register online
 - By building this particular project from scratch gave me much deeper understanding on how to use React and Redux
-
-![Initial page](/src/assets/images/rm1.png)
-
-At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
 
 ## Start
 
@@ -37,11 +33,24 @@ npm start
 ```
 
 ## Instructions
+At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
+- Initial page
+<!-- ![Initial page](src/assets/Images/rm_screenshot_1.png) -->
+  <img src="src/assets/Images/rm_screenshot_1.png" width="70%" alt="Initial page" style="border-radius: 10px"/>
 
-- Sign up with email if not registered
+- Login page / sign up if not registered
+<!-- - ![Sign up page](src/assets/Images/rm_screenshot_2.png) -->
+  <img src="src/assets/Images/rm_screenshot_2.png" width="70%" alt="Login page" />
+
 - Log in to be allowed to register for upcoming events
+<!-- - ![Sign up page](src/assets/Images/rm_screenshot_3.png) -->
+  <img src="src/assets/Images/rm_screenshot_3.png" width="70%" alt="Register page" />
+
 - When logged in, allows the user to edit the profile
-- When on view detail page, lets the user to view the details of the event
+<!-- - ![Sign up page](src/assets/Images/rm_screenshot_4.png) -->
+  <img src="src/assets/Images/rm_screenshot_4.png" width="70%" alt="Account edit page" />
+
+- More to come...
 
 ## Built with
 

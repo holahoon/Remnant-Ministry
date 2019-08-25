@@ -35,7 +35,7 @@ const form = props => {
           style={{
             color: `#${props.touched ? "282828" : "BEBEBE"}`,
             border: `1px solid ${
-              props.touched && props.value.length <= 0 ? "tomato" : "#bebebe"
+              props.touched && props.value.length < 10 ? "tomato" : "#bebebe"
             }`
           }}
           {...props.elementConfig}
@@ -64,15 +64,6 @@ const form = props => {
         </select>
       );
       break;
-    // case "textarea":
-    //   inputElement = (
-    //     <textarea
-    //       {...props.elementConfig}
-    //       value={props.value}
-    //       onChange={props.onChangeHandler}
-    //     />
-    //   );
-    //   break;
     default:
       inputElement = (
         <input
@@ -90,7 +81,7 @@ const form = props => {
   }
 
   return (
-    <div style={{ display: `${props.optional ? "none" : "block"}` }}>
+    <div style={{ display: `${!props.visible ? "none" : "block"}` }}>
       <label>
         {props.label}
         {inputElement}

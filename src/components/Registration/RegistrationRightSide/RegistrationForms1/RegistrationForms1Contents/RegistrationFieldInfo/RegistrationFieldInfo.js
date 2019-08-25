@@ -27,6 +27,7 @@ const registrationFieldInfo = props => {
           valid={eachEl.config.valid}
           touched={eachEl.config.touched}
           optional={eachEl.config.optional}
+          visible={eachEl.config.visible}
           onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
         />
       ))}
