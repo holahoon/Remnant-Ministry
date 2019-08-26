@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import LodgingOption from "./RegistrationForms2Contents/LodgingOption/LodgingOption";
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 
@@ -147,14 +147,14 @@ class RegistrationForms2 extends Component {
         />*/}
 
         <div className={"Registration-button-container"}>
-          <Button
+          <RegularButton
             buttonClass={"Registration-dark-button button-1-1--global"}
             // handleButtonClick={""}
           >
             <ArrowRight16 className={"ArrowIcon-registration-back"} />
             Back
-          </Button>
-          <Button
+          </RegularButton>
+          <RegularButton
             buttonClass={"Registration-blue button-1-2--global"}
             // buttonClass={
             //   !props.stateData.formStep2Valid
@@ -166,7 +166,7 @@ class RegistrationForms2 extends Component {
           >
             Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />
-          </Button>
+          </RegularButton>
         </div>
       </div>
     );

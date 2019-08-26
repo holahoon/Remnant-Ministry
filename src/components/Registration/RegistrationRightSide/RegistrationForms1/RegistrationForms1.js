@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import RegistrationBasicInfo from "./RegistrationForms1Contents/RegistrationBasicInfo/RegistrationBasicInfo";
 import RegistrationFieldInfo from "./RegistrationForms1Contents/RegistrationFieldInfo/RegistrationFieldInfo";
 import RegistrationChurchInfo from "./RegistrationForms1Contents/RegistrationChurchInfo/RegistrationChurchInfo";
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 
@@ -597,7 +597,7 @@ class RegistrationForms1 extends Component {
         />
 
         <div className={"Registration-button-container margin-left-6"}>
-          <Button
+          <RegularButton
             buttonClass={"Registration-blue-button button-1-2--global"}
             disable={
               !// basicInfo.formValidation &&
@@ -607,7 +607,7 @@ class RegistrationForms1 extends Component {
           >
             Next
             <ArrowRight16 className={"ArrowIcon-registration-next"} />
-          </Button>
+          </RegularButton>
         </div>
       </div>
     );

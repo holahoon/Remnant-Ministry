@@ -4,7 +4,7 @@ import Basic from "./EditForms/Basic/Basic";
 import YourField from "./EditForms/YourField/YourField";
 import YourChurch from "./EditForms/YourChurch/YourChurch";
 import YourAddress from "./EditForms/YourAddress/YourAddress";
-import Button from "../../UI/Button/Button";
+import { RegularButton } from "../../UI/Button/Button";
 import ChangeSavedMessage from "../ChangeSavedMessage/ChangeSavedMessage";
 
 import "./EditProfile.css";
@@ -12,18 +12,18 @@ import "./EditProfile.css";
 const editProfile = props => {
   const buttonGroup = (
     <div className={"Button-group-container"}>
-      <Button
+      <RegularButton
         buttonClass={"button-1-1--global"}
         handleButtonClick={() => props.cancelEditHandler("editProfileEditing")}
       >
         Cancel
-      </Button>
-      <Button
+      </RegularButton>
+      <RegularButton
         buttonClass={"button-1-2--global"}
         handleButtonClick={() => props.saveEditHandler("editProfileEditing")}
       >
         Save
-      </Button>
+      </RegularButton>
     </div>
   );
 

@@ -5,7 +5,7 @@ import Payment from "./RegistrationForm3Contents/Payement/Payment";
 // import RegistrationFees from "./RegistrationForms2Contents/MainRCAOptions/registrationFees";
 // import Payment from "./RegistrationForms2Contents/Payment/Payment";
 // import BillingAddress from "./RegistrationForms2Contents/BillingAddress/BillingAddress";
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 

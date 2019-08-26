@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 import CheckMark16 from "@carbon/icons-react/es/checkmark/16";
@@ -16,10 +16,10 @@ const events = props => {
     </Link>
   );
   const check = (
-    <Button buttonClass={"Register button-1-2--global true"} disabled>
+    <RegularButton buttonClass={"Register button-1-2--global true"} disabled>
       Registered
       <CheckMark16 className={"Checked-mark"} />
-    </Button>
+    </RegularButton>
   );
 
   return (

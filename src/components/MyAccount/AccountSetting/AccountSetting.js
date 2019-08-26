@@ -1,7 +1,7 @@
 import React from "react";
 
 import AccountSettingForm from "./AccountSettingForms/AccountSettingForms";
-import Button from "../../UI/Button/Button";
+import { RegularButton } from "../../UI/Button/Button";
 import ChangeSavedMessage from "../ChangeSavedMessage/ChangeSavedMessage";
 
 import "./AccountSetting.css";
@@ -9,20 +9,20 @@ import "./AccountSetting.css";
 const accountSetting = props => {
   const buttonGroup = (
     <div className={"Button-group-container"}>
-      <Button
+      <RegularButton
         buttonClass={"button-1-1--global"}
         handleButtonClick={() =>
           props.cancelEditHandler("accountSettingEditing")
         }
       >
         Cancel
-      </Button>
-      <Button
+      </RegularButton>
+      <RegularButton
         buttonClass={"button-1-2--global"}
         handleButtonClick={() => props.saveEditHandler("accountSettingEditing")}
       >
         Save
-      </Button>
+      </RegularButton>
     </div>
   );
 

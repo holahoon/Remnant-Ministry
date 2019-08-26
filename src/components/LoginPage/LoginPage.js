@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 import LoginForm from "./LoginForm/LoginForm";
 import LoginWith from "./LoginWith/LoginWith";
-import Button from "../UI/Button/Button";
+import { RegularButton } from "../UI/Button/Button";
 import GreetingMessage from "../GreetingMessage/GreetingMessage";
 import axiosInstace from "../../axios-userInfo";
 
@@ -241,7 +241,7 @@ class LoginPage extends Component {
             />
 
             <div className="Next-button-container">
-              <Button
+              <RegularButton
                 buttonClass={
                   this.state.formIsValid
                     ? "Signin-button"
@@ -250,7 +250,7 @@ class LoginPage extends Component {
                 disable={!this.state.formIsValid}
               >
                 Log In <ArrowRight20 className={"Next-arrow"} />
-              </Button>
+              </RegularButton>
             </div>
           </div>
         </form>

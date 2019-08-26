@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
@@ -140,12 +140,12 @@ const signupPage2 = props => {
         >
           Sign up <ArrowRight20 className={"Next-arrow"} />
         </button>*/}
-        <Button
+        <RegularButton
           buttonClass={"Signup-button-signup-1"}
           handleButtonClick={props.completeSignupHandler}
         >
           Sign up <ArrowRight20 className={"Next-arrow"} />
-        </Button>
+        </RegularButton>
       </div>
     </React.Fragment>
   );

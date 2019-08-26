@@ -1,7 +1,7 @@
 import React from "react";
 
 import ContinueWith from "../ContinueWith/ContinueWith";
-import Button from "../../../UI/Button/Button";
+import { RegularButton } from "../../../UI/Button/Button";
 
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 
@@ -65,12 +65,12 @@ const signupPage1 = props => {
         >
           Next <ArrowRight20 className={"Next-arrow"} />
         </button>*/}
-        <Button
+        <RegularButton
           buttonClass={"Next-button-signup-1"}
           handleButtonClick={props.signupNextStepHandler}
         >
           Next <ArrowRight20 className={"Next-arrow"} />
-        </Button>
+        </RegularButton>
       </div>
     </React.Fragment>
   );

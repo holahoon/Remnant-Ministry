@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const button = props => {
+export const RegularButton = props => {
   return (
     <button
       className={props.buttonClass}
@@ -13,4 +14,6 @@ const button = props => {
   );
 };
 
-export default button;
+export const LinkButton = props => {
+  return <Link to={props.directTo} />;
+};
