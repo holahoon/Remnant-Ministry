@@ -8,12 +8,18 @@ import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide
 
 import "./Registration.css";
 
-const registration = () => {
+// const registrationLeftSide = <RegistrationLeftSide />;
+const registrationRightSide = <RegistrationRightSide />;
+
+const registration = props => {
+  console.log("match: ", props.match);
   return (
-    <Layout2
-      // left={<RegistrationLeftSide />}
-      right={<RegistrationRightSide />}
-    />
+    <React.Fragment>
+      <Layout2
+        // left={<RegistrationLeftSide />}
+        right={registrationRightSide}
+      />
+    </React.Fragment>
   );
 };
 

@@ -15,5 +15,14 @@ export const RegularButton = props => {
 };
 
 export const LinkButton = props => {
-  return <Link to={props.directTo} />;
+  return (
+    <Link
+      to={props.directTo}
+      className={props.buttonClass}
+      style={{ background: `${!props.disable ? "" : "#CCCCCC"}` }}
+      disabled={props.disable}
+    >
+      {props.children}
+    </Link>
+  );
 };

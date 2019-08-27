@@ -21,7 +21,7 @@ const registrationRightSide = props => {
       {/*props.stateData.registrationStep1 ? registration1 : registration2*/}
       {registration1}
       {registration2}
-      {/*registration3*/}
+      {registration3}
     </div>
   );
 };
