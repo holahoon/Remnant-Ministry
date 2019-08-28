@@ -21,3 +21,5 @@ const registrationReducer = (state = initialState, action) => {
       };
   }
 };
+
+export default registrationReducer;

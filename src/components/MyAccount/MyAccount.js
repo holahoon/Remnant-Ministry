@@ -109,7 +109,7 @@ class MyAccount extends Component {
 
 const mapStateToProps = state => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.globalLogin.userInfo
   };
 };
 

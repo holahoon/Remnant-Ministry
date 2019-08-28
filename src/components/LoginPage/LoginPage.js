@@ -263,9 +263,9 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.loggedIn,
-    onLoginPage: state.onLoginPage,
-    correctUser: state.correctUser
+    loggedIn: state.globalLogin.loggedIn,
+    onLoginPage: state.globalLogin.onLoginPage,
+    correctUser: state.globalLogin.correctUser
   };
 };
 
