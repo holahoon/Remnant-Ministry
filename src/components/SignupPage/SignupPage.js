@@ -9,40 +9,70 @@ import Layout2 from "../../Layout/Layout2";
 
 import "./SignupPage.css";
 
-// const textFieldState = {
-//   value: "",
-//   valid: true,
-//   typeMismatch: false,
-//   errorMessage: "warning~!"
-// };
-
 class SignupPage extends Component {
   state = {
     page1: true,
     page2: false,
-    signupComplete: false,
-    signupEmail: "",
-    signupPassword: "",
-    signupPasswordConfirmation: ""
-    // email: {
-    //   ...textFieldState,
-    //   fieldName: "signupEmail",
-    //   required: true,
-    //   requiredText: "Email is required",
-    //   formatErrorText: "Incorrect email format"
-    // },
-    // password: {
-    //   ...textFieldState,
-    //   fieldName: "signupPassword",
-    //   required: true,
-    //   requiredText: "Password is required"
-    // },
-    // confirmPassword: {
-    //   ...textFieldState,
-    //   fieldName: "signupPasswordConfirmation",
-    //   required: true,
-    //   requiredText: "Confirm password"
-    // }
+    // signupComplete: false,
+    // signupEmail: "",
+    // signupPassword: "",
+    // signupPasswordConfirmation: ""
+    signupPage1: {
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          label: "Email",
+          placeholder: "email@rutc.com",
+          warning: "Please, enter a valid email"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      password: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Password",
+          placeholder: "******",
+          warning: "Please, enter a valid password"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 6
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      passwordConfirm: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Confirm password",
+          placeholder: "******",
+          warning: "Please, match the password"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 6
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      }
+    },
+    signupPage2: {}
   };
 
   signupNextStepHandler = () => {
@@ -73,8 +103,6 @@ class SignupPage extends Component {
         [name]: value
       });
     }
-
-    console.log(name, value);
   };
 
   render() {
@@ -84,7 +112,9 @@ class SignupPage extends Component {
           left={<SignupPageLeft />}
           right={
             <SignupPageRight
-              stateData={this.state}
+              signupPage1={this.state.singupPage1}
+              signupPage2={this.state.signupPage2}
+              page={this.state}
               signupNextStepHandler={this.signupNextStepHandler}
               completeSignupHandler={this.completeSignupHandler}
               onChangeHandler={this.onChangeHandler}

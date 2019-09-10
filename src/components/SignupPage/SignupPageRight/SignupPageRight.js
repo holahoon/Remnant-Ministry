@@ -10,7 +10,7 @@ const signupPageRight = props => {
       <SignupPage1
         signupNextStepHandler={props.signupNextStepHandler}
         onChangeHandler={props.onChangeHandler}
-        stateData={props.stateData}
+        signupPage1={props.signupPage1}
       />
     </div>
   );
@@ -19,14 +19,14 @@ const signupPageRight = props => {
       <h4 className="Create-an-account">Create an account</h4>
       <SignupPage2
         completeSignupHandler={props.completeSignupHandler}
-        stateData={props.stateData}
+        signupPage2={props.signupPage2}
       />
     </div>
   );
 
   return (
     <React.Fragment>
-      {props.stateData.page1 ? signupPage1 : signupPage2}
+      {props.page.page1 ? signupPage1 : signupPage2}
     </React.Fragment>
   );
 };
