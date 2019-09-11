@@ -9,55 +9,48 @@ import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 import "./SignupPage1.css";
 
 const signupPage1 = props => {
+  const signupPage1Array = [];
+  for (let key in props.signupPage1) {
+    if (key === "formValidation") {
+      continue;
+    }
+    signupPage1Array.push({
+      id: key,
+      config: props.signupPage1[key]
+    });
+  }
+
+  let signupPage1Input = (
+    <form className={"Registration-form Signup-page-1"}>
+      {signupPage1Array.map(eachEl => (
+        <InputForm
+          key={eachEl.id}
+          elementType={eachEl.config.elementType}
+          elementConfig={eachEl.config.elementConfig}
+          label={eachEl.config.elementConfig.label}
+          value={eachEl.config.value}
+          valid={eachEl.config.valid}
+          touched={eachEl.config.touched}
+          optional={eachEl.config.optional}
+          visible={eachEl.config.visible}
+          onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+        />
+      ))}
+    </form>
+  );
+
+  console.log(signupPage1Array);
   return (
     <React.Fragment>
-      <form className={""}>
-        <ContinueWith />
+      <ContinueWith />
+      {signupPage1Input}
 
-        <div className={"Login-email-container"}>
-          <label>
-            Email
-            <input
-              className={"Login-email"}
-              type="email"
-              name="signupEmail"
-              placeholder="email@rutc.com"
-              required
-              onChange={props.onChangeHandler}
-            />
-          </label>
-        </div>
-
-        <div className={"Signup-password"}>
-          <label>
-            Password
-            <input
-              className={"Login-password"}
-              type="password"
-              name="signupPassword"
-              placeholder="******"
-              required
-            />
-          </label>
-          <label>
-            Confirm password
-            <input
-              className={"Login-password"}
-              type="password"
-              name="signupPasswordConfirmation"
-              placeholder="******"
-              required
-            />
-          </label>
-        </div>
-
-        <div className={"Signup-agreement"}>
-          <p className={"Col-6-8"}>
-            By clicking the Next button, I agree to Remnant Ministry’s Terms of
-            Service and Privacy Policy.
-          </p>
-        </div>
-      </form>
+      <div className={"Signup-agreement"}>
+        <p className={"Col-6-8"}>
+          By clicking the Next button, I agree to Remnant Ministry’s Terms of
+          Service and Privacy Policy.
+        </p>
+      </div>
 
       <div className="Next-button-container">
         <RegularButton

@@ -92,17 +92,54 @@ class SignupPage extends Component {
     alert("You are signed up!");
   };
 
-  onChangeHandler = event => {
-    const { name, value, type, checked } = event.target;
-    if (type === "checkbox") {
-      this.setState({
-        [name]: checked
-      });
+  // onChangeHandler = event => {
+  //   const { name, value, type, checked } = event.target;
+  //   if (type === "checkbox") {
+  //     this.setState({
+  //       [name]: checked
+  //     });
+  //   } else {
+  //     this.setState({
+  //       [name]: value
+  //     });
+  //   }
+  // };
+
+  onChangeHandler = (event, inputIdentifier, stateElement) => {
+    // clone the state of the passed in element
+    const stateInfo = { ...this.state[stateElement] };
+    // deep clone the specified state
+    const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
+    // update the value state (conditionally capitalize the value)
+    if (deepClonedStateInfo.elementType === "input") {
+      deepClonedStateInfo.value = this.capitalizeInput(event.target.value);
     } else {
-      this.setState({
-        [name]: value
-      });
+      deepClonedStateInfo.value = event.target.value;
     }
+
+    // check the validity and update the valid state
+    deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
+    // update touched state to true because the specific input field has been touched
+    deepClonedStateInfo.touched = true;
+    // assign the state
+    stateInfo[inputIdentifier] = deepClonedStateInfo;
+
+    // check to see if formValidation in basic, field, churchInfo are true to proceed to next step
+    let formValidation = true;
+    for (let key in stateInfo) {
+      if (key === "formValidation") {
+        continue;
+      }
+      // if (stateInfo[key].optional) {
+      //   continue;
+      // }
+
+      formValidation = stateInfo[key].valid && formValidation;
+    }
+    stateInfo.formValidation = formValidation;
+
+    // return the state
+    return stateInfo;
   };
 
   render() {
@@ -112,7 +149,7 @@ class SignupPage extends Component {
           left={<SignupPageLeft />}
           right={
             <SignupPageRight
-              signupPage1={this.state.singupPage1}
+              signupPage1={this.state.signupPage1}
               signupPage2={this.state.signupPage2}
               page={this.state}
               signupNextStepHandler={this.signupNextStepHandler}
