@@ -33,9 +33,24 @@ const signupPage1 = props => {
           touched={eachEl.config.touched}
           optional={eachEl.config.optional}
           visible={eachEl.config.visible}
-          onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+          onChangeHandler={event =>
+            props.onChangeHandler(event, eachEl.id, "signupPage1")
+          }
         />
       ))}
+      <p
+        className={"signup-password-warning"}
+        style={{
+          display: `${
+            props.signupPage1.password.touched &&
+            !props.signupPage1.password.valid
+              ? "block"
+              : "none"
+          }`
+        }}
+      >
+        Password must be at least 6 characters
+      </p>
     </form>
   );
 

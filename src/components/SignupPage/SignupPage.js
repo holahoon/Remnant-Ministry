@@ -38,10 +38,10 @@ class SignupPage extends Component {
       password: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "password",
           label: "Password",
           placeholder: "******",
-          warning: "Please, enter a valid password"
+          warning: "Password must be at least 6 characters, 1 capitalized"
         },
         value: "",
         validation: {
@@ -56,10 +56,10 @@ class SignupPage extends Component {
       passwordConfirm: {
         elementType: "input",
         elementConfig: {
-          type: "text",
+          type: "password",
           label: "Confirm password",
           placeholder: "******",
-          warning: "Please, match the password"
+          warning: "Password does not match"
         },
         value: "",
         validation: {
@@ -105,17 +105,29 @@ class SignupPage extends Component {
   //   }
   // };
 
+  checkValidity = state => {
+    let isValid = true;
+
+    // check to see if state.value is not an empty string
+    if (state.validation.required) {
+      isValid = state.value.trim() !== "" && isValid;
+    }
+
+    // check to see if state.validation has minLength and maxLength
+    if (state.validation.minLength) {
+      isValid = state.value.length >= state.validation.minLength && isValid;
+    }
+
+    return isValid;
+  };
+
   onChangeHandler = (event, inputIdentifier, stateElement) => {
     // clone the state of the passed in element
     const stateInfo = { ...this.state[stateElement] };
     // deep clone the specified state
     const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
-    // update the value state (conditionally capitalize the value)
-    if (deepClonedStateInfo.elementType === "input") {
-      deepClonedStateInfo.value = this.capitalizeInput(event.target.value);
-    } else {
-      deepClonedStateInfo.value = event.target.value;
-    }
+    // update the input value
+    deepClonedStateInfo.value = event.target.value;
 
     // check the validity and update the valid state
     deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
@@ -125,21 +137,29 @@ class SignupPage extends Component {
     stateInfo[inputIdentifier] = deepClonedStateInfo;
 
     // check to see if formValidation in basic, field, churchInfo are true to proceed to next step
-    let formValidation = true;
-    for (let key in stateInfo) {
-      if (key === "formValidation") {
-        continue;
-      }
-      // if (stateInfo[key].optional) {
-      //   continue;
-      // }
+    // let formValidation = true;
+    // for (let key in stateInfo) {
+    //   if (key === "formValidation") {
+    //     continue;
+    //   }
 
-      formValidation = stateInfo[key].valid && formValidation;
-    }
-    stateInfo.formValidation = formValidation;
+    //   formValidation = stateInfo[key].valid && formValidation;
+    // }
+    // stateInfo.formValidation = formValidation;
 
     // return the state
-    return stateInfo;
+    // return stateInfo;
+    this.setState({ ...this.state, [stateElement]: stateInfo });
+  };
+
+  signup1Handler = (event, inputIdentifier) => {
+    let signupPage1 = this.onChangeHandler(
+      event,
+      inputIdentifier,
+      "signupPage1"
+    );
+
+    this.setState({ ...this.state, signupPage1 });
   };
 
   render() {

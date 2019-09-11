@@ -195,20 +195,20 @@ class LoginPage extends Component {
   };
 
   // Facebook log in button function
-  responseFacebook = response => {
-    console.log(response);
-    this.setState({
-      loggedInFB: true,
-      userIdFB: response.userID,
-      emailFB: response.email,
-      nameFB: response.name
-    });
-  };
+  // responseFacebook = response => {
+  //   console.log(response);
+  //   this.setState({
+  //     loggedInFB: true,
+  //     userIdFB: response.userID,
+  //     emailFB: response.email,
+  //     nameFB: response.name
+  //   });
+  // };
 
   // Facebook log in button function
-  componentClicked = () => {
-    console.log("clicked");
-  };
+  // componentClicked = () => {
+  //   console.log("clicked");
+  // };
 
   render() {
     return this.state.redirectToMainPage ? (
@@ -221,7 +221,7 @@ class LoginPage extends Component {
         />
 
         <form className={"LoginPage-container"} onSubmit={this.submitHandler}>
-          <div className={"LoginPage Col-4 margin-left-4"}>
+          <div className={"LoginPage Col-4"}>
             <Link to="/">
               <Close20 className={"Close-icon"} />
             </Link>

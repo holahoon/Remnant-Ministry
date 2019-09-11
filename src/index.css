@@ -1,8 +1,9 @@
 html,
 body {
-  margin: 0;
+  margin: 0 auto;
   padding: 0 0.75rem;
   font-family: whitney;
+  max-width: 1600px;
 }
 
 ul {
