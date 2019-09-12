@@ -10,13 +10,13 @@ import "./SignupPage1.css";
 
 const signupPage1 = props => {
   const signupPage1Array = [];
-  for (let key in props.signupPage1) {
+  for (let key in props.pageState.signupPage1) {
     if (key === "formValidation") {
       continue;
     }
     signupPage1Array.push({
       id: key,
-      config: props.signupPage1[key]
+      config: props.pageState.signupPage1[key]
     });
   }
 
@@ -38,7 +38,7 @@ const signupPage1 = props => {
           }
         />
       ))}
-      <p
+      {/*<p
         className={"signup-password-warning"}
         style={{
           display: `${
@@ -50,11 +50,10 @@ const signupPage1 = props => {
         }}
       >
         Password must be at least 6 characters
-      </p>
+      </p>*/}
     </form>
   );
 
-  console.log(signupPage1Array);
   return (
     <React.Fragment>
       <ContinueWith />
@@ -71,6 +70,7 @@ const signupPage1 = props => {
         <RegularButton
           buttonClass={"Next-button-signup-1"}
           handleButtonClick={props.signupNextStepHandler}
+          disable={!props.pageState.page1Valid}
         >
           Next <ArrowRight20 className={"Next-arrow"} />
         </RegularButton>

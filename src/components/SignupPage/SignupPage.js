@@ -13,10 +13,8 @@ class SignupPage extends Component {
   state = {
     page1: true,
     page2: false,
-    // signupComplete: false,
-    // signupEmail: "",
-    // signupPassword: "",
-    // signupPasswordConfirmation: ""
+    page1Valid: false,
+    page2Valid: false,
     signupPage1: {
       email: {
         elementType: "input",
@@ -28,7 +26,8 @@ class SignupPage extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          emailRegex: true
         },
         valid: false,
         touched: false,
@@ -41,7 +40,7 @@ class SignupPage extends Component {
           type: "password",
           label: "Password",
           placeholder: "******",
-          warning: "Password must be at least 6 characters, 1 capitalized"
+          warning: "Password must be at least 6 characters"
         },
         value: "",
         validation: {
@@ -64,7 +63,8 @@ class SignupPage extends Component {
         value: "",
         validation: {
           required: true,
-          minLength: 6
+          minLength: 6,
+          matchPassword: true
         },
         valid: false,
         touched: false,
@@ -76,13 +76,19 @@ class SignupPage extends Component {
   };
 
   signupNextStepHandler = () => {
-    const currentState = { ...this.state };
-    this.setState({
-      ...currentState,
-      page1: !currentState.page1,
-      page2: !currentState.page2,
-      signupComplete: !currentState.signupComplete
-    });
+    if (this.state.page1Valid) {
+      this.setState({
+        ...this.state,
+        page1: !this.state.page1,
+        page2: !this.state.page2
+      });
+      // this.setState(prevState => {
+      //   return {
+      //     page1: !prevState.page1,
+      //     page2: !prevState.page2
+      //   };
+      // });
+    }
   };
 
   completeSignupHandler = () => {
@@ -113,9 +119,21 @@ class SignupPage extends Component {
       isValid = state.value.trim() !== "" && isValid;
     }
 
-    // check to see if state.validation has minLength and maxLength
+    // check for regex
+    if (state.validation.emailRegex) {
+      const regex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+      isValid = regex.test(state.value) && isValid;
+    }
+
+    // check to see if state.validation has minLength
     if (state.validation.minLength) {
       isValid = state.value.length >= state.validation.minLength && isValid;
+    }
+
+    // check to see if passwords match
+    if (state.validation.matchPassword) {
+      isValid =
+        state.value === this.state.signupPage1.password.value && isValid;
     }
 
     return isValid;
@@ -149,18 +167,26 @@ class SignupPage extends Component {
 
     // return the state
     // return stateInfo;
-    this.setState({ ...this.state, [stateElement]: stateInfo });
+
+    // check if signup page 1 values are valid to proceed
+    let page1Valid = true;
+    for (let inputIdentifier in stateInfo) {
+      // console.log(stateInfo[inputIdentifier].valid)
+      page1Valid = stateInfo[inputIdentifier].valid && page1Valid;
+    }
+
+    this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
   };
 
-  signup1Handler = (event, inputIdentifier) => {
-    let signupPage1 = this.onChangeHandler(
-      event,
-      inputIdentifier,
-      "signupPage1"
-    );
+  // signup1Handler = (event, inputIdentifier) => {
+  //   let signupPage1 = this.onChangeHandler(
+  //     event,
+  //     inputIdentifier,
+  //     "signupPage1"
+  //   );
 
-    this.setState({ ...this.state, signupPage1 });
-  };
+  //   this.setState({ ...this.state, signupPage1 });
+  // };
 
   render() {
     return (
@@ -169,9 +195,7 @@ class SignupPage extends Component {
           left={<SignupPageLeft />}
           right={
             <SignupPageRight
-              signupPage1={this.state.signupPage1}
-              signupPage2={this.state.signupPage2}
-              page={this.state}
+              pageState={this.state}
               signupNextStepHandler={this.signupNextStepHandler}
               completeSignupHandler={this.completeSignupHandler}
               onChangeHandler={this.onChangeHandler}

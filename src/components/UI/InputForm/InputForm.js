@@ -8,7 +8,14 @@ const form = props => {
   // check to see if props.invalid is true to give dynamic css class to input elements
   if (props.touched && !props.valid) {
     validationError = (
-      <p style={{ fontSize: "0.8rem", color: "tomato" }}>
+      <p
+        style={{
+          fontSize: "0.8rem",
+          color: "tomato",
+          lineHeight: "0.8rem",
+          marginTop: "0.3rem"
+        }}
+      >
         {props.elementConfig.warning}
       </p>
     );
