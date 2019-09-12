@@ -1,39 +1,22 @@
 # Remnant Ministry
 
-## Currently being developed
-
-1.  User login page(authentication) - Page is done, but needs user authentication functionality
-
-2.  User signup page - Page is done, but needs functionality
-
-3.  Event registration page - Page is done, but needs functionality
-
-4.  User account page - Page is done, but needs functionality
-
-5.  Redux to be used to manage the state - process..
-
-6.  Not responsive yet - no mobile / tablet version not available yet
-
 ## Project Overview
 
-- A web application for a Chrisitan organization in both Korea and America
-- An application to view details of different events in America within the organization and register online
-- By building this particular project from scratch gave me much deeper understanding on how to use React and Redux
+- A web application for a Chrisitan organization (Darakbang)
+- Users must sign up with email then log in gain full access
+- When user is authenticated (temporarily using Firebase), user can view events(not yet designed) and register
 
 ## Start
 
 ```
 npm install
 ```
-
 then to start,
-
 ```
 npm start
 ```
 
 ## Instructions
-At this moment, the user sign up page is not completed. Temporary user email and password must be entered to get accessed to registration and account pages. email: hola.hoon@gmail.com && password: remnant
 - Initial page
 <!-- ![Initial page](src/assets/Images/rm_screenshot_1.png) -->
   <img src="src/assets/Images/rm_screenshot_1.png" width="70%" alt="Initial page" style="border-radius: 10px"/>
@@ -58,6 +41,12 @@ At this moment, the user sign up page is not completed. Temporary user email and
 - [Redux](https://redux.js.org/) - used to manage state
 - [Material-UI](https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
 - [React Router](https://github.com/ReactTraining/react-router) - Routing to navigate through different components
+
+## Upcoming
+1. User authentication - allow user to sign up, sign in with existing email and password
+2. Registration pages
+3. Event detail pages
+4. Responsive design
 
 ### Collaboration
 
