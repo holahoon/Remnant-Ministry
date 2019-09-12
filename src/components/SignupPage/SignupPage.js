@@ -134,6 +134,7 @@ class SignupPage extends Component {
     if (state.validation.matchPassword) {
       isValid =
         state.value === this.state.signupPage1.password.value && isValid;
+      console.log(this.state.signupPage1.password.value);
     }
 
     return isValid;
@@ -171,8 +172,15 @@ class SignupPage extends Component {
     // check if signup page 1 values are valid to proceed
     let page1Valid = true;
     for (let inputIdentifier in stateInfo) {
-      // console.log(stateInfo[inputIdentifier].valid)
-      page1Valid = stateInfo[inputIdentifier].valid && page1Valid;
+      // if (stateInfo["password"].value === stateInfo["passwordConfirm"].value) {
+      //   console.log("true");
+      // } else {
+      //   console.log("false");
+      // }
+      page1Valid =
+        stateInfo[inputIdentifier].valid &&
+        page1Valid &&
+        stateInfo["password"].value === stateInfo["passwordConfirm"].value;
     }
 
     this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
