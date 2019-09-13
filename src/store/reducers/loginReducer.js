@@ -1,14 +1,18 @@
-import * as actionTypes from "../../actions/actionTypes";
+import * as actionTypes from "../actions/actionTypes";
 
 const {
   LOGIN,
   LOGOUT,
   SAVE_USER_INFO,
   ON_LOGIN_PAGE,
-  OFF_LOGIN_PAGE
+  AUTHENTICATION_START,
+  AUTHENTICATION_SUCCESS,
+  AUTHENTICATION_FAIL,
+  AUTHENTICATION_LOGOUT
 } = actionTypes;
 
 const initialState = {
+  token: null,
   onLoginPage: false,
   loggedIn: false,
   correctUser: false,
@@ -17,6 +21,11 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
+    // case AUTHENTICATION_START:
+    //   return {
+
+    //   }
+
     case LOGIN:
       if (action.payload.formIsValid && action.payload.validUser) {
         return {
@@ -47,13 +56,7 @@ const loginReducer = (state = initialState, action) => {
     case ON_LOGIN_PAGE:
       return {
         ...state,
-        onLoginPage: true
-      };
-
-    case OFF_LOGIN_PAGE:
-      return {
-        ...state,
-        onLoginPage: false
+        onLoginPage: !state.onLoginPage
       };
 
     default:

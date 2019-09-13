@@ -7,14 +7,16 @@ import thunk from "redux-thunk";
 import "./index.css";
 import App from "./Container/App";
 import * as serviceWorker from "./serviceWorker";
-import loginReducer from "./store/reducers/loginReducer/loginReducer";
-import registrationReducer from "./store/reducers/registrationReducer/registrationReducer";
+import loginReducer from "./store/reducers/loginReducer";
+import signupReducer from "./store/reducers/signupReducer";
+// import registrationReducer from "./store/reducers/registrationReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // combine reducers into one main root reducer
 const rootReducer = combineReducers({
-  globalLogin: loginReducer
+  globalLogin: loginReducer,
+  globalSignup: signupReducer
   // globalRegistration: registrationReducer
 });
 

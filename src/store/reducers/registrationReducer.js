@@ -1,4 +1,4 @@
-import * as actionTypes from "../../actions/actionTypes";
+import * as actionTypes from "../actions/actionTypes";
 
 const { NEXT_STEP, PREV_STEP } = actionTypes;
 
@@ -18,6 +18,12 @@ const registrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registrationPage: state.registrationPage - 1
+      };
+
+    default:
+      return {
+        ...state,
+        registrationPage: state.registrationPage
       };
   }
 };

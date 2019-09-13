@@ -55,23 +55,23 @@ class LoginPage extends Component {
   componentDidUpdate() {
     // ** Temporary **
     // When form is valid && login successful, display greeting message then redirect to the main page
-    if (this.state.formIsValid && this.state.validUser) {
-      this.redirectTime = setTimeout(
-        () =>
-          this.setState({
-            ...this.state,
-            redirectToMainPage: true,
-            showGreetingMessage: false
-          }),
-        3000
-      );
-    }
+    // if (this.state.formIsValid && this.state.validUser) {
+    //   this.redirectTime = setTimeout(
+    //     () =>
+    //       this.setState({
+    //         ...this.state,
+    //         redirectToMainPage: true,
+    //         showGreetingMessage: false
+    //       }),
+    //     3000
+    //   );
+    // }
   }
 
   // ** Temporary **
   componentWillUnmount() {
     this.props.offLoginPageHandler();
-    clearTimeout(this.redirectTime);
+    // clearTimeout(this.redirectTime);
   }
 
   // ** Temporary **
@@ -277,9 +277,9 @@ const mapDispatchToProsp = dispatch => {
         payload: { formIsValid, validUser }
       }),
     onLoginPageHandler: () => dispatch({ type: "ONLOGINPAGE" }),
-    offLoginPageHandler: () => dispatch({ type: "OFFLOGINPAGE" }),
-    saveUserInfoHandler: user =>
-      dispatch({ type: "SAVEUSERINFO", payload: { userInfo: user } })
+    offLoginPageHandler: () => dispatch({ type: "OFFLOGINPAGE" })
+    // saveUserInfoHandler: user =>
+    //   dispatch({ type: "SAVEUSERINFO", payload: { userInfo: user } })
   };
 };
 

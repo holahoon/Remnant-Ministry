@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import SignupPageRight from "./SignupPageRight/SignupPageRight";
 import SignupPageLeft from "./SignupPageLeft/SignupPageLeft";
 import Layout2 from "../../Layout/Layout2";
+import * as actions from "../../store/actions/indexAction";
 
 // import DayPickerInput from "react-day-picker/DayPickerInput";
 // import "react-day-picker/lib/style.css";
@@ -75,6 +77,10 @@ class SignupPage extends Component {
     signupPage2: {}
   };
 
+  componentDidMount() {
+    this.props.onSignupPageHandler();
+  }
+
   signupNextStepHandler = () => {
     if (this.state.page1Valid) {
       this.setState({
@@ -82,34 +88,22 @@ class SignupPage extends Component {
         page1: !this.state.page1,
         page2: !this.state.page2
       });
-      // this.setState(prevState => {
-      //   return {
-      //     page1: !prevState.page1,
-      //     page2: !prevState.page2
-      //   };
-      // });
     }
   };
 
-  completeSignupHandler = () => {
-    const currentSignupComplete = this.state.signupComplete;
-    this.setState({ signupComplete: !currentSignupComplete });
+  // completeSignupHandler = () => {
+  //   const currentSignupComplete = this.state.signupComplete;
+  //   this.setState({ signupComplete: !currentSignupComplete });
 
-    alert("You are signed up!");
-  };
-
-  // onChangeHandler = event => {
-  //   const { name, value, type, checked } = event.target;
-  //   if (type === "checkbox") {
-  //     this.setState({
-  //       [name]: checked
-  //     });
-  //   } else {
-  //     this.setState({
-  //       [name]: value
-  //     });
-  //   }
+  //   alert("You are signed up!");
   // };
+
+  handleSignUp = event => {
+    event.preventDefault();
+
+    const { email, password } = this.state.signupPage1;
+    this.props.onAuthentication(email.value, password.value);
+  };
 
   checkValidity = state => {
     let isValid = true;
@@ -134,7 +128,6 @@ class SignupPage extends Component {
     if (state.validation.matchPassword) {
       isValid =
         state.value === this.state.signupPage1.password.value && isValid;
-      console.log(this.state.signupPage1.password.value);
     }
 
     return isValid;
@@ -155,28 +148,9 @@ class SignupPage extends Component {
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
 
-    // check to see if formValidation in basic, field, churchInfo are true to proceed to next step
-    // let formValidation = true;
-    // for (let key in stateInfo) {
-    //   if (key === "formValidation") {
-    //     continue;
-    //   }
-
-    //   formValidation = stateInfo[key].valid && formValidation;
-    // }
-    // stateInfo.formValidation = formValidation;
-
-    // return the state
-    // return stateInfo;
-
     // check if signup page 1 values are valid to proceed
     let page1Valid = true;
     for (let inputIdentifier in stateInfo) {
-      // if (stateInfo["password"].value === stateInfo["passwordConfirm"].value) {
-      //   console.log("true");
-      // } else {
-      //   console.log("false");
-      // }
       page1Valid =
         stateInfo[inputIdentifier].valid &&
         page1Valid &&
@@ -204,7 +178,8 @@ class SignupPage extends Component {
           right={
             <SignupPageRight
               pageState={this.state}
-              signupNextStepHandler={this.signupNextStepHandler}
+              // signupNextStepHandler={this.signupNextStepHandler}
+              handleSignUp={this.handleSignUp}
               completeSignupHandler={this.completeSignupHandler}
               onChangeHandler={this.onChangeHandler}
             />
@@ -215,4 +190,21 @@ class SignupPage extends Component {
   }
 }
 
-export default SignupPage;
+const mapStateToProps = state => {
+  return {
+    onSignupPage: state.globalSignup.onSignupPage
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuthentication: (email, password) =>
+      dispatch(actions.authentication(email, password)),
+    onSignupPageHandler: () => dispatch(actions.onSignupPage())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignupPage);

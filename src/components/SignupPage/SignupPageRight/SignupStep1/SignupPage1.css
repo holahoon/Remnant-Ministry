@@ -21,20 +21,13 @@
   grid-column: 2 / 3;
 }
 
-/* .Signup-password {
-  display: flex;
+.Signup-page-1 div:nth-child(4) {
+  grid-column: 1 / 3;
 }
 
-.Signup-password label {
-  width: 100%;
+.Signup-page-1 div:nth-child(5) {
+  grid-column: 1 / 3;
 }
-
-.Signup-password label:nth-child(1) {
-  margin-right: 0.75rem;
-}
-.Signup-password label:nth-child(2) {
-  margin-left: 0.75rem;
-} */
 
 .signup-password-warning {
   grid-column: 1 / 3;

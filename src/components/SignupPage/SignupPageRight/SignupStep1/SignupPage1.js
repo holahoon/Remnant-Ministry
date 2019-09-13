@@ -20,61 +20,55 @@ const signupPage1 = props => {
     });
   }
 
-  let signupPage1Input = (
-    <form className={"Registration-form Signup-page-1"}>
-      {signupPage1Array.map(eachEl => (
-        <InputForm
-          key={eachEl.id}
-          elementType={eachEl.config.elementType}
-          elementConfig={eachEl.config.elementConfig}
-          label={eachEl.config.elementConfig.label}
-          value={eachEl.config.value}
-          valid={eachEl.config.valid}
-          touched={eachEl.config.touched}
-          optional={eachEl.config.optional}
-          visible={eachEl.config.visible}
-          onChangeHandler={event =>
-            props.onChangeHandler(event, eachEl.id, "signupPage1")
-          }
-        />
-      ))}
-      {/*<p
-        className={"signup-password-warning"}
-        style={{
-          display: `${
-            props.signupPage1.password.touched &&
-            !props.signupPage1.password.valid
-              ? "block"
-              : "none"
-          }`
-        }}
-      >
-        Password must be at least 6 characters
-      </p>*/}
-    </form>
-  );
+  let signupPage1Input =
+    // <form
+    //   className={"Registration-form Signup-page-1"}
+    //   onSubmit={props.handleSignUp}
+    // >
+    signupPage1Array.map(eachEl => (
+      <InputForm
+        key={eachEl.id}
+        elementType={eachEl.config.elementType}
+        elementConfig={eachEl.config.elementConfig}
+        label={eachEl.config.elementConfig.label}
+        value={eachEl.config.value}
+        valid={eachEl.config.valid}
+        touched={eachEl.config.touched}
+        optional={eachEl.config.optional}
+        visible={eachEl.config.visible}
+        onChangeHandler={event =>
+          props.onChangeHandler(event, eachEl.id, "signupPage1")
+        }
+      />
+    ));
+  // </form>
 
   return (
     <React.Fragment>
       <ContinueWith />
-      {signupPage1Input}
+      <form
+        className={"Registration-form Signup-page-1"}
+        onSubmit={props.handleSignUp}
+      >
+        {signupPage1Input}
 
-      <div className={"Signup-agreement"}>
-        <p className={"Col-6-8"}>
-          By clicking the Next button, I agree to Remnant Ministry’s Terms of
-          Service and Privacy Policy.
-        </p>
-      </div>
+        <div className={"Signup-agreement"}>
+          <p className={"Col-6-8"}>
+            By clicking the Next button, I agree to Remnant Ministry’s Terms of
+            Service and Privacy Policy.
+          </p>
+        </div>
 
-      <div className="Next-button-container">
-        <RegularButton
-          buttonClass={"Next-button-signup-1"}
-          handleButtonClick={props.signupNextStepHandler}
-          disable={!props.pageState.page1Valid}
-        >
-          Next <ArrowRight20 className={"Next-arrow"} />
-        </RegularButton>
-      </div>
+        <div className="Next-button-container">
+          <RegularButton
+            buttonClass={"Next-button-signup-1"}
+            // handleButtonClick={props.signupNextStepHandler}
+            disable={!props.pageState.page1Valid}
+          >
+            Next <ArrowRight20 className={"Next-arrow"} />
+          </RegularButton>
+        </div>
+      </form>
     </React.Fragment>
   );
 };

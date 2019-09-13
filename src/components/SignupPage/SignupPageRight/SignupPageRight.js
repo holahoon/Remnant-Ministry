@@ -8,7 +8,8 @@ const signupPageRight = props => {
     <div className={"margin-left-1-8 Col-4-8"}>
       <h4 className="Create-an-account">Create an account</h4>
       <SignupPage1
-        signupNextStepHandler={props.signupNextStepHandler}
+        // signupNextStepHandler={props.signupNextStepHandler}
+        handleSignUp={props.handleSignUp}
         onChangeHandler={props.onChangeHandler}
         pageState={props.pageState}
       />
