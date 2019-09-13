@@ -39,8 +39,8 @@ export const authentication = (email, password, isSignup) => {
       password,
       returnSecureToken: true
     };
-    // const apiKey = "AIzaSyD5-kMp-wY62P9GorPz-MUQMOkZ7otppic";
     const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+
     axios
       .post(
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
