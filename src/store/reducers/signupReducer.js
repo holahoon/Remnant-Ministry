@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const signupReducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case ON_SIGNUP_PAGE:
       return {
         ...state,
