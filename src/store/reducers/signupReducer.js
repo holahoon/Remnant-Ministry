@@ -2,6 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const {
   ON_SIGNUP_PAGE,
+  OFF_SIGNUP_PAGE,
   AUTHENTICATION_START,
   AUTHENTICATION_SUCCESS,
   AUTHENTICATION_FAIL,
@@ -18,6 +19,12 @@ const signupReducer = (state = initialState, action) => {
       return {
         ...state,
         onSignupPage: true
+      };
+
+    case OFF_SIGNUP_PAGE:
+      return {
+        ...state,
+        onSignupPage: false
       };
 
     default:

@@ -6,8 +6,8 @@ export const onSignupPage = () => {
   };
 };
 
-// export const offSignupPage = () => {
-//   return {
-//     type: actionTypes.OFF_SIGNUP_PAGE
-//   };
-// };
+export const offSignupPage = () => {
+  return {
+    type: actionTypes.OFF_SIGNUP_PAGE
+  };
+};

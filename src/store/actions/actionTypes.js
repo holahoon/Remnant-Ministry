@@ -8,6 +8,8 @@ export const ON_LOGIN_PAGE = "ON_LOGIN_PAGE";
 
 export const ON_SIGNUP_PAGE = "ON_SIGNUP_PAGE";
 
+export const OFF_SIGNUP_PAGE = "OFF_SIGNUP_PAGE";
+
 export const NEXT_STEP = "NEXT_STEP";
 
 export const PREV_STEP = "PREV_STEP";

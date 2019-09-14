@@ -28,6 +28,17 @@ class Navbar extends Component {
       </ul>
     );
 
+    const signupNavbar = (
+      <ul className={"NavGroup2 Create-account"}>
+        <li style={{ marginRight: "0.875rem" }}>
+          Do you have an account already?
+        </li>
+        <li>
+          <NavLink to="/login">Sign in</NavLink>
+        </li>
+      </ul>
+    );
+
     const signedInNavbar = (
       <ul className={"NavGroup2"}>
         <li>
@@ -43,10 +54,10 @@ class Navbar extends Component {
 
     if (this.props.onLoginPage && !this.props.loggedIn) {
       displayNavbar = loginNavbar;
+    } else if (this.props.onSignupPage && !this.props.loggedIn) {
+      displayNavbar = signupNavbar;
     } else if (!this.props.loggedIn) {
       displayNavbar = initialLoginNavbar;
-    } else if (this.props.loggedIn && this.props.correctUser) {
-      displayNavbar = signedInNavbar;
     }
 
     return (
@@ -83,7 +94,8 @@ const mapStateToProps = state => {
   return {
     loggedIn: state.globalLogin.loggedIn,
     onLoginPage: state.globalLogin.onLoginPage,
-    correctUser: state.globalLogin.correctUser
+    onSignupPage: state.globalSignup.onSignupPage
+    // correctUser: state.globalLogin.correctUser
   };
 };
 

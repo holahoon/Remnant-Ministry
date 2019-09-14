@@ -81,6 +81,10 @@ class SignupPage extends Component {
     this.props.onSignupPageHandler();
   }
 
+  componentWillUnmount() {
+    this.props.offSignupPageHandler();
+  }
+
   signupNextStepHandler = () => {
     if (this.state.page1Valid) {
       this.setState({
@@ -200,7 +204,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuthentication: (email, password) =>
       dispatch(actions.authentication(email, password)),
-    onSignupPageHandler: () => dispatch(actions.onSignupPage())
+    onSignupPageHandler: () => dispatch(actions.onSignupPage()),
+    offSignupPageHandler: () => dispatch(actions.offSignupPage())
   };
 };
 

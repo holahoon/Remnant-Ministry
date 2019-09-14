@@ -1,3 +1,3 @@
-export { onSignupPage } from "./signupActionCreator";
+export { onSignupPage, offSignupPage } from "./signupActionCreator";
 
 export { authentication } from "./authenticationActionCreator";
