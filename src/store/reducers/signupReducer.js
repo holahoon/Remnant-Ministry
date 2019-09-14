@@ -10,7 +10,10 @@ const {
 } = actionTypes;
 
 const initialState = {
-  onSignupPage: false
+  onSignupPage: false,
+  token: null,
+  localId: null,
+  error: null
 };
 
 const signupReducer = (state = initialState, action) => {
@@ -25,6 +28,34 @@ const signupReducer = (state = initialState, action) => {
       return {
         ...state,
         onSignupPage: false
+      };
+
+    case AUTHENTICATION_START:
+      return {
+        ...state,
+        error: null
+      };
+
+    case AUTHENTICATION_SUCCESS:
+      return {
+        ...state,
+        token: action.idToken,
+        localId: action.localId,
+        error: null
+      };
+
+    case AUTHENTICATION_FAIL:
+      return {
+        ...state,
+        error: action.error
+      };
+
+    case AUTHENTICATION_LOGOUT:
+      return {
+        ...state,
+        token: null,
+        userId: null,
+        error: null
       };
 
     default:

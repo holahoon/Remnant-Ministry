@@ -8,11 +8,11 @@ export const authenticationStart = () => {
   };
 };
 
-export const authenticationSuccess = (token, userId) => {
+export const authenticationSuccess = (token, localId) => {
   return {
     type: actionTypes.AUTHENTICATION_SUCCESS,
-    token,
-    userId
+    idToken: token,
+    localId
   };
 };
 
@@ -48,7 +48,9 @@ export const authentication = (email, password, isSignup) => {
       )
       .then(response => {
         console.log(response);
-        dispatch(authenticationSuccess(response.data));
+        dispatch(
+          authenticationSuccess(response.data.idToken, response.data.localId)
+        );
       })
       .catch(error => {
         console.log(error);
