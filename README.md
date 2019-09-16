@@ -1,4 +1,4 @@
-# Remnant Ministry
+# Remnant Ministry (In development..)
 
 ## Project Overview
 

@@ -61,7 +61,7 @@ const loginForm = props => {
   ));
 
   return (
-    <FormGroup className={"LoginPage Col-4"} onSubmit={props.handleLogin}>
+    <FormGroup className={""} onSubmit={props.handleLogin}>
       {loginInput}
 
       <div className={"Login-remember-checkbox"}>

@@ -176,20 +176,18 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Layout2
-          left={<SignupPageLeft />}
-          right={
-            <SignupPageRight
-              pageState={this.state}
-              // signupNextStepHandler={this.signupNextStepHandler}
-              handleSignUp={this.handleSignUp}
-              completeSignupHandler={this.completeSignupHandler}
-              onChangeHandler={this.onChangeHandler}
-            />
-          }
-        />
-      </React.Fragment>
+      <Layout2
+        left={<SignupPageLeft />}
+        right={
+          <SignupPageRight
+            pageState={this.state}
+            // signupNextStepHandler={this.signupNextStepHandler}
+            handleSignUp={this.handleSignUp}
+            completeSignupHandler={this.completeSignupHandler}
+            onChangeHandler={this.onChangeHandler}
+          />
+        }
+      />
     );
   }
 }

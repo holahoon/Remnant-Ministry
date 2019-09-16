@@ -1,9 +1,12 @@
 .LoginPage-container {
   display: flex;
   background-color: #d8d8d8;
+  /* position: relative; */
 }
 
 .LoginPage {
+  display: flex;
+  flex-direction: column;
   background: #f3f3f3;
   box-sizing: border-box;
   margin: 3.75rem auto;

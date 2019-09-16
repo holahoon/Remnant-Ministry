@@ -85,37 +85,39 @@ class LoginPage extends Component {
     return (
       // <form className={"LoginPage-container"} onSubmit={this.handleLogin}>
       // <div className={"Loginpage-container"}>
-      <Layout>
-        <Link to="/">
-          <Close20 className={"Close-icon"} />
-        </Link>
-        <h3>Log in</h3>
-        <LoginWith
-          title={"Log in"}
-          buttonText={"Continue"}
-          stateData={this.state.loggedInFB}
-          componentClicked={this.componentClicked}
-          responseFacebook={this.responseFacebook}
-        />
+      <Layout layoutClass={"LoginPage-container"}>
+        <div className={"LoginPage Col-4"}>
+          <Link to="/">
+            <Close20 className={"Close-icon"} />
+          </Link>
+          <h3>Log in</h3>
+          <LoginWith
+            title={"Log in"}
+            buttonText={"Continue"}
+            stateData={this.state.loggedInFB}
+            componentClicked={this.componentClicked}
+            responseFacebook={this.responseFacebook}
+          />
 
-        <LoginForm
-          loginState={this.state}
-          handleSignUp={this.handleSignUp}
-          completeSignupHandler={this.completeSignupHandler}
-          onChangeHandler={this.onChangeHandler}
-        />
+          <LoginForm
+            loginState={this.state}
+            handleSignUp={this.handleSignUp}
+            completeSignupHandler={this.completeSignupHandler}
+            onChangeHandler={this.onChangeHandler}
+          />
 
-        <div className="Next-button-container">
-          <RegularButton
-            buttonClass={
-              this.state.formIsValid
-                ? "Signin-button"
-                : "Signin-button Signin-button-disabled"
-            }
-            disable={!this.state.formIsValid}
-          >
-            Log In <ArrowRight20 className={"Next-arrow"} />
-          </RegularButton>
+          <div className="Next-button-container">
+            <RegularButton
+              buttonClass={
+                this.state.formIsValid
+                  ? "Signin-button"
+                  : "Signin-button Signin-button-disabled"
+              }
+              disable={!this.state.formIsValid}
+            >
+              Log In <ArrowRight20 className={"Next-arrow"} />
+            </RegularButton>
+          </div>
         </div>
       </Layout>
       // </div>

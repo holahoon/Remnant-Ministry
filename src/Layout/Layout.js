@@ -8,7 +8,7 @@ import "./Layout.css";
 const layout = props => {
   return (
     <Fragment>
-      <main>{props.children}</main>
+      <main className={props.layoutClass}>{props.children}</main>
       {/*<Footers />*/}
     </Fragment>
   );
