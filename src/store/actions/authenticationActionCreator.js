@@ -40,12 +40,11 @@ export const authentication = (email, password, isSignup) => {
       returnSecureToken: true
     };
     const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+    const signupURL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+    const loginURL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
 
     axios
-      .post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`,
-        authenticationData
-      )
+      .post(signupURL, authenticationData)
       .then(response => {
         console.log(response);
         dispatch(

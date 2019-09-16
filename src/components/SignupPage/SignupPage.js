@@ -196,7 +196,9 @@ class SignupPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    onSignupPage: state.globalSignup.onSignupPage
+    onSignupPage: state.globalSignup.onSignupPage,
+    authenticationToken: state.globalSignup.token,
+    authenticationError: state.globalSignup.error
   };
 };
 

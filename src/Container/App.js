@@ -10,6 +10,7 @@ import SignupPage from "../components/SignupPage/SignupPage";
 import MyAccount from "../components/MyAccount/MyAccount";
 import EventDetail from "../components/Registration/EventDetail/EventDetail";
 import Registration from "../components/Registration/Registration";
+import Footer from "../components/Footers/Footers";
 
 import PageUnderConstruction from "../components/PageUnderConstruction/PageUnderConstruction";
 
@@ -30,6 +31,7 @@ class App extends Component {
               <Route exact path="/" component={MainPage} />
             </Switch>
           </Layout>
+          <Footer />
         </Fragment>
       </BrowserRouter>
     );

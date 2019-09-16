@@ -1,14 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import NavigationFooter from "./NavigationFooter/NavigationFooter";
 import CopyrightFooter from "./CopyrightFooter/CopyrightFooter";
 
 const footers = props => {
   return (
-    <Fragment>
+    <footer>
       <NavigationFooter />
       <CopyrightFooter />
-    </Fragment>
+    </footer>
   );
 };
 

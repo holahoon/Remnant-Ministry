@@ -4,7 +4,7 @@ import "./CopyrightFooter.css";
 
 const copyRightFooter = props => {
   return (
-    <footer className={"CopyRightFooter"}>
+    <div className={"CopyRightFooter"}>
       <div className={"Copyright Col-4 margin-left-2"}>
         &copy; 2019 Remnant Ministry. All rights reserved.{" "}
         <a href="/">Privacy Policy</a> and <a href="/">Terms of Use</a>
@@ -22,7 +22,7 @@ const copyRightFooter = props => {
 
         <button className={"LanguageButton Col-1"}>English</button>
       </div>
-    </footer>
+    </div>
   );
 };
 
