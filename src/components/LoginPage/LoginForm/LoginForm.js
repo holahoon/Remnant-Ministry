@@ -1,9 +1,11 @@
 import React from "react";
 
-// import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
+import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 import InputForm from "../../UI/InputForm/InputForm";
+import { RegularButton } from "../../UI/Button/Button";
 import { withStyles } from "@material-ui/core/styles";
-import FormGroup from "@material-ui/core/FormGroup";
+// import FormControl from "@material-ui/core/FormControl";
+// import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -22,10 +24,11 @@ const BlueCheckBox = withStyles({
 
 // Custom FormControlLabel CSS (Override default styles)
 const CustomFormControlLabel = withStyles({
-  root: { marginRight: "0", marginBottom: "48px" },
+  root: { marginRight: "0" },
   label: {
     color: "#282828",
     fontSize: "14px",
+    fontWeight: "normal",
     letterSpacing: "0",
     lineHeight: "20px"
   }
@@ -34,9 +37,6 @@ const CustomFormControlLabel = withStyles({
 const loginForm = props => {
   const loginInputArray = [];
   for (let key in props.loginState.login) {
-    if (key === "formValidation") {
-      continue;
-    }
     loginInputArray.push({
       id: key,
       config: props.loginState.login[key]
@@ -50,9 +50,9 @@ const loginForm = props => {
       elementConfig={eachEl.config.elementConfig}
       label={eachEl.config.elementConfig.label}
       value={eachEl.config.value}
-      valid={eachEl.config.valid}
-      touched={eachEl.config.touched}
-      optional={eachEl.config.optional}
+      // valid={eachEl.config.valid}
+      // touched={eachEl.config.touched}
+      // optional={eachEl.config.optional}
       visible={eachEl.config.visible}
       onChangeHandler={event =>
         props.onChangeHandler(event, eachEl.id, "login")
@@ -61,7 +61,7 @@ const loginForm = props => {
   ));
 
   return (
-    <FormGroup className={""} onSubmit={props.handleLogin}>
+    <form className={"Login-form"} onSubmit={props.handleLogin}>
       {loginInput}
 
       <div className={"Login-remember-checkbox"}>
@@ -77,7 +77,13 @@ const loginForm = props => {
           label="Remember me"
         />
       </div>
-    </FormGroup>
+
+      <div className="Next-button-container">
+        <RegularButton buttonClass={"Signin-button"}>
+          Log In <ArrowRight20 className={"Next-arrow"} />
+        </RegularButton>
+      </div>
+    </form>
   );
 };
 

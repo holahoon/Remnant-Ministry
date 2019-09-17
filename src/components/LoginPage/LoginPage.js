@@ -9,15 +9,14 @@ import Layout from "../../Layout/Layout";
 // import InputForms from "../UI/InputForm/InputForm";
 import LoginForm from "./LoginForm/LoginForm";
 import LoginWith from "./LoginWith/LoginWith";
-import { RegularButton } from "../UI/Button/Button";
+// import { RegularButton } from "../UI/Button/Button";
 // import axiosInstace from "../../axios-userInfo";
 import * as actions from "../../store/actions/indexAction";
 
 import Close20 from "@carbon/icons-react/es/close/20";
-import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
+// import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 
 import "./LoginPage.css";
-import loginForm from "./LoginForm/LoginForm";
 
 class LoginPage extends Component {
   state = {
@@ -28,12 +27,11 @@ class LoginPage extends Component {
           type: "email",
           label: "Email",
           placeholder: "email@rutc.com",
-          warning: "Please, enter a valid email"
+          warning: ""
         },
         value: "",
         validation: {
-          required: true,
-          emailRegex: true
+          required: false
         },
         valid: false,
         touched: false,
@@ -46,12 +44,11 @@ class LoginPage extends Component {
           type: "password",
           label: "Password",
           placeholder: "******",
-          warning: "Password must be at least 6 characters"
+          warning: ""
         },
         value: "",
         validation: {
-          required: true,
-          minLength: 6
+          required: false
         },
         valid: false,
         touched: false,
@@ -67,6 +64,7 @@ class LoginPage extends Component {
   };
 
   componentDidMount() {
+    // - Resulting the component to render twice...
     this.props.onLoginPageHandler();
   }
 
@@ -76,15 +74,72 @@ class LoginPage extends Component {
 
   handleLogin = event => {
     event.preventDefault();
+    this.props.onAuthentication(
+      this.state.login.email.value,
+      this.state.login.password.value
+    );
+  };
 
-    const { email, password } = this.state.signupPage1;
-    this.props.onAuthentication(email.value, password.value);
+  /*
+  checkValidity = state => {
+    let isValid = true;
+
+    // check to see if state.value is not an empty string
+    if (state.validation.required) {
+      isValid = state.value.trim() !== "" && isValid;
+    }
+
+    // check for regex
+    if (state.validation.emailRegex) {
+      const regex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+      isValid = regex.test(state.value) && isValid;
+    }
+
+    // check to see if state.validation has minLength
+    if (state.validation.minLength) {
+      isValid = state.value.length >= state.validation.minLength && isValid;
+    }
+
+    // check to see if passwords match
+    if (state.validation.matchPassword) {
+      isValid =
+        state.value === this.state.signupPage1.password.value && isValid;
+    }
+
+    return isValid;
+  };
+  */
+
+  onChangeHandler = (event, inputIdentifier, stateElement) => {
+    // clone the state of the passed in element
+    const stateInfo = { ...this.state[stateElement] };
+    // deep clone the specified state
+    const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
+    // update the input value
+    deepClonedStateInfo.value = event.target.value;
+
+    // check the validity and update the valid state
+    // deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
+    // update touched state to true because the specific input field has been touched
+    // deepClonedStateInfo.touched = true;
+    // assign the state
+    stateInfo[inputIdentifier] = deepClonedStateInfo;
+
+    // check if signup page 1 values are valid to proceed
+    // let page1Valid = true;
+    // for (let inputIdentifier in stateInfo) {
+    //   page1Valid =
+    //     stateInfo[inputIdentifier].valid &&
+    //     page1Valid &&
+    //     stateInfo["password"].value === stateInfo["passwordConfirm"].value;
+    // }
+
+    this.setState({ ...this.state, [stateElement]: stateInfo });
   };
 
   render() {
+    console.log(this.state);
     return (
-      // <form className={"LoginPage-container"} onSubmit={this.handleLogin}>
-      // <div className={"Loginpage-container"}>
       <Layout layoutClass={"LoginPage-container"}>
         <div className={"LoginPage Col-4"}>
           <Link to="/">
@@ -94,30 +149,22 @@ class LoginPage extends Component {
           <LoginWith
             title={"Log in"}
             buttonText={"Continue"}
-            stateData={this.state.loggedInFB}
-            componentClicked={this.componentClicked}
-            responseFacebook={this.responseFacebook}
+            // stateData={this.state.loggedInFB}
+            // componentClicked={this.componentClicked}
+            // responseFacebook={this.responseFacebook}
           />
 
           <LoginForm
             loginState={this.state}
-            handleSignUp={this.handleSignUp}
-            completeSignupHandler={this.completeSignupHandler}
+            handleLogin={this.handleLogin}
             onChangeHandler={this.onChangeHandler}
           />
 
-          <div className="Next-button-container">
-            <RegularButton
-              buttonClass={
-                this.state.formIsValid
-                  ? "Signin-button"
-                  : "Signin-button Signin-button-disabled"
-              }
-              disable={!this.state.formIsValid}
-            >
+          {/*<div className="Next-button-container">
+            <RegularButton buttonClass={"Signin-button"}>
               Log In <ArrowRight20 className={"Next-arrow"} />
             </RegularButton>
-          </div>
+    </div>*/}
         </div>
       </Layout>
       // </div>

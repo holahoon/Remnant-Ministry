@@ -22,6 +22,11 @@
   margin-bottom: 1.5rem;
 }
 
+.Login-form {
+  display: grid;
+  row-gap: 0.875rem;
+}
+
 .Signin-button {
   width: 100%;
   padding-top: 1rem;
@@ -30,6 +35,7 @@
   background: #054ada;
   font-size: 1rem;
   color: #ffffff;
+  margin-top: 2.25rem;
   margin-bottom: 3rem;
   display: flex;
   justify-content: flex-end;
