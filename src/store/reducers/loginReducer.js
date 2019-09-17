@@ -34,6 +34,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: true,
+        token: action.idToken,
         error: null
       };
 

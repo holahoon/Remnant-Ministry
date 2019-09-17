@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Redirect } from "react-router-dom";
+
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 import InputForm from "../../UI/InputForm/InputForm";
 import { RegularButton } from "../../UI/Button/Button";

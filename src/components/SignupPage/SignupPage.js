@@ -106,7 +106,7 @@ class SignupPage extends Component {
     event.preventDefault();
 
     const { email, password } = this.state.signupPage1;
-    this.props.onAuthentication(email.value, password.value);
+    this.props.onAuthentication(email.value, password.value, "signup");
   };
 
   checkValidity = state => {
@@ -164,16 +164,6 @@ class SignupPage extends Component {
     this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
   };
 
-  // signup1Handler = (event, inputIdentifier) => {
-  //   let signupPage1 = this.onChangeHandler(
-  //     event,
-  //     inputIdentifier,
-  //     "signupPage1"
-  //   );
-
-  //   this.setState({ ...this.state, signupPage1 });
-  // };
-
   render() {
     return (
       <Layout2
@@ -202,8 +192,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuthentication: (email, password) =>
-      dispatch(actions.authentication(email, password)),
+    onAuthentication: (email, password, authStatus) =>
+      dispatch(actions.authentication(email, password, authStatus)),
     onSignupPageHandler: () => dispatch(actions.onSignupPage()),
     offSignupPageHandler: () => dispatch(actions.offSignupPage())
   };

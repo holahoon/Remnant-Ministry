@@ -56,8 +56,10 @@ class Navbar extends Component {
       displayNavbar = loginNavbar;
     } else if (this.props.onSignupPage && !this.props.loggedIn) {
       displayNavbar = signupNavbar;
-    } else if (!this.props.loggedIn) {
+    } else if (!this.props.isAuthenticated) {
       displayNavbar = initialLoginNavbar;
+    } else if (this.props.isAuthenticated) {
+      displayNavbar = signedInNavbar;
     }
 
     return (
@@ -92,7 +94,8 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.globalLogin.loggedIn,
+    // loggedIn: state.globalLogin.loggedIn,
+    isAuthenticated: state.globalLogin.token !== null,
     onLoginPage: state.globalLogin.onLoginPage,
     onSignupPage: state.globalSignup.onSignupPage
     // correctUser: state.globalLogin.correctUser

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 // import FacebookLogin from "react-facebook-login";
@@ -56,6 +56,7 @@ class LoginPage extends Component {
         visible: true
       }
     },
+    userIsSignedUp: false,
 
     formIsValid: false,
     rememberMe: false,
@@ -76,7 +77,8 @@ class LoginPage extends Component {
     event.preventDefault();
     this.props.onAuthentication(
       this.state.login.email.value,
-      this.state.login.password.value
+      this.state.login.password.value,
+      "login"
     );
   };
 
@@ -138,9 +140,13 @@ class LoginPage extends Component {
   };
 
   render() {
-    console.log(this.state);
+    let authRedirect = null;
+    if (this.props.isAuthenticated) {
+      authRedirect = <Redirect to="/" />;
+    }
     return (
       <Layout layoutClass={"LoginPage-container"}>
+        {authRedirect}
         <div className={"LoginPage Col-4"}>
           <Link to="/">
             <Close20 className={"Close-icon"} />
@@ -175,15 +181,16 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: state.globalLogin.loggedIn,
+    isAuthenticated: state.globalLogin.token !== null,
+    // loggedIn: state.globalLogin.loggedIn,
     onLoginPage: state.globalLogin.onLoginPage
   };
 };
 
 const mapDispatchToProsp = dispatch => {
   return {
-    onAuthentication: (email, password) =>
-      dispatch(actions.authentication(email, password)),
+    onAuthentication: (email, password, authStatus) =>
+      dispatch(actions.authentication(email, password, authStatus)),
     onLoginPageHandler: () => dispatch(actions.onLoginPage()),
     offLoginPageHandler: () => dispatch(actions.offLoginPage())
   };
