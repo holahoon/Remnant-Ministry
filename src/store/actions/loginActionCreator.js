@@ -11,3 +11,9 @@ export const offLoginPage = () => {
     type: actionTypes.OFF_LOGIN_PAGE
   };
 };
+
+export const logout = () => {
+  return {
+    type: actionTypes.LOG_OUT
+  };
+};

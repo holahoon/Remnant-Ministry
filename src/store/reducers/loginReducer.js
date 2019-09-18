@@ -2,7 +2,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const {
   // LOGIN,
-  // LOGOUT,
+  LOG_OUT,
   SAVE_USER_INFO,
   ON_LOGIN_PAGE,
   OFF_LOGIN_PAGE,
@@ -15,8 +15,9 @@ const {
 const initialState = {
   token: null,
   onLoginPage: false,
-  loggedIn: false,
+  // loggedIn: false,
   error: null,
+  loading: false,
   // correctUser: false,
   userInfo: {}
 };
@@ -26,51 +27,40 @@ const loginReducer = (state = initialState, action) => {
     case AUTHENTICATION_START:
       return {
         ...state,
-        loggedIn: false,
+        // loggedIn: false,
+        loading: true,
         error: null
       };
 
     case AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        loggedIn: true,
+        // loggedIn: true,
         token: action.idToken,
+        loading: false,
         error: null
       };
 
     case AUTHENTICATION_FAIL:
       return {
         ...state,
-        loggedIn: false,
+        // loggedIn: false,
+        loading: false,
         error: action.error
       };
 
-    // case LOGIN:
-    //   if (action.payload.formIsValid && action.payload.validUser) {
-    //     return {
-    //       ...state,
-    //       loggedIn: true,
-    //       correctUser: true
-    //     };
-    //   }
-    //   return {
-    //     ...state,
-    //     loggedIn: false,
-    //     correctUser: false
-    //   };
+    case LOG_OUT:
+      return {
+        ...state,
+        token: null,
+        error: null
+      };
 
     case SAVE_USER_INFO:
       return {
         ...state,
         userInfo: action.payload.userInfo
       };
-
-    // case LOGOUT:
-    //   return {
-    //     ...state,
-    //     loggedIn: false,
-    //     correctUser: false
-    //   };
 
     case ON_LOGIN_PAGE:
       return {

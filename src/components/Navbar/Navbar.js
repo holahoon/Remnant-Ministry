@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+import * as actions from "../../store/actions/indexAction";
+
 import "./Navbar.css";
 
 class Navbar extends Component {
@@ -44,7 +46,7 @@ class Navbar extends Component {
         <li>
           <NavLink to="/My-Account">My Account</NavLink>
         </li>
-        <li onClick={this.props.logOutHandler}>
+        <li onClick={this.props.logoutHandler}>
           <NavLink to="/" exact>
             Log out
           </NavLink>
@@ -104,7 +106,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logOutHandler: () => dispatch({ type: "LOGOUT" })
+    logoutHandler: () => dispatch(actions.logout())
   };
 };
 

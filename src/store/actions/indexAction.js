@@ -1,4 +1,4 @@
-export { onLoginPage, offLoginPage } from "./loginActionCreator";
+export { onLoginPage, offLoginPage, logout } from "./loginActionCreator";
 
 export { onSignupPage, offSignupPage } from "./signupActionCreator";
 

@@ -1,6 +1,6 @@
 export const LOGIN = "LOGIN";
 
-export const LOGOUT = "LOGOUT";
+export const LOG_OUT = "LOG_OUT";
 
 export const SAVE_USER_INFO = "SAVE_USER_INFO";
 
