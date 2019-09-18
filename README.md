@@ -4,7 +4,7 @@
 
 - A web application for a Chrisitan organization (Darakbang)
 - Users must sign up with email then log in gain full access
-- When user is authenticated (temporarily using Firebase), user can view events(not yet designed) and register
+- Temporarily using Firebase to sign up users and identify email/password to enable authentication
 
 ## Start
 
@@ -41,6 +41,7 @@ npm start
 - [Redux](https://redux.js.org/) - used to manage state
 - [Material-UI](https://material-ui.com/) - Framework used to customize some input fields, select and checkboxes
 - [React Router](https://github.com/ReactTraining/react-router) - Routing to navigate through different components
+- [React Spinners](https://github.com/davidhu2000/react-spinners) - Shows spinner when  post/get data
 
 ## Upcoming
 1. User authentication - allow user to sign up, sign in with existing email and password

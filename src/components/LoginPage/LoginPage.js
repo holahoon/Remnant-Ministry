@@ -12,6 +12,7 @@ import LoginWith from "./LoginWith/LoginWith";
 // import { RegularButton } from "../UI/Button/Button";
 // import axiosInstace from "../../axios-userInfo";
 import * as actions from "../../store/actions/indexAction";
+import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner'
 
 import Close20 from "@carbon/icons-react/es/close/20";
 // import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
@@ -144,8 +145,10 @@ class LoginPage extends Component {
     if (this.props.isAuthenticated) {
       authRedirect = <Redirect to="/" />;
     }
+
     return (
       <Layout layoutClass={"LoginPage-container"}>
+      <LoadingSpinner />
         {authRedirect}
         <div className={"LoginPage Col-4"}>
           <Link to="/">
@@ -163,6 +166,7 @@ class LoginPage extends Component {
           <LoginForm
             loginState={this.state}
             handleLogin={this.handleLogin}
+            authenticationError={this.props.authenticationError}
             onChangeHandler={this.onChangeHandler}
           />
 
@@ -182,6 +186,7 @@ class LoginPage extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.globalLogin.token !== null,
+    authenticationError: state.globalLogin.error !== null,
     // loggedIn: state.globalLogin.loggedIn,
     onLoginPage: state.globalLogin.onLoginPage
   };

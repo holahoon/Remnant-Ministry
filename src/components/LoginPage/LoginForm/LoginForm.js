@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Redirect } from "react-router-dom";
-
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 import InputForm from "../../UI/InputForm/InputForm";
 import { RegularButton } from "../../UI/Button/Button";
@@ -79,6 +77,12 @@ const loginForm = props => {
           label="Remember me"
         />
       </div>
+
+      <p style={{ color: "tomato", fontSize: "0.9rem" }}>
+        {props.authenticationError
+          ? "Please check your email or password"
+          : null}
+      </p>
 
       <div className="Next-button-container">
         <RegularButton buttonClass={"Signin-button"}>
