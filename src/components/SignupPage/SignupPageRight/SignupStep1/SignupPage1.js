@@ -52,6 +52,10 @@ const signupPage1 = props => {
       >
         {signupPage1Input}
 
+        <p style={{ color: "tomato", fontSize: "0.9rem" }}>
+          {props.authenticationError ? "You may be signed up" : null}
+        </p>
+
         <div className={"Signup-agreement"}>
           <p className={"Col-6-8"}>
             By clicking the Next button, I agree to Remnant Ministry’s Terms of

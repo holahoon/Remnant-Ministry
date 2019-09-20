@@ -2,54 +2,66 @@ import * as actionTypes from "../actions/actionTypes";
 
 const {
   // LOGIN,
-  LOG_OUT,
+  // LOG_OUT,
   SAVE_USER_INFO,
   ON_LOGIN_PAGE,
   OFF_LOGIN_PAGE,
-  AUTHENTICATION_START,
-  AUTHENTICATION_SUCCESS,
-  AUTHENTICATION_FAIL
-  // AUTHENTICATION_LOGOUT
+  LOGIN_AUTHENTICATION_START,
+  LOGIN_AUTHENTICATION_SUCCESS,
+  LOGIN_AUTHENTICATION_FAIL,
+  AUTHENTICATION_LOGOUT
 } = actionTypes;
 
 const initialState = {
-  token: null,
   onLoginPage: false,
+  token: null,
+  loginError: null,
+  loading: false
   // loggedIn: false,
-  error: null,
-  loading: false,
-  // correctUser: false,
-  userInfo: {}
+  // userInfo: {}
 };
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case AUTHENTICATION_START:
+    case ON_LOGIN_PAGE:
+      return {
+        ...state,
+        onLoginPage: true
+      };
+
+    case OFF_LOGIN_PAGE:
+      return {
+        ...state,
+        loginError: null,
+        onLoginPage: false
+      };
+
+    case LOGIN_AUTHENTICATION_START:
       return {
         ...state,
         // loggedIn: false,
         loading: true,
-        error: null
+        loginError: null
       };
 
-    case AUTHENTICATION_SUCCESS:
+    case LOGIN_AUTHENTICATION_SUCCESS:
       return {
         ...state,
         // loggedIn: true,
         token: action.idToken,
         loading: false,
-        error: null
+        loginError: null
       };
 
-    case AUTHENTICATION_FAIL:
+    case LOGIN_AUTHENTICATION_FAIL:
       return {
         ...state,
         // loggedIn: false,
         loading: false,
-        error: action.error
+        loginError: action.error
       };
 
-    case LOG_OUT:
+    case AUTHENTICATION_LOGOUT:
       return {
         ...state,
         token: null,
@@ -60,18 +72,6 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.payload.userInfo
-      };
-
-    case ON_LOGIN_PAGE:
-      return {
-        ...state,
-        onLoginPage: true
-      };
-
-    case OFF_LOGIN_PAGE:
-      return {
-        ...state,
-        onLoginPage: false
       };
 
     default:

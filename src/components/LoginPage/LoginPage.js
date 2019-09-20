@@ -61,7 +61,6 @@ class LoginPage extends Component {
 
     formIsValid: false,
     rememberMe: false,
-    redirectToMainPage: false,
     validUser: false
   };
 
@@ -78,64 +77,16 @@ class LoginPage extends Component {
     event.preventDefault();
     this.props.onAuthentication(
       this.state.login.email.value,
-      this.state.login.password.value,
-      "login"
+      this.state.login.password.value
     );
   };
 
-  /*
-  checkValidity = state => {
-    let isValid = true;
-
-    // check to see if state.value is not an empty string
-    if (state.validation.required) {
-      isValid = state.value.trim() !== "" && isValid;
-    }
-
-    // check for regex
-    if (state.validation.emailRegex) {
-      const regex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-      isValid = regex.test(state.value) && isValid;
-    }
-
-    // check to see if state.validation has minLength
-    if (state.validation.minLength) {
-      isValid = state.value.length >= state.validation.minLength && isValid;
-    }
-
-    // check to see if passwords match
-    if (state.validation.matchPassword) {
-      isValid =
-        state.value === this.state.signupPage1.password.value && isValid;
-    }
-
-    return isValid;
-  };
-  */
-
   onChangeHandler = (event, inputIdentifier, stateElement) => {
-    // clone the state of the passed in element
     const stateInfo = { ...this.state[stateElement] };
-    // deep clone the specified state
     const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
-    // update the input value
+
     deepClonedStateInfo.value = event.target.value;
-
-    // check the validity and update the valid state
-    // deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
-    // update touched state to true because the specific input field has been touched
-    // deepClonedStateInfo.touched = true;
-    // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
-
-    // check if signup page 1 values are valid to proceed
-    // let page1Valid = true;
-    // for (let inputIdentifier in stateInfo) {
-    //   page1Valid =
-    //     stateInfo[inputIdentifier].valid &&
-    //     page1Valid &&
-    //     stateInfo["password"].value === stateInfo["passwordConfirm"].value;
-    // }
 
     this.setState({ ...this.state, [stateElement]: stateInfo });
   };
@@ -178,7 +129,7 @@ class LoginPage extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.globalLogin.token !== null,
-    authenticationError: state.globalLogin.error !== null,
+    authenticationError: state.globalLogin.loginError !== null,
     loading: state.globalLogin.loading,
     // loggedIn: state.globalLogin.loggedIn,
     onLoginPage: state.globalLogin.onLoginPage
@@ -187,8 +138,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProsp = dispatch => {
   return {
-    onAuthentication: (email, password, authStatus) =>
-      dispatch(actions.authentication(email, password, authStatus)),
+    onAuthentication: (email, password) =>
+      dispatch(actions.loginAuthentication(email, password)),
     onLoginPageHandler: () => dispatch(actions.onLoginPage()),
     offLoginPageHandler: () => dispatch(actions.offLoginPage())
   };

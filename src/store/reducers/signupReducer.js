@@ -3,17 +3,18 @@ import * as actionTypes from "../actions/actionTypes";
 const {
   ON_SIGNUP_PAGE,
   OFF_SIGNUP_PAGE,
-  AUTHENTICATION_START,
-  AUTHENTICATION_SUCCESS,
-  AUTHENTICATION_FAIL,
-  AUTHENTICATION_LOGOUT
+  SIGNUP_AUTHENTICATION_START,
+  SIGNUP_AUTHENTICATION_SUCCESS,
+  SIGNUP_AUTHENTICATION_FAIL
 } = actionTypes;
 
 const initialState = {
   onSignupPage: false,
   token: null,
   localId: null,
-  error: null
+  signupError: null,
+  loading: false,
+  signupPage2: false
 };
 
 const signupReducer = (state = initialState, action) => {
@@ -21,41 +22,42 @@ const signupReducer = (state = initialState, action) => {
     case ON_SIGNUP_PAGE:
       return {
         ...state,
-        onSignupPage: true
+        onSignupPage: true,
+        signupPage2: false
       };
 
     case OFF_SIGNUP_PAGE:
       return {
         ...state,
-        onSignupPage: false
+        signupError: null,
+        onSignupPage: false,
+        signupPage2: false
       };
 
-    case AUTHENTICATION_START:
+    case SIGNUP_AUTHENTICATION_START:
       return {
         ...state,
-        error: null
+        signupError: null,
+        loading: true,
+        signupPage2: false
       };
 
-    case AUTHENTICATION_SUCCESS:
+    case SIGNUP_AUTHENTICATION_SUCCESS:
       return {
         ...state,
         token: action.idToken,
         localId: action.localId,
-        error: null
+        signupError: null,
+        loading: false,
+        signupPage2: true
       };
 
-    case AUTHENTICATION_FAIL:
+    case SIGNUP_AUTHENTICATION_FAIL:
       return {
         ...state,
-        error: action.error
-      };
-
-    case AUTHENTICATION_LOGOUT:
-      return {
-        ...state,
-        token: null,
-        userId: null,
-        error: null
+        signupError: action.error,
+        loading: false,
+        signupPage2: false
       };
 
     default:

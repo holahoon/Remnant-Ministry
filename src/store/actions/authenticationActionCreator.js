@@ -1,65 +1,94 @@
-import * as actionTypes from "./actionTypes";
+// import * as actionTypes from "./actionTypes";
 
-import axios from "axios";
+// import axios from "axios";
 
-export const authenticationStart = () => {
-  return {
-    type: actionTypes.AUTHENTICATION_START
-  };
-};
+// export const loginAuthenticationStart = () => {
+//   return {
+//     type: actionTypes.AUTHENTICATION_START
+//   };
+// };
 
-export const authenticationSuccess = (token, localId) => {
-  return {
-    type: actionTypes.AUTHENTICATION_SUCCESS,
-    idToken: token,
-    localId
-  };
-};
+// export const loginAuthenticationSuccess = (token, localId) => {
+//   return {
+//     type: actionTypes.AUTHENTICATION_SUCCESS,
+//     idToken: token,
+//     localId
+//   };
+// };
 
-export const authenticationFail = error => {
-  return {
-    type: actionTypes.AUTHENTICATION_FAIL,
-    error
-  };
-};
+// export const loginAuthenticationFail = error => {
+//   return {
+//     type: actionTypes.LOGIN_AUTHENTICATION_FAIL,
+//     error
+//   };
+// };
 
-export const logout = () => {
-  return {
-    type: actionTypes.AUTHENTICATION_LOGOUT
-  };
-};
+// export const signupAuthenticationStart = () => {
+//   return {
+//     type: actionTypes.AUTHENTICATION_START
+//   };
+// };
 
-export const authentication = (email, password, authStatus) => {
-  return dispatch => {
-    // Start user authentication
-    dispatch(authenticationStart());
+// export const signupAuthenticationSuccess = (token, localId) => {
+//   return {
+//     type: actionTypes.AUTHENTICATION_SUCCESS,
+//     idToken: token,
+//     localId
+//   };
+// };
 
-    const authenticationData = {
-      email,
-      password,
-      returnSecureToken: true
-    };
-    const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
-    // Signup URL
-    let url = "";
-    // Login URL
-    if (authStatus === "login") {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
-    } else if (authStatus === "signup") {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
-    }
+// export const signupAuthenticationFail = error => {
+//   return {
+//     type: actionTypes.SIGNUP_AUTHENTICATION_FAIL,
+//     error
+//   };
+// };
 
-    axios
-      .post(url, authenticationData)
-      .then(response => {
-        console.log(response);
-        dispatch(
-          authenticationSuccess(response.data.idToken, response.data.localId)
-        );
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch(authenticationFail(error));
-      });
-  };
-};
+// export const logout = () => {
+//   return {
+//     type: actionTypes.AUTHENTICATION_LOGOUT
+//   };
+// };
+
+// export const authentication = (email, password, authStatus) => {
+//   return dispatch => {
+//     dispatch(authenticationStart());
+
+//     const authenticationData = {
+//       email,
+//       password,
+//       returnSecureToken: true
+//     };
+//     const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+//     const loginURL = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
+//     const signupURL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
+
+//     if (authStatus === "login") {
+//       axios
+//         .post(loginURL, authenticationData)
+//         .then(response => {
+//           console.log(response);
+//           dispatch(
+//             authenticationSuccess(response.data.idToken, response.data.localId)
+//           );
+//         })
+//         .catch(error => {
+//           console.log(error);
+//           dispatch(loginAuthenticationFail(error));
+//         });
+//     } else if (authStatus === "signup") {
+//       axios
+//         .post(signupURL, authenticationData)
+//         .then(response => {
+//           console.log(response);
+//           dispatch(
+//             authenticationSuccess(response.data.idToken, response.data.localId)
+//           );
+//         })
+//         .catch(error => {
+//           console.log(error);
+//           dispatch(signupAuthenticationFail(error));
+//         });
+//     }
+//   };
+// };

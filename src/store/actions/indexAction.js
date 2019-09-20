@@ -1,5 +1,14 @@
-export { onLoginPage, offLoginPage, logout } from "./loginActionCreator";
+export {
+  onLoginPage,
+  offLoginPage,
+  logout,
+  loginAuthentication
+} from "./loginActionCreator";
 
-export { onSignupPage, offSignupPage } from "./signupActionCreator";
+export {
+  onSignupPage,
+  offSignupPage,
+  signupAuthentication
+} from "./signupActionCreator";
 
-export { authentication } from "./authenticationActionCreator";
+// export { authentication } from "./authenticationActionCreator";

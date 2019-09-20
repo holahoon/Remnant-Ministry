@@ -12,6 +12,7 @@ const signupPageRight = props => {
         handleSignUp={props.handleSignUp}
         onChangeHandler={props.onChangeHandler}
         pageState={props.pageState}
+        authenticationError={props.authenticationError}
       />
     </div>
   );
@@ -27,7 +28,8 @@ const signupPageRight = props => {
 
   return (
     <React.Fragment>
-      {props.pageState.page1 ? signupPage1 : signupPage2}
+      {/*props.pageState.page1 ? signupPage1 : signupPage2*/}
+      {props.goToSignupPage2 ? signupPage2 : signupPage1}
     </React.Fragment>
   );
 };

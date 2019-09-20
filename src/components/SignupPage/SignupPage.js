@@ -5,6 +5,7 @@ import SignupPageRight from "./SignupPageRight/SignupPageRight";
 import SignupPageLeft from "./SignupPageLeft/SignupPageLeft";
 import Layout2 from "../../Layout/Layout2";
 import * as actions from "../../store/actions/indexAction";
+import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
 
 // import DayPickerInput from "react-day-picker/DayPickerInput";
 // import "react-day-picker/lib/style.css";
@@ -15,8 +16,8 @@ class SignupPage extends Component {
   state = {
     page1: true,
     page2: false,
-    page1Valid: false,
-    page2Valid: false,
+    // page1Valid: false,
+    // page2Valid: false,
     signupPage1: {
       email: {
         elementType: "input",
@@ -86,27 +87,27 @@ class SignupPage extends Component {
   }
 
   signupNextStepHandler = () => {
-    if (this.state.page1Valid) {
-      this.setState({
-        ...this.state,
-        page1: !this.state.page1,
-        page2: !this.state.page2
-      });
-    }
+    // if (this.props.authenticationToken) {
+    //   this.setState({
+    //     ...this.state,
+    //     page1: !this.state.page1,
+    //     page2: !this.state.page2
+    //   });
+    // }
+    // if (this.state.page1Valid) {
+    //   this.setState({
+    //     ...this.state,
+    //     page1: !this.state.page1,
+    //     page2: !this.state.page2
+    //   });
+    // }
   };
-
-  // completeSignupHandler = () => {
-  //   const currentSignupComplete = this.state.signupComplete;
-  //   this.setState({ signupComplete: !currentSignupComplete });
-
-  //   alert("You are signed up!");
-  // };
 
   handleSignUp = event => {
     event.preventDefault();
 
     const { email, password } = this.state.signupPage1;
-    this.props.onAuthentication(email.value, password.value, "signup");
+    this.props.onAuthentication(email.value, password.value);
   };
 
   checkValidity = state => {
@@ -166,18 +167,23 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <Layout2
-        left={<SignupPageLeft />}
-        right={
-          <SignupPageRight
-            pageState={this.state}
-            // signupNextStepHandler={this.signupNextStepHandler}
-            handleSignUp={this.handleSignUp}
-            completeSignupHandler={this.completeSignupHandler}
-            onChangeHandler={this.onChangeHandler}
-          />
-        }
-      />
+      <React.Fragment>
+        <LoadingSpinner loading={this.props.loading} />
+        <Layout2
+          left={<SignupPageLeft />}
+          right={
+            <SignupPageRight
+              pageState={this.state}
+              authenticationError={this.props.authenticationError}
+              goToSignupPage2={this.props.goToSignupPage2}
+              // signupNextStepHandler={this.signupNextStepHandler}
+              handleSignUp={this.handleSignUp}
+              completeSignupHandler={this.completeSignupHandler}
+              onChangeHandler={this.onChangeHandler}
+            />
+          }
+        />
+      </React.Fragment>
     );
   }
 }
@@ -185,15 +191,17 @@ class SignupPage extends Component {
 const mapStateToProps = state => {
   return {
     onSignupPage: state.globalSignup.onSignupPage,
-    authenticationToken: state.globalSignup.token,
-    authenticationError: state.globalSignup.error
+    authenticationToken: state.globalSignup.token !== null,
+    authenticationError: state.globalSignup.signupError !== null,
+    loading: state.globalSignup.loading,
+    goToSignupPage2: state.globalSignup.signupPage2
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuthentication: (email, password, authStatus) =>
-      dispatch(actions.authentication(email, password, authStatus)),
+    onAuthentication: (email, password) =>
+      dispatch(actions.signupAuthentication(email, password)),
     onSignupPageHandler: () => dispatch(actions.onSignupPage()),
     offSignupPageHandler: () => dispatch(actions.offSignupPage())
   };
