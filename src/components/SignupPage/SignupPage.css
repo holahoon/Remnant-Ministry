@@ -27,3 +27,13 @@
   margin-top: 3.75rem;
   margin-bottom: 3.75rem;
 }
+
+.Name-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.Name-container div {
+  width: 100%;
+}

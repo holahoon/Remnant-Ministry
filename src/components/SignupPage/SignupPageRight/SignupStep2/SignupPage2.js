@@ -6,7 +6,7 @@ import { RegularButton } from "../../../UI/Button/Button";
 // import DayPickerInput from "react-day-picker/DayPickerInput";
 import ArrowRight20 from "@carbon/icons-react/es/arrow--right/20";
 
-import "react-day-picker/lib/style.css";
+// import "react-day-picker/lib/style.css";
 import "./SignupPage2.css";
 
 const signupPage2 = props => {
@@ -21,33 +21,71 @@ const signupPage2 = props => {
     });
   }
 
-  let signupPage2Input = signupPage2Array.map(eachEl => (
-    <InputForm
-      key={eachEl.id}
-      elementType={eachEl.config.elementType}
-      elementConfig={eachEl.config.elementConfig}
-      label={eachEl.config.elementConfig.label}
-      value={eachEl.config.value}
-      valid={eachEl.config.valid}
-      touched={eachEl.config.touched}
-      optional={eachEl.config.optional}
-      visible={eachEl.config.visible}
-      onChangeHandler={event =>
-        props.onChangeHandler(event, eachEl.id, "signupPage2")
-      }
-    />
-  ));
+  let signupPage2InputFirst = signupPage2Array.map((eachEl, index) => {
+    // Skip the last two elements in the array
+    if (index < signupPage2Array.length - 2) {
+      return (
+        <InputForm
+          key={eachEl.id}
+          elementType={eachEl.config.elementType}
+          elementConfig={eachEl.config.elementConfig}
+          label={eachEl.config.elementConfig.label}
+          value={eachEl.config.value}
+          valid={eachEl.config.valid}
+          touched={eachEl.config.touched}
+          optional={eachEl.config.optional}
+          visible={eachEl.config.visible}
+          onChangeHandler={event =>
+            props.onChangeHandler(event, eachEl.id, "signupPage2")
+          }
+        />
+      );
+    }
+    // <InputForm
+    //   key={eachEl.id}
+    //   elementType={eachEl.config.elementType}
+    //   elementConfig={eachEl.config.elementConfig}
+    //   label={eachEl.config.elementConfig.label}
+    //   value={eachEl.config.value}
+    //   valid={eachEl.config.valid}
+    //   touched={eachEl.config.touched}
+    //   optional={eachEl.config.optional}
+    //   visible={eachEl.config.visible}
+    //   onChangeHandler={event =>
+    //     props.onChangeHandler(event, eachEl.id, "signupPage2")
+    //   }
+    // />
+  });
 
   let signupPage2InputSecond = signupPage2Array.map((eachEl, index) => {
-    console.log(eachEl, index)
-  })
+    // return the alst two elements in the array
+    if (index > signupPage2Array.length - 3) {
+      return (
+        <InputForm
+          key={eachEl.id}
+          elementType={eachEl.config.elementType}
+          elementConfig={eachEl.config.elementConfig}
+          label={eachEl.config.elementConfig.label}
+          value={eachEl.config.value}
+          valid={eachEl.config.valid}
+          touched={eachEl.config.touched}
+          optional={eachEl.config.optional}
+          visible={eachEl.config.visible}
+          onChangeHandler={event =>
+            props.onChangeHandler(event, eachEl.id, "signupPage2")
+          }
+        />
+      );
+    }
+  });
 
   return (
     <React.Fragment>
-      <form className={""}>
-        <h5 className={"SignupPage2-title"}>Basic information</h5>
-        {signupPage2Input}
-      </form>
+      <h5 className={"SignupPage2-title"}>Basic information</h5>
+      <form className={"Signup-page-2-first"}>{signupPage2InputFirst}</form>
+
+      <h5 className={"SignupPage2-title"}>Your church information</h5>
+      <form className={"Signup-page-2-second"}>{signupPage2InputSecond}</form>
 
       <div className="Signup-button-container">
         <RegularButton

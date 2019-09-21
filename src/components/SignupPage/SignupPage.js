@@ -135,15 +135,15 @@ class SignupPage extends Component {
         elementConfig: {
           type: "text",
           label: "Date of birth",
-          placeholder: "MM/DD/YYYY",
+          placeholder: "MM / DD / YYYY",
           warning: "Please, enter a valid date",
           mask: [
             /[0-1]/,
             /\d/,
-            "/",
+            " / ",
             /[0-3]/,
             /\d/,
-            "/",
+            " / ",
             /[1-2]/,
             /\d/,
             /\d/,
@@ -233,17 +233,17 @@ class SignupPage extends Component {
         elementConfig: {
           type: "text",
           label: "Phone number",
-          placeholder: "000-000-0000",
+          placeholder: "000 - 000 - 0000",
           warning: "Please, enter a valid number",
           mask: [
             /\d/,
             /\d/,
             /\d/,
-            "-",
+            " - ",
             /\d/,
             /\d/,
             /\d/,
-            "-",
+            " - ",
             /\d/,
             /\d/,
             /\d/,
@@ -351,7 +351,7 @@ class SignupPage extends Component {
         valid: true,
         touched: false,
         optional: true,
-        visible: false
+        visible: true
       }
     }
   };
