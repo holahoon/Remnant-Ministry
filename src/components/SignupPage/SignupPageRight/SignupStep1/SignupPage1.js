@@ -11,9 +11,6 @@ import "./SignupPage1.css";
 const signupPage1 = props => {
   const signupPage1Array = [];
   for (let key in props.pageState.signupPage1) {
-    if (key === "formValidation") {
-      continue;
-    }
     signupPage1Array.push({
       id: key,
       config: props.pageState.signupPage1[key]
@@ -47,7 +44,7 @@ const signupPage1 = props => {
         {signupPage1Input}
 
         <p style={{ color: "tomato", fontSize: "0.9rem" }}>
-          {props.authenticationError ? "You may be signed up" : null}
+          {props.authenticationError ? "You may be signed up already" : null}
         </p>
 
         <div className={"Signup-agreement"}>

@@ -21,6 +21,7 @@ const signupPageRight = props => {
       <h4 className="Create-an-account">Create an account</h4>
       <SignupPage2
         pageState={props.pageState}
+        onChangeHandler={props.onChangeHandler}
         completeSignupHandler={props.completeSignupHandler}
       />
     </div>
@@ -28,8 +29,8 @@ const signupPageRight = props => {
 
   return (
     <React.Fragment>
-      {signupPage2}
-      {/*props.goToSignupPage2 ? signupPage2 : signupPage1*/}
+      {/*signupPage2*/}
+      {props.goToSignupPage2 ? signupPage2 : signupPage1}
     </React.Fragment>
   );
 };

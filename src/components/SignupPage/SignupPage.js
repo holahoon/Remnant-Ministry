@@ -14,9 +14,9 @@ import "./SignupPage.css";
 
 class SignupPage extends Component {
   state = {
-    page1: true,
-    page2: false,
-    // page1Valid: false,
+    // page1: true,
+    // page2: false,
+    page1Valid: false,
     // page2Valid: false,
     signupPage1: {
       email: {
@@ -384,8 +384,12 @@ class SignupPage extends Component {
   handleSignUp = event => {
     event.preventDefault();
 
-    const { email, password } = this.state.signupPage1;
-    this.props.onAuthentication(email.value, password.value);
+    if (this.state.page1Valid) {
+      const { email, password } = this.state.signupPage1;
+      this.props.onAuthentication(email.value, password.value);
+    }
+    // const { email, password } = this.state.signupPage1;
+    // this.props.onAuthentication(email.value, password.value);
   };
 
   checkValidity = state => {
@@ -396,10 +400,16 @@ class SignupPage extends Component {
       isValid = state.value.trim() !== "" && isValid;
     }
 
-    // check for regex
+    // check for email regex
     if (state.validation.emailRegex) {
       const regex = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
       isValid = regex.test(state.value) && isValid;
+    }
+
+    // check for name regex
+    if (state.validation.nameRegex) {
+      const nameRegex = RegExp(/^[a-zA-Z]+$/);
+      isValid = nameRegex.test(state.value) && isValid;
     }
 
     // check to see if state.validation has minLength
@@ -426,21 +436,40 @@ class SignupPage extends Component {
 
     // check the validity and update the valid state
     deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
-    // update touched state to true because the specific input field has been touched
     deepClonedStateInfo.touched = true;
-    // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
 
     // check if signup page 1 values are valid to proceed
-    let page1Valid = true;
-    for (let inputIdentifier in stateInfo) {
-      page1Valid =
-        stateInfo[inputIdentifier].valid &&
-        page1Valid &&
-        stateInfo["password"].value === stateInfo["passwordConfirm"].value;
+    // if (!this.props.goToSignupPage2) {
+    //   let page1Valid = true;
+    //   for (let inputIdentifier in stateInfo) {
+    //     page1Valid =
+    //       stateInfo[inputIdentifier].valid &&
+    //       page1Valid &&
+    //       stateInfo["password"].value === stateInfo["passwordConfirm"].value;
+    //   }
+    // }
+    if (stateElement === "signupPage1") {
+      let page1Valid = true;
+      for (let inputIdentifier in stateInfo) {
+        page1Valid =
+          stateInfo[inputIdentifier].valid &&
+          page1Valid &&
+          stateInfo["password"].value === stateInfo["passwordConfirm"].value;
+      }
+      this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
+    } else {
+      this.setState({ ...this.state, [stateElement]: stateInfo });
     }
+    // let page1Valid = true;
+    // for (let inputIdentifier in stateInfo) {
+    //   page1Valid =
+    //     stateInfo[inputIdentifier].valid &&
+    //     page1Valid &&
+    //     stateInfo["password"].value === stateInfo["passwordConfirm"].value;
+    // }
 
-    this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
+    // this.setState({ ...this.state, [stateElement]: stateInfo, page1Valid });
   };
 
   render() {

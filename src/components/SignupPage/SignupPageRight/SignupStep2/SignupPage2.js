@@ -12,9 +12,6 @@ import "./SignupPage2.css";
 const signupPage2 = props => {
   const signupPage2Array = [];
   for (let key in props.pageState.signupPage2) {
-    if (key === "formValidation") {
-      continue;
-    }
     signupPage2Array.push({
       id: key,
       config: props.pageState.signupPage2[key]
@@ -41,7 +38,7 @@ const signupPage2 = props => {
         />
       );
     }
-    // <InputForm
+    // let inputF = (<InputForm
     //   key={eachEl.id}
     //   elementType={eachEl.config.elementType}
     //   elementConfig={eachEl.config.elementConfig}
@@ -54,7 +51,7 @@ const signupPage2 = props => {
     //   onChangeHandler={event =>
     //     props.onChangeHandler(event, eachEl.id, "signupPage2")
     //   }
-    // />
+    // />)
   });
 
   let signupPage2InputSecond = signupPage2Array.map((eachEl, index) => {
