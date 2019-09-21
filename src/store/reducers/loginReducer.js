@@ -15,6 +15,7 @@ const {
 const initialState = {
   onLoginPage: false,
   token: null,
+  localId: null,
   loginError: null,
   loading: false
   // loggedIn: false,
@@ -49,6 +50,7 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         // loggedIn: true,
         token: action.idToken,
+        localId: action.localId,
         loading: false,
         loginError: null
       };
@@ -57,6 +59,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         // loggedIn: false,
+        localId: null,
         loading: false,
         loginError: action.error
       };
@@ -65,6 +68,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
+        localId: null,
         error: null
       };
 

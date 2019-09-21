@@ -20,28 +20,22 @@ const signupPage1 = props => {
     });
   }
 
-  let signupPage1Input =
-    // <form
-    //   className={"Registration-form Signup-page-1"}
-    //   onSubmit={props.handleSignUp}
-    // >
-    signupPage1Array.map(eachEl => (
-      <InputForm
-        key={eachEl.id}
-        elementType={eachEl.config.elementType}
-        elementConfig={eachEl.config.elementConfig}
-        label={eachEl.config.elementConfig.label}
-        value={eachEl.config.value}
-        valid={eachEl.config.valid}
-        touched={eachEl.config.touched}
-        optional={eachEl.config.optional}
-        visible={eachEl.config.visible}
-        onChangeHandler={event =>
-          props.onChangeHandler(event, eachEl.id, "signupPage1")
-        }
-      />
-    ));
-  // </form>
+  let signupPage1Input = signupPage1Array.map(eachEl => (
+    <InputForm
+      key={eachEl.id}
+      elementType={eachEl.config.elementType}
+      elementConfig={eachEl.config.elementConfig}
+      label={eachEl.config.elementConfig.label}
+      value={eachEl.config.value}
+      valid={eachEl.config.valid}
+      touched={eachEl.config.touched}
+      optional={eachEl.config.optional}
+      visible={eachEl.config.visible}
+      onChangeHandler={event =>
+        props.onChangeHandler(event, eachEl.id, "signupPage1")
+      }
+    />
+  ));
 
   return (
     <React.Fragment>

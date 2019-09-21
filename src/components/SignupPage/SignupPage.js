@@ -75,7 +75,285 @@ class SignupPage extends Component {
         visible: true
       }
     },
-    signupPage2: {}
+
+    signupPage2: {
+      firstName: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "First name",
+          placeholder: "First name",
+          warning: "Please, enter a valid name"
+        },
+        value: "",
+        validation: {
+          required: true,
+          nameRegex: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      lastName: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Last name",
+          placeholder: "Last name",
+          warning: "Please, enter a valid name"
+        },
+        value: "",
+        validation: {
+          required: true,
+          nameRegex: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      koreanName: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "한국이름 Korean name (optional)",
+          placeholder: "Korean name",
+          warning: "Please, enter a valid name"
+        },
+        value: "",
+        validation: {
+          required: false
+        },
+        valid: true,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      dateOfBirth: {
+        elementType: "maskedInput",
+        elementConfig: {
+          type: "text",
+          label: "Date of birth",
+          placeholder: "MM/DD/YYYY",
+          warning: "Please, enter a valid date",
+          mask: [
+            /[0-1]/,
+            /\d/,
+            "/",
+            /[0-3]/,
+            /\d/,
+            "/",
+            /[1-2]/,
+            /\d/,
+            /\d/,
+            /\d/
+          ],
+          guide: false
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 10,
+          maxLength: 10
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      gender: {
+        elementType: "select",
+        elementConfig: {
+          label: "Gender",
+          warning: "Please, select a valid gender",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "male",
+              displayValue: "Male"
+            },
+            {
+              value: "female",
+              displayValue: "Female"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      language: {
+        elementType: "select",
+        elementConfig: {
+          label: "Preferred language",
+          warning: "Please, select a valid language",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "english",
+              displayValue: "English"
+            },
+            {
+              value: "korean",
+              displayValue: "Korean"
+            },
+            {
+              value: "spanish",
+              displayValue: "Spanish"
+            },
+            {
+              value: "none",
+              displayValue: "None"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      phoneNumber: {
+        elementType: "maskedInput",
+        elementConfig: {
+          type: "text",
+          label: "Phone number",
+          placeholder: "000-000-0000",
+          warning: "Please, enter a valid number",
+          mask: [
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/
+          ],
+          guide: false
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 10,
+          maxLength: 10
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      interest: {
+        elementType: "select",
+        elementConfig: {
+          label: "Area of interest / specialty",
+          warning: "Please, select a valid interest",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "interest-NA",
+              displayValue: "Not Applicable"
+            },
+            {
+              value: "interest-cccounting",
+              displayValue: "Account"
+            },
+            {
+              value: "interest-business",
+              displayValue: "Business"
+            },
+            {
+              value: "interest-chemistry",
+              displayValue: "Chemistry"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: false,
+        visible: true
+      },
+      selectChurch: {
+        elementType: "select",
+        elementConfig: {
+          label: "Select your church",
+          warning: "Please, select a valid church",
+          options: [
+            {
+              value: "",
+              displayValue: "Select"
+            },
+            {
+              value: "church-Immanuel church of Austin",
+              displayValue: "Immanuel church of Austin"
+            },
+            {
+              value: "church-1",
+              displayValue: "Church 1"
+            },
+            {
+              value: "church-2",
+              displayValue: "Church 2"
+            },
+            {
+              value: "church-not listed",
+              displayValue: "Not listed"
+            }
+          ]
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        optional: true,
+        visible: true
+      },
+      typeChurch: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          label: "Type your church",
+          placeholder: "Name of the church",
+          warning: "Please, enter a valid name"
+        },
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: true,
+        touched: false,
+        optional: true,
+        visible: false
+      }
+    }
   };
 
   componentDidMount() {
