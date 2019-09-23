@@ -1,32 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+
+import { LinkButton } from "../../UI/Button/Button";
 
 import "./EventDetail.css";
 
-const EventDetail = props => {
+const eventDetail = props => {
   return (
-    <div>
-      <div>
+    <div className={"Event-detail-page-container"}>
+      <div className={"Col-8 margin-left-2"}>
         <h2>Some details~</h2>
-      </div>
-      {props.loggedIn ? (
-        <Link to="/Registration" className={"RegisterButton"}>
+
+        <LinkButton
+          buttonClass={"Event-detail-register-button"}
+          directTo={"/Registration"}
+        >
           Register
-        </Link>
-      ) : (
-        <Link to="/login" className={"RegisterButton"}>
-          Log in
-        </Link>
-      )}
+        </LinkButton>
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.loggedIn
-  };
-};
-
-export default connect(mapStateToProps)(EventDetail);
+export default eventDetail;

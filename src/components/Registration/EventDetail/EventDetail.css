@@ -1,13 +1,19 @@
-.RegisterButton {
+.Event-detail-page-container {
   display: flex;
-  align-items: center;
+}
+
+.Event-detail-register-button {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1.625rem;
+  background: #054ada;
+  font-size: 1rem;
+  color: #ffffff;
+  margin-top: 2.25rem;
+  margin-bottom: 3rem;
+  display: flex;
   justify-content: flex-end;
-  border: none;
-  background: #84fd8e;
-  color: #054ada;
-  font-size: 1.25rem;
-  font-weight: normal;
+  align-items: center;
   box-sizing: border-box;
-  padding: 1.625rem 1.5rem 1.625rem 0;
-  margin-bottom: 10rem;
 }

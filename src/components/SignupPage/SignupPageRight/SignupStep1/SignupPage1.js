@@ -54,7 +54,7 @@ const signupPage1 = props => {
           </p>
         </div>
 
-        <div className="Next-button-container">
+        <div className={""}>
           <RegularButton
             buttonClass={"Next-button-signup-1"}
             // handleButtonClick={props.signupNextStepHandler}
