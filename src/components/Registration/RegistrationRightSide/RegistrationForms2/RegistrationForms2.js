@@ -9,6 +9,25 @@ import "./RegistrationForms2.css";
 
 class RegistrationForms2 extends Component {
   state = {
+    lodgingInfo: {
+      leadersRetreat: {
+        // attend: false,
+        value: "lodging-leaders-retreat-NO",
+        validation: {
+          required: false
+        },
+        valid: true,
+        touched: false
+      },
+      mainRCA: {
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
+      }
+    },
     extraInfo: {
       formValidation: false,
       shirtSize: {
@@ -130,26 +149,66 @@ class RegistrationForms2 extends Component {
     }
   };
 
-  lodgingOptionHandler = event => {
-    alert(event.target.value);
+  lodgingOptionHandler = name => event => {
+    const stateInfo = { ...this.state.lodgingInfo };
+    const deepStateInfo = { ...stateInfo[name] };
+
+    // deepStateInfo.attend = event.target.checked;
+    deepStateInfo.value = event.target.value;
+    deepStateInfo.touched = true;
+
+    deepStateInfo.valid = this.checkValidity(deepStateInfo);
+
+    stateInfo[name] = deepStateInfo;
+
+    this.setState({ ...this.state, lodgingInfo: stateInfo });
+  };
+
+  extraInfoHandler = (event, inputIdentifier) => {
+    const stateInfo = { ...this.state.extraInfo };
+    const deepStateInfo = { ...stateInfo[inputIdentifier] };
+
+    deepStateInfo.value = event.target.value;
+    deepStateInfo.touched = true;
+    deepStateInfo.valid = this.checkValidity(deepStateInfo);
+  };
+
+  onChangeHandler = (event, name, identifier) => {
+    const stateInfo = { ...this.state[name] };
+    const deepStateInfo = { ...stateInfo[identifier] };
+
+    // deepStateInfo.attend = event.target.checked;
+    deepStateInfo.value = event.target.value;
+    deepStateInfo.valid = this.checkValidity(deepStateInfo);
+    deepStateInfo.touched = true;
+
+    stateInfo[name] = deepStateInfo;
+
+    this.setState({ ...this.state, [name]: stateInfo });
+  };
+
+  checkValidity = state => {
+    let isValid = true;
+
+    // check to see if state.value is not an empty string
+    if (state.validation.required) {
+      isValid = state.value.trim() !== "" && isValid;
+    }
+
+    return isValid;
   };
 
   render() {
+    console.log(this.state.lodgingInfo);
     return (
       <div>
         <LodgingOption
           extraInfo={this.state.extraInfo}
+          lodgingInfo={this.state.lodgingInfo}
+          onChangeHandler={this.onChangeHandler}
           lodgingOptionHandler={this.lodgingOptionHandler}
-          // onChangeHandler={this.updateBasicInfo}
+          extraInfoHandler={this.extraInfoHandler}
         />
-        {/*<Payment
-          onChangeHandler={props.onChangeHandler}
-          stateData={props.stateData}
-        />
-        <BillingAddress
-          onChangeHandler={props.onChangeHandler}
-          stateData={props.stateData}
-        />*/}
 
         <div className={"Registration-button-container"}>
           <RegularButton

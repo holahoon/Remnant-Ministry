@@ -78,7 +78,6 @@ const CustomCheckbox = withStyles({
 })(props => <Checkbox {...props} />);
 
 const lodgingOption = props => {
-  // turn object into an array
   const extraInfoArray = [];
   for (let key in props.extraInfo) {
     if (key === "formValidation") {
@@ -103,7 +102,12 @@ const lodgingOption = props => {
               <CustomCheckbox
                 icon={<RadioButtonUncheckedIcon />}
                 checkedIcon={<RadioButtonCheckedIcon />}
-                value="lodging-leader-retreat"
+                // checked={props.lodgingInfo.leadersRetreat.attend}
+                value="lodging-leader-retreat-YES"
+                // onChange={props.lodgingOptionHandler("leadersRetreat")}
+                onChange={event =>
+                  props.onChangeHandler(event, "lodgingInfo", "leadersRetreat")
+                }
               />
             }
             label="Leaders retreat"
@@ -125,6 +129,7 @@ const lodgingOption = props => {
             <span>$ 150</span>
           </div>
         </RadioGroup>*/}
+
         {/* - Main RCA lodging - */}
         <CustomFormLabel>
           Main RCA (*2people room & 1 people room not available if born after
@@ -133,11 +138,14 @@ const lodgingOption = props => {
         <RadioGroup
           className={"Regist-form-4-item1"}
           // aria-label={"Loding option"}
-          onChange={props.lodgingOptionHandler}
+          // onChange={props.lodgingOptionHandler("mainRCA")}
+          onChange={event =>
+            props.onChangeHandler(event, "lodgingInfo", "mainRCA")
+          }
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
-              value="-lodging-main-RCA-4people-room"
+              value="lodging-main-RCA-4people-room"
               control={<BlueRadio />}
               label="4 people / room"
             />
@@ -199,7 +207,7 @@ const lodgingOption = props => {
             style={{ marginTop: "0.75rem" }}
           >
             <CustomRadioFormControlLabel
-              value="lodging-commuter"
+              value="lodging-main-RCA-commuter"
               control={<BlueRadio />}
               label="Commuter"
             />
@@ -224,7 +232,10 @@ const lodgingOption = props => {
             touched={eachEl.config.touched}
             optional={eachEl.config.optional}
             visible={eachEl.config.visible}
-            // onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+            // onChangeHandler={event => props.extraInfoHandler(event, eachEl.id)}
+            onChangeHandler={event =>
+              props.onChangeHandler(event, "extraInfo", eachEl.id)
+            }
           />
         ))}
       </form>

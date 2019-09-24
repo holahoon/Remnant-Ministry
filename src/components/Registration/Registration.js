@@ -12,7 +12,7 @@ import "./Registration.css";
 const registrationRightSide = <RegistrationRightSide />;
 
 const registration = props => {
-  console.log("match: ", props.match);
+  // console.log("match: ", props.match);
   return (
     <React.Fragment>
       <Layout2
