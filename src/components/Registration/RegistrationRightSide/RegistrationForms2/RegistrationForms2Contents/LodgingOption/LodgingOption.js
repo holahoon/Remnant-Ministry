@@ -9,8 +9,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Checkbox from "@material-ui/core/Checkbox";
-// import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
-// import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 
 const CustomFormControl = withStyles({
   root: {
@@ -56,10 +56,26 @@ const BlueRadio = withStyles({
     color: "#a4a4a4",
     "&$checked": {
       color: "#054ADA"
+    },
+    "&:hover": {
+      background: "transparent"
     }
   },
   checked: {}
 })(props => <Radio color="default" {...props} />);
+
+const CustomCheckbox = withStyles({
+  root: {
+    color: "#a4a4a4",
+    "&$checked": {
+      color: "#054ADA"
+    },
+    "&:hover": {
+      background: "transparent"
+    }
+  },
+  checked: {}
+})(props => <Checkbox {...props} />);
 
 const lodgingOption = props => {
   // turn object into an array
@@ -80,7 +96,21 @@ const lodgingOption = props => {
 
       <CustomFormControl>
         {/* - Leaders retreat lodging - */}
-        {/*<CustomFormLabel>Leaders retreat</CustomFormLabel>*/}
+        <CustomFormLabel>Leaders retreat</CustomFormLabel>
+        <div className={"Radio-control-container"}>
+          <CustomRadioFormControlLabel
+            control={
+              <CustomCheckbox
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                value="lodging-leader-retreat"
+              />
+            }
+            label="Leaders retreat"
+          />
+          <span style={{ color: "#DA1E28" }}>born between 1983 and 2005</span>
+          <span>$ 150</span>
+        </div>
         {/*<RadioGroup
           className={"Regist-form-4-item1"}
           onChange={props.lodgingOptionHandler}
@@ -95,23 +125,11 @@ const lodgingOption = props => {
             <span>$ 150</span>
           </div>
         </RadioGroup>*/}
-        <div className={"Radio-control-container"}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                // icon={<RadioButtonUncheckedIcon />}
-                // checkedIcon={<RadioButtonCheckedIcon />}
-                value="lodging-leader-retreat"
-              />
-            }
-            label="4 people / room"
-          />
-          <span style={{ color: "#DA1E28" }}>born between 1983 and 2005</span>
-          <span>$ 150</span>
-        </div>
-
         {/* - Main RCA lodging - */}
-        <CustomFormLabel>Main RCA</CustomFormLabel>
+        <CustomFormLabel>
+          Main RCA (*2people room & 1 people room not available if born after
+          1983*)
+        </CustomFormLabel>
         <RadioGroup
           className={"Regist-form-4-item1"}
           // aria-label={"Loding option"}
@@ -171,24 +189,22 @@ const lodgingOption = props => {
               $ 460
             </span>
           </div>
-        </RadioGroup>
 
-        {/* Commuter lodging */}
-        <CustomFormLabel>Commuter</CustomFormLabel>
-        <RadioGroup
-          className={"Regist-form-4-item1"}
-          value={""}
-          // aria-label={"Loding option"}
-          onChange={props.lodgingOptionHandler}
-        >
-          <div className={"Radio-control-container"}>
+          <CustomFormLabel style={{ marginTop: "0.75rem" }}>
+            Commuter (*born in/before 1983 or onsite registrants*)
+          </CustomFormLabel>
+
+          <div
+            className={"Radio-control-container"}
+            style={{ marginTop: "0.75rem" }}
+          >
             <CustomRadioFormControlLabel
               value="lodging-commuter"
               control={<BlueRadio />}
-              label="Born in/before 1983 or onsite registrants"
+              label="Commuter"
             />
             <span style={{ color: "#DA1E28" }}>
-              ** Onsite registrants = $ 250 (CASH ONLY)
+              * onsite registrants - $ 250 (CASH ONLY)
             </span>
             <span>$ 190</span>
           </div>
