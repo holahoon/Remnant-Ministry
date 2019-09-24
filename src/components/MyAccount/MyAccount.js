@@ -87,7 +87,6 @@ class MyAccount extends Component {
       <div className={"MyAccount-container"}>
         <AccountHeader
           stateData={this.state}
-          reduxData={this.props.userInfo.userName}
           classNameChangeHandler={this.classNameChangeHandler}
         />
 

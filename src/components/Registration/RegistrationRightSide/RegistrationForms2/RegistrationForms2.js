@@ -130,11 +130,16 @@ class RegistrationForms2 extends Component {
     }
   };
 
+  lodgingOptionHandler = event => {
+    alert(event.target.value);
+  };
+
   render() {
     return (
       <div>
         <LodgingOption
           extraInfo={this.state.extraInfo}
+          lodgingOptionHandler={this.lodgingOptionHandler}
           // onChangeHandler={this.updateBasicInfo}
         />
         {/*<Payment

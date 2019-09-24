@@ -8,6 +8,9 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import Checkbox from "@material-ui/core/Checkbox";
+// import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+// import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
 
 const CustomFormControl = withStyles({
   root: {
@@ -76,36 +79,47 @@ const lodgingOption = props => {
       <h5 className={"Register-h5-title"}>Main RCA options</h5>
 
       <CustomFormControl>
-        {/* Leaders retreat lodging */}
-        <CustomFormLabel>Leaders retreat</CustomFormLabel>
-        <RadioGroup
+        {/* - Leaders retreat lodging - */}
+        {/*<CustomFormLabel>Leaders retreat</CustomFormLabel>*/}
+        {/*<RadioGroup
           className={"Regist-form-4-item1"}
-          value={""}
-          // aria-label={"Loding option"}
-          // onChange={props.onChangeHandler}
+          onChange={props.lodgingOptionHandler}
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
-              value="leaders-retreat-4people-room"
+              value="lodging-leaders-retreat"
               control={<BlueRadio />}
               label="4 people / room"
             />
             <span style={{ color: "#DA1E28" }}>born between 1983 and 2005</span>
             <span>$ 150</span>
           </div>
-        </RadioGroup>
+        </RadioGroup>*/}
+        <div className={"Radio-control-container"}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                // icon={<RadioButtonUncheckedIcon />}
+                // checkedIcon={<RadioButtonCheckedIcon />}
+                value="lodging-leader-retreat"
+              />
+            }
+            label="4 people / room"
+          />
+          <span style={{ color: "#DA1E28" }}>born between 1983 and 2005</span>
+          <span>$ 150</span>
+        </div>
 
-        {/* Main RCA lodging */}
+        {/* - Main RCA lodging - */}
         <CustomFormLabel>Main RCA</CustomFormLabel>
         <RadioGroup
           className={"Regist-form-4-item1"}
-          value={""}
           // aria-label={"Loding option"}
-          // onChange={props.onChangeHandler}
+          onChange={props.lodgingOptionHandler}
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
-              value="main-RAC-4people-room"
+              value="-lodging-main-RCA-4people-room"
               control={<BlueRadio />}
               label="4 people / room"
             />
@@ -120,7 +134,7 @@ const lodgingOption = props => {
             className={"Radio-control-container"}
           >
             <CustomRadioFormControlLabel
-              value="main-RAC-2people-room"
+              value="lodging-main-RCA-2people-room"
               control={<BlueRadio />}
               label="2 people / room "
               // disabled={lodgingOptionRegistration.disable}
@@ -143,7 +157,7 @@ const lodgingOption = props => {
             className={"Radio-control-container"}
           >
             <CustomRadioFormControlLabel
-              value="main-RAC-1people-room"
+              value="lodging-main-RCA-1people-room"
               control={<BlueRadio />}
               label="1 people / room "
               // disabled={lodgingOptionRegistration.disable}
@@ -165,11 +179,11 @@ const lodgingOption = props => {
           className={"Regist-form-4-item1"}
           value={""}
           // aria-label={"Loding option"}
-          // onChange={props.onChangeHandler}
+          onChange={props.lodgingOptionHandler}
         >
           <div className={"Radio-control-container"}>
             <CustomRadioFormControlLabel
-              value="commuter"
+              value="lodging-commuter"
               control={<BlueRadio />}
               label="Born in/before 1983 or onsite registrants"
             />
