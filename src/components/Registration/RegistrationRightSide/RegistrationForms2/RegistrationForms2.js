@@ -34,7 +34,7 @@ class RegistrationForms2 extends Component {
         elementType: "select",
         elementConfig: {
           label: "T-shirt size",
-          warning: "Please, select a valid church",
+          warning: "Please, select a valid size",
           options: [
             {
               value: "",
@@ -94,11 +94,11 @@ class RegistrationForms2 extends Component {
               displayValue: "Select"
             },
             {
-              value: "staff-volunteer-yes",
+              value: "staff-volunteer-accept",
               displayValue: "Yes, I'd like to volunteer"
             },
             {
-              value: "staff-volunteer-no",
+              value: "staff-volunteer-decline",
               displayValue: "No, I'd not like to volunteer"
             }
           ]
@@ -149,30 +149,6 @@ class RegistrationForms2 extends Component {
     }
   };
 
-  lodgingOptionHandler = name => event => {
-    const stateInfo = { ...this.state.lodgingInfo };
-    const deepStateInfo = { ...stateInfo[name] };
-
-    // deepStateInfo.attend = event.target.checked;
-    deepStateInfo.value = event.target.value;
-    deepStateInfo.touched = true;
-
-    deepStateInfo.valid = this.checkValidity(deepStateInfo);
-
-    stateInfo[name] = deepStateInfo;
-
-    this.setState({ ...this.state, lodgingInfo: stateInfo });
-  };
-
-  extraInfoHandler = (event, inputIdentifier) => {
-    const stateInfo = { ...this.state.extraInfo };
-    const deepStateInfo = { ...stateInfo[inputIdentifier] };
-
-    deepStateInfo.value = event.target.value;
-    deepStateInfo.touched = true;
-    deepStateInfo.valid = this.checkValidity(deepStateInfo);
-  };
-
   onChangeHandler = (event, name, identifier) => {
     const stateInfo = { ...this.state[name] };
     const deepStateInfo = { ...stateInfo[identifier] };
@@ -182,7 +158,7 @@ class RegistrationForms2 extends Component {
     deepStateInfo.valid = this.checkValidity(deepStateInfo);
     deepStateInfo.touched = true;
 
-    stateInfo[name] = deepStateInfo;
+    stateInfo[identifier] = deepStateInfo;
 
     this.setState({ ...this.state, [name]: stateInfo });
   };
@@ -199,7 +175,7 @@ class RegistrationForms2 extends Component {
   };
 
   render() {
-    console.log(this.state.lodgingInfo);
+    console.log(this.state);
     return (
       <div>
         <LodgingOption
