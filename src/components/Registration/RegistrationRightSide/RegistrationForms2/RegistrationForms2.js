@@ -11,18 +11,23 @@ class RegistrationForms2 extends Component {
   state = {
     lodgingInfo: {
       leadersRetreat: {
-        // attend: false,
-        value: "lodging-leaders-retreat-NO",
+        attend: false,
+        value: "lodging-leaders-retreat-attendance",
         validation: {
-          required: false
+          required: false,
+          checkAttendance: true,
+          disable: false
         },
         valid: true,
         touched: false
       },
       mainRCA: {
+        attend: false,
         value: "",
         validation: {
-          required: true
+          required: true,
+          checkAttendance: false,
+          disable: false
         },
         valid: false,
         touched: false
@@ -153,12 +158,33 @@ class RegistrationForms2 extends Component {
     const stateInfo = { ...this.state[name] };
     const deepStateInfo = { ...stateInfo[identifier] };
 
-    // deepStateInfo.attend = event.target.checked;
+    deepStateInfo.attend = event.target.checked;
     deepStateInfo.value = event.target.value;
+
     deepStateInfo.valid = this.checkValidity(deepStateInfo);
     deepStateInfo.touched = true;
 
     stateInfo[identifier] = deepStateInfo;
+
+    // If room other than 4 people selected, disable leaders retreat
+    if (
+      deepStateInfo.value === "lodging-main-RCA-2people-room" ||
+      deepStateInfo.value === "lodging-main-RCA-1people-room" ||
+      deepStateInfo.value === "lodging-main-RCA-commuter"
+    ) {
+      stateInfo["leadersRetreat"].validation.disable = true;
+    } else {
+      stateInfo["leadersRetreat"].validation.disable = false;
+    }
+
+    // If leaders retreat selected, disable rooms other than 4 people
+    if (deepStateInfo.validation.checkAttendance) {
+      if (deepStateInfo.attend) {
+        stateInfo["mainRCA"].validation.disable = true;
+      } else {
+        stateInfo["mainRCA"].validation.disable = false;
+      }
+    }
 
     this.setState({ ...this.state, [name]: stateInfo });
   };
@@ -175,7 +201,7 @@ class RegistrationForms2 extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.lodgingInfo);
     return (
       <div>
         <LodgingOption
@@ -189,7 +215,6 @@ class RegistrationForms2 extends Component {
         <div className={"Registration-button-container"}>
           <RegularButton
             buttonClass={"Registration-dark-button button-1-1--global"}
-            // handleButtonClick={""}
           >
             <ArrowRight16 className={"ArrowIcon-registration-back"} />
             Back

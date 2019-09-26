@@ -9,6 +9,10 @@
   padding-bottom: 0.2rem;
 }
 
+.control-disable {
+  background: #f5f5f5;
+}
+
 .Radio-control-container span {
   font-size: 0.875rem;
 }

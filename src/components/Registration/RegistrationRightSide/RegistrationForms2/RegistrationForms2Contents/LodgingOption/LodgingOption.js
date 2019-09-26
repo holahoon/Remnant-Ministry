@@ -89,6 +89,8 @@ const lodgingOption = props => {
     });
   }
 
+  const { leadersRetreat, mainRCA } = props.lodgingInfo;
+
   return (
     <div>
       <h5 className={"Register-h5-title"}>Main RCA options</h5>
@@ -96,15 +98,19 @@ const lodgingOption = props => {
       <CustomFormControl>
         {/* - Leaders retreat lodging - */}
         <CustomFormLabel>Leaders retreat</CustomFormLabel>
-        <div className={"Radio-control-container"}>
+        <div
+          className={`Radio-control-container ${
+            leadersRetreat.validation.disable ? "control-disable" : null
+          }`}
+        >
           <CustomRadioFormControlLabel
             control={
               <CustomCheckbox
                 icon={<RadioButtonUncheckedIcon />}
                 checkedIcon={<RadioButtonCheckedIcon />}
                 // checked={props.lodgingInfo.leadersRetreat.attend}
-                value="lodging-leader-retreat-YES"
-                // onChange={props.lodgingOptionHandler("leadersRetreat")}
+                value="lodging-leaders-retreat-attendance"
+                disabled={leadersRetreat.validation.disable}
                 onChange={event =>
                   props.onChangeHandler(event, "lodgingInfo", "leadersRetreat")
                 }
@@ -157,13 +163,15 @@ const lodgingOption = props => {
             //     ? "Radio-control-container input-disable"
             //     : "Radio-control-container"
             // }
-            className={"Radio-control-container"}
+            className={`Radio-control-container ${
+              mainRCA.validation.disable ? "control-disable" : null
+            }`}
           >
             <CustomRadioFormControlLabel
               value="lodging-main-RCA-2people-room"
               control={<BlueRadio />}
               label="2 people / room "
-              // disabled={lodgingOptionRegistration.disable}
+              disabled={mainRCA.validation.disable}
             />
             <span style={{ color: "#DA1E28" }}>not available for LEADERS</span>
             <span
@@ -180,13 +188,15 @@ const lodgingOption = props => {
             //     ? "Radio-control-container input-disable"
             //     : "Radio-control-container"
             // }
-            className={"Radio-control-container"}
+            className={`Radio-control-container ${
+              mainRCA.validation.disable ? "control-disable" : null
+            }`}
           >
             <CustomRadioFormControlLabel
               value="lodging-main-RCA-1people-room"
               control={<BlueRadio />}
               label="1 people / room "
-              // disabled={lodgingOptionRegistration.disable}
+              disabled={mainRCA.validation.disable}
             />
             <span style={{ color: "#DA1E28" }}>not available for LEADERS</span>
             <span
@@ -203,13 +213,16 @@ const lodgingOption = props => {
           </CustomFormLabel>
 
           <div
-            className={"Radio-control-container"}
+            className={`Radio-control-container ${
+              mainRCA.validation.disable ? "control-disable" : null
+            }`}
             style={{ marginTop: "0.75rem" }}
           >
             <CustomRadioFormControlLabel
               value="lodging-main-RCA-commuter"
               control={<BlueRadio />}
               label="Commuter"
+              disabled={mainRCA.validation.disable}
             />
             <span style={{ color: "#DA1E28" }}>
               * onsite registrants - $ 250 (CASH ONLY)
@@ -232,7 +245,6 @@ const lodgingOption = props => {
             touched={eachEl.config.touched}
             optional={eachEl.config.optional}
             visible={eachEl.config.visible}
-            // onChangeHandler={event => props.extraInfoHandler(event, eachEl.id)}
             onChangeHandler={event =>
               props.onChangeHandler(event, "extraInfo", eachEl.id)
             }
