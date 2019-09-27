@@ -72,14 +72,14 @@ const payment = props => {
     });
   }
 
-  const otherPaymentOption = (
-    <div
-      className={"Regist-form-5-item5"}
-      style={{ marginTop: "0.75rem", marginBottom: "1.5rem" }}
-    >
-      <h5>Sorry, other payment method is not available yet</h5>
-    </div>
-  );
+  // const otherPaymentOption = (
+  //   <div
+  //     className={"Regist-form-5-item5"}
+  //     style={{ marginTop: "0.75rem", marginBottom: "1.5rem" }}
+  //   >
+  //     <h5>Sorry, other payment method is not available yet</h5>
+  //   </div>
+  // );
 
   const cardPaymentOption = (
     <form className={"Regist-form-5"}>

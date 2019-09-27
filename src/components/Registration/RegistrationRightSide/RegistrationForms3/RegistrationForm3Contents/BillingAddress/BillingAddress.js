@@ -80,7 +80,9 @@ const billingAddress = props => {
             touched={eachEl.config.touched}
             optional={eachEl.config.optional}
             visible={eachEl.config.visible}
-            // onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+            onChangeHandler={event =>
+              props.onChangeHandler(event, "billingInfo", eachEl.id)
+            }
           />
         ))}
       </form>
