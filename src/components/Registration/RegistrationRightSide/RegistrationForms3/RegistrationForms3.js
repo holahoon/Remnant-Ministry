@@ -11,6 +11,17 @@ import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 class RegistrationForms3 extends Component {
   state = {
     paymentMethod: {
+      paymentCard: {
+        checked: true,
+        value: "payment-method-card",
+        validation: {
+          required: false
+        },
+        valid: true,
+        touched: true
+      }
+    },
+    paymentInfo: {
       formValidation: false,
       cardHolderName: {
         elementType: "input",
@@ -30,16 +41,40 @@ class RegistrationForms3 extends Component {
         visible: true
       },
       cardNumber: {
-        elementType: "input",
+        elementType: "maskedInput",
         elementConfig: {
           type: "text",
           label: "Card number",
           placeholder: "0000-0000-0000-0000",
-          warning: "Please, enter a valid number"
+          warning: "Please, enter a valid number",
+          mask: [
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/
+          ],
+          guide: false
         },
         value: "",
         validation: {
           required: true
+          // minLength: 16,
+          // maxLength: 16
         },
         valid: false,
         touched: false,
@@ -51,16 +86,16 @@ class RegistrationForms3 extends Component {
         elementConfig: {
           type: "text",
           label: "Expiration date",
-          placeholder: "MM/YY",
+          placeholder: "MM / YY",
           warning: "Please, enter a valid date",
           mask: [/[0-1]/, /\d/, "/", /\d/, /\d/],
           guide: false
         },
         value: "",
         validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 5
+          required: true
+          // minLength: 5,
+          // maxLength: 5
         },
         valid: false,
         touched: false,
@@ -72,7 +107,7 @@ class RegistrationForms3 extends Component {
         elementConfig: {
           type: "text",
           label: "Security code",
-          placeholder: "000",
+          placeholder: "- - -",
           warning: "Please, enter a valid number",
           mask: [/\d/, /\d/, /\d/],
           guide: false
@@ -406,7 +441,7 @@ class RegistrationForms3 extends Component {
         elementConfig: {
           type: "text",
           label: "Postal code",
-          placeholder: "00000",
+          placeholder: "- - - - -",
           warning: "Please, enter a valid number",
           mask: [/\d/, /\d/, /\d/, /\d/, /\d/],
           guide: false
@@ -425,12 +460,38 @@ class RegistrationForms3 extends Component {
     }
   };
 
+  onChangeHandler = (event, name, identifier) => {
+    const stateInfo = { ...this.state[name] };
+    const deepStateInfo = { ...stateInfo[identifier] };
+
+    deepStateInfo.checked = event.target.checked;
+    deepStateInfo.value = event.target.value;
+
+    deepStateInfo.valid = this.checkValidity(deepStateInfo);
+    deepStateInfo.touched = true;
+
+    stateInfo[identifier] = deepStateInfo;
+
+    this.setState({ ...this.state, [name]: stateInfo });
+  };
+
+  checkValidity = state => {
+    let isValid = true;
+    if (state.validation.required) {
+      isValid = state.value.trim() !== "" && isValid;
+    }
+
+    return isValid;
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div>
         <Payment
           paymentMethod={this.state.paymentMethod}
-          // onChangeHandler={this.updateBasicInfo}
+          paymentInfo={this.state.paymentInfo}
+          onChangeHandler={this.onChangeHandler}
         />
         <BillingAddress billingInfo={this.state.billingInfo} />
 

@@ -1,7 +1,7 @@
 import React from "react";
 
-import MaskedInput from "react-text-mask";
-import Cleave from "cleave.js/react";
+// import MaskedInput from "react-text-mask";
+// import Cleave from "cleave.js/react";
 import { withStyles } from "@material-ui/core/styles";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
@@ -61,29 +61,29 @@ const BlueRadio = withStyles({
 
 const payment = props => {
   // turn object into an array
-  const paymentMethodArray = [];
-  for (let key in props.paymentMethod) {
+  const paymentInfoArray = [];
+  for (let key in props.paymentInfo) {
     if (key === "formValidation") {
       continue;
     }
-    paymentMethodArray.push({
+    paymentInfoArray.push({
       id: key,
-      config: props.paymentMethod[key]
+      config: props.paymentInfo[key]
     });
   }
 
-  // const otherPaymentOption = (
-  //   <div
-  //     className={"Regist-form-5-item5"}
-  //     style={{ marginTop: "0.75rem", marginBottom: "1.5rem" }}
-  //   >
-  //     <h5>Sorry, other payment method is not available yet</h5>
-  //   </div>
-  // );
+  const otherPaymentOption = (
+    <div
+      className={"Regist-form-5-item5"}
+      style={{ marginTop: "0.75rem", marginBottom: "1.5rem" }}
+    >
+      <h5>Sorry, other payment method is not available yet</h5>
+    </div>
+  );
 
   const cardPaymentOption = (
     <form className={"Regist-form-5"}>
-      {paymentMethodArray.map(eachEl => (
+      {paymentInfoArray.map(eachEl => (
         <InputForm
           key={eachEl.id}
           elementType={eachEl.config.elementType}
@@ -94,7 +94,9 @@ const payment = props => {
           touched={eachEl.config.touched}
           optional={eachEl.config.optional}
           visible={eachEl.config.visible}
-          // onChangeHandler={event => props.onChangeHandler(event, eachEl.id)}
+          onChangeHandler={event =>
+            props.onChangeHandler(event, "paymentInfo", eachEl.id)
+          }
         />
       ))}
     </form>
@@ -108,22 +110,28 @@ const payment = props => {
         <CustomFormLabel>Select payment method</CustomFormLabel>
         <RadioGroup
           aria-label="Lodging option"
-          name="paymentMethodRegistration"
-          // value={paymentMethodRegistration.value}
-          // onChange={props.onChangeHandler}
+          // name="credit_debitCard"
+          onChange={event =>
+            props.onChangeHandler(event, "paymentMethod", "paymentCard")
+          }
         >
           <div className={"payment-method-container"}>
             <CustomRadioFormControlLabel
-              className={""}
-              value="cardPaymentRegistration"
+              value="payment-method-card"
               control={<BlueRadio />}
               label="Credit/Debit card"
+              checked={
+                props.paymentMethod.paymentCard.value === "payment-method-card"
+              }
             />
             <CustomRadioFormControlLabel
               style={{ marginLeft: "5rem" }}
-              value="otherPaymentRegistration"
+              value="payment-method-other"
               control={<BlueRadio />}
               label="Other method if any"
+              checked={
+                props.paymentMethod.paymentCard.value === "payment-method-other"
+              }
             />
           </div>
         </RadioGroup>
