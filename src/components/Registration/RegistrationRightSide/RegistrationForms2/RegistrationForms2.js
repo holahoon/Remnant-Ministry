@@ -19,7 +19,8 @@ class RegistrationForms2 extends Component {
           disable: false
         },
         valid: true,
-        touched: false
+        touched: false,
+        optional: true
       },
       mainRCA: {
         attend: false,
@@ -30,7 +31,8 @@ class RegistrationForms2 extends Component {
           disable: false
         },
         valid: false,
-        touched: false
+        touched: false,
+        optional: true
       }
     },
     extraInfo: {
@@ -85,7 +87,7 @@ class RegistrationForms2 extends Component {
         },
         valid: false,
         touched: false,
-        optional: true,
+        optional: false,
         visible: true
       },
       volunteerStaff: {
@@ -114,7 +116,7 @@ class RegistrationForms2 extends Component {
         },
         valid: false,
         touched: false,
-        optional: true,
+        optional: false,
         visible: true
       },
       healthCondition: {
@@ -167,22 +169,24 @@ class RegistrationForms2 extends Component {
     stateInfo[identifier] = deepStateInfo;
 
     // If room other than 4 people selected, disable leaders retreat
-    if (
-      deepStateInfo.value === "lodging-main-RCA-2people-room" ||
-      deepStateInfo.value === "lodging-main-RCA-1people-room" ||
-      deepStateInfo.value === "lodging-main-RCA-commuter"
-    ) {
-      stateInfo["leadersRetreat"].validation.disable = true;
-    } else {
-      stateInfo["leadersRetreat"].validation.disable = false;
-    }
-
-    // If leaders retreat selected, disable rooms other than 4 people
-    if (deepStateInfo.validation.checkAttendance) {
-      if (deepStateInfo.attend) {
-        stateInfo["mainRCA"].validation.disable = true;
+    if (deepStateInfo.optional) {
+      if (
+        deepStateInfo.value === "lodging-main-RCA-2people-room" ||
+        deepStateInfo.value === "lodging-main-RCA-1people-room" ||
+        deepStateInfo.value === "lodging-main-RCA-commuter"
+      ) {
+        stateInfo["leadersRetreat"].validation.disable = true;
       } else {
-        stateInfo["mainRCA"].validation.disable = false;
+        stateInfo["leadersRetreat"].validation.disable = false;
+      }
+
+      // If leaders retreat selected, disable rooms other than 4 people
+      if (deepStateInfo.validation.checkAttendance) {
+        if (deepStateInfo.attend) {
+          stateInfo["mainRCA"].validation.disable = true;
+        } else {
+          stateInfo["mainRCA"].validation.disable = false;
+        }
       }
     }
 
@@ -201,7 +205,6 @@ class RegistrationForms2 extends Component {
   };
 
   render() {
-    console.log(this.state.lodgingInfo);
     return (
       <div>
         <LodgingOption

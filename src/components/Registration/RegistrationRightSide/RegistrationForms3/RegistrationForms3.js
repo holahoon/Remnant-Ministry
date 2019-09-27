@@ -485,7 +485,6 @@ class RegistrationForms3 extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <Payment
