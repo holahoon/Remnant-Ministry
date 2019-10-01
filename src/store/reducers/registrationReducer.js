@@ -1,9 +1,18 @@
 import * as actionTypes from "../actions/actionTypes";
 
-const { NEXT_STEP, PREV_STEP } = actionTypes;
+const {
+  NEXT_STEP,
+  PREV_STEP,
+  REGISTRATION_PAGE_1,
+  REGISTRATION_PAGE_2,
+  REGISTRATION_PAGE_3
+} = actionTypes;
 
 const initialState = {
-  registrationPage: 1
+  registrationPage: 1,
+  page1Complete: false,
+  page2Complete: false,
+  page3Complete: false
 };
 
 const registrationReducer = (state = initialState, action) => {
@@ -20,10 +29,31 @@ const registrationReducer = (state = initialState, action) => {
         registrationPage: state.registrationPage - 1
       };
 
+    case REGISTRATION_PAGE_1:
+      return {
+        ...state,
+        page1Complete: true
+      };
+
+    case REGISTRATION_PAGE_2:
+      return {
+        ...state,
+        page2Complete: true
+      };
+
+    case REGISTRATION_PAGE_3:
+      return {
+        ...state,
+        page3Complete: true
+      };
+
     default:
       return {
         ...state,
-        registrationPage: state.registrationPage
+        registrationPage: state.registrationPage,
+        page1Complete: false,
+        page2Complete: false,
+        page3Complete: false
       };
   }
 };

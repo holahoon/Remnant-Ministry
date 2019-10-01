@@ -1,29 +1,41 @@
 import React from "react";
-// import moment from "moment";
+import { connect } from "react-redux";
 
-// import axiosInstance from "../../axios-userInfo";
 import Layout2 from "../../Layout/Layout2";
-// import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
+import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
 import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide";
 
 import "./Registration.css";
 
-// const registrationLeftSide = <RegistrationLeftSide />;
+const registrationLeftSide = <RegistrationLeftSide />;
 const registrationRightSide = <RegistrationRightSide />;
 
 const registration = props => {
-  // console.log("match: ", props.match);
   return (
     <React.Fragment>
-      <Layout2
-        // left={<RegistrationLeftSide />}
-        right={registrationRightSide}
-      />
+      <Layout2 left={registrationLeftSide} right={registrationRightSide} />
     </React.Fragment>
   );
 };
 
-export default registration;
+const mapStateToProps = state => {
+  return {
+    page1Complete: state.globalRegistration.page1Complete,
+    page2Complete: state.globalRegistration.page2Complete,
+    page3Complete: state.globalRegistration.page3Complete
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(registration);
 
 /*
 import React, { Component } from "react";
