@@ -1,16 +1,30 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import Layout2 from "../../Layout/Layout2";
 import RegistrationLeftSide from "./RegistrationLeftSide/RegistrationLeftSide";
 import RegistrationRightSide from "./RegistrationRightSide/RegistrationRightSide";
+// import * as actions from "../../store/actions/indexAction";
 
 import "./Registration.css";
 
-const registrationLeftSide = <RegistrationLeftSide />;
-const registrationRightSide = <RegistrationRightSide />;
+const registrationLeftSide = (
+  <RegistrationLeftSide
+  // pageNumber={this.props.pageNumber}
+  // page1Complete={this.props.page1Complete}
+  // page2Complete={this.props.page2Complete}
+  // page3Complete={this.props.page3Complete}
+  />
+);
+const registrationRightSide = (
+  <RegistrationRightSide
+  // onPage1Complete={this.props.onPage1Complete}
+  // onPage2Complete={this.props.onPage2Complete}
+  // onPage3Complete={this.props.onPage3Complete}
+  />
+);
 
-const registration = props => {
+const registration = () => {
   return (
     <React.Fragment>
       <Layout2 left={registrationLeftSide} right={registrationRightSide} />
@@ -18,24 +32,28 @@ const registration = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    page1Complete: state.globalRegistration.page1Complete,
-    page2Complete: state.globalRegistration.page2Complete,
-    page3Complete: state.globalRegistration.page3Complete
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     pageNumber: state.globalRegistration.registrationPage,
+//     page1Complete: state.globalRegistration.page1Complete,
+//     page2Complete: state.globalRegistration.page2Complete,
+//     page3Complete: state.globalRegistration.page3Complete
+//   };
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onPage1Complete: () => dispatch(actions.registrationPage1Complete()),
+//     onPage2Complete: () => dispatch(actions.registrationPage2Complete()),
+//     onPage3Complete: () => dispatch(actions.registrationPage3Complete())
+//   };
+// };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(registration);
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(registration);
+export default registration;
 
 /*
 import React, { Component } from "react";

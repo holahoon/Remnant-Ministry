@@ -32,18 +32,21 @@ const registrationReducer = (state = initialState, action) => {
     case REGISTRATION_PAGE_1:
       return {
         ...state,
+        registrationPage: 1,
         page1Complete: true
       };
 
     case REGISTRATION_PAGE_2:
       return {
         ...state,
+        registrationPage: 2,
         page2Complete: true
       };
 
     case REGISTRATION_PAGE_3:
       return {
         ...state,
+        registrationPage: 3,
         page3Complete: true
       };
 
