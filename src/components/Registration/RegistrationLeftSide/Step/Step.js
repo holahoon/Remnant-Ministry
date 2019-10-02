@@ -24,6 +24,16 @@ class step extends Component {
         }
       />
     );
+    const arrow3 = (
+      <ArrowRight20
+        className={
+          this.props.pageNumber === 3
+            ? "ArrowIcon-registration-step"
+            : "ArrowIcon-registration-step hide-arrow"
+        }
+      />
+    );
+    // const arrow = <ArrowRight20 className={"ArrowIcon-registration-step"} />;
     const checked = (
       <CheckmarkOutline16 className={"Checkmark-outline-registration-step"} />
     );
@@ -32,25 +42,30 @@ class step extends Component {
       <div>
         <h3 className={"step-title"}>Step {this.props.pageNumber} of 3</h3>
         <p
-          className={
-            this.props.page1Complete
-              ? "step-1-title step-selected"
-              : "step-1-title"
-          }
+          className={`steps ${
+            this.props.pageNumber === 1 ? "steps-selected" : null
+          }`}
         >
           {this.props.page1Complete ? checked : arrow1}
           General information
         </p>
 
         <p
-          className={
-            this.props.page2Complete
-              ? "step-2-title step-selected"
-              : "step-2-title"
-          }
+          className={`steps ${
+            this.props.pageNumber === 2 ? "steps-selected" : null
+          }`}
         >
           {this.props.page2Complete ? checked : arrow2}
-          RCA options & payment
+          RCA options & information
+        </p>
+
+        <p
+          className={`steps ${
+            this.props.pageNumber === 3 ? "steps-selected" : null
+          }`}
+        >
+          {this.props.page3Complete ? checked : arrow3}
+          Payment & billing
         </p>
 
         <div className={"step-divider"} />

@@ -11,8 +11,7 @@
   line-height: 2.25rem;
 }
 
-.step-1-title,
-.step-2-title {
+.steps {
   color: #ffffff;
   font-size: 1.125rem;
   font-weight: normal;
@@ -24,7 +23,7 @@
   align-items: center;
 }
 
-.step-selected {
+.steps-selected {
   opacity: 1;
 }
 
