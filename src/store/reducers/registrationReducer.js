@@ -53,10 +53,6 @@ const registrationReducer = (state = initialState, action) => {
     default:
       return {
         ...state
-        // registrationPage: state.registrationPage,
-        // page1Complete: false,
-        // page2Complete: false,
-        // page3Complete: false
       };
   }
 };

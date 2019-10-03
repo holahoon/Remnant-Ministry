@@ -8,9 +8,9 @@ import RegistrationForms3 from "./RegistrationForms3/RegistrationForms3";
 import "./RegistrationRightSide.css";
 
 const registrationRightSide = props => {
-  const registration1 = <RegistrationForms1 />;
-  const registration2 = <RegistrationForms2 />;
-  const registration3 = <RegistrationForms3 />;
+  // const registration1 = <RegistrationForms1 />;
+  // const registration2 = <RegistrationForms2 />;
+  // const registration3 = <RegistrationForms3 />;
 
   return (
     <div
@@ -19,9 +19,9 @@ const registrationRightSide = props => {
       <RegistrationRightSideHeader />
 
       {/*props.stateData.registrationStep1 ? registration1 : registration2*/}
-      {registration1}
-      {registration2}
-      {registration3}
+      <RegistrationForms1 />
+      <RegistrationForms2 />
+      <RegistrationForms3 />
     </div>
   );
 };

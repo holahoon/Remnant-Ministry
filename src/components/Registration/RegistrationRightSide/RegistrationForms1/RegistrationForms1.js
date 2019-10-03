@@ -26,7 +26,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       lastName: {
@@ -44,7 +43,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       koreanName: {
@@ -61,7 +59,6 @@ class RegistrationForms1 extends Component {
         },
         valid: true,
         touched: false,
-        optional: false,
         visible: true
       },
       dateOfBirth: {
@@ -93,7 +90,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       gender: {
@@ -122,7 +118,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       language: {
@@ -159,7 +154,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       }
     },
@@ -179,7 +173,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       grade: {
@@ -260,7 +253,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       major: {
@@ -277,7 +269,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       interest: {
@@ -314,7 +305,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       company: {
@@ -331,7 +321,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       companyTitle: {
@@ -348,7 +337,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       }
     },
@@ -384,7 +372,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       trainingLevel: {
@@ -421,7 +408,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: false,
         visible: true
       },
       selectChurch: {
@@ -458,7 +444,6 @@ class RegistrationForms1 extends Component {
         },
         valid: false,
         touched: false,
-        optional: true,
         visible: true
       },
       typeChurch: {
@@ -475,7 +460,6 @@ class RegistrationForms1 extends Component {
         },
         valid: true,
         touched: false,
-        optional: true,
         visible: false
       }
     }
@@ -501,6 +485,14 @@ class RegistrationForms1 extends Component {
     deepClonedStateInfo.valid = this.checkValidity(deepClonedStateInfo);
     // update touched state to true because the specific input field has been touched
     deepClonedStateInfo.touched = true;
+
+    // check if church is not listed to enable type in field
+    if (deepClonedStateInfo.value === "church-not listed") {
+      stateInfo["typeChurch"].valid = false;
+    } else {
+      stateInfo["typeChurch"].valid = true;
+    }
+
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
 
@@ -510,10 +502,6 @@ class RegistrationForms1 extends Component {
       if (key === "formValidation") {
         continue;
       }
-      // if (stateInfo[key].optional) {
-      //   continue;
-      // }
-
       formValidation = stateInfo[key].valid && formValidation;
     }
     stateInfo.formValidation = formValidation;
@@ -529,12 +517,6 @@ class RegistrationForms1 extends Component {
     if (state.validation.required) {
       isValid = state.value.trim() !== "" && isValid;
     }
-
-    // if (state.optional) {
-    //   isValid =
-    //     (state.value !== "church-not listed" || state.value.trim() !== "") &&
-    //     isValid;
-    // }
 
     // check for regex
     if (state.validation.nameRegex) {
@@ -570,10 +552,8 @@ class RegistrationForms1 extends Component {
     // show / hide typeChurch input
     if (churchInfo["selectChurch"].value === "church-not listed") {
       churchInfo["typeChurch"].visible = true;
-      // churchInfo["typeChurch"].optional = false;
     } else {
       churchInfo["typeChurch"].visible = false;
-      // churchInfo["typeChurch"].optional = true;
     }
 
     this.setState({ ...this.state, churchInfo });
