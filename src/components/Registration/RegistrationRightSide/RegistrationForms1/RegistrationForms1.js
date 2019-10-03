@@ -471,8 +471,9 @@ class RegistrationForms1 extends Component {
   };
 
   onChangeHandler = (event, inputIdentifier, stateElement) => {
+    const state = this.state;
     // clone the state of the passed in element
-    const stateInfo = { ...this.state[stateElement] };
+    const stateInfo = { ...state[stateElement] };
     // deep clone the specified state
     const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
     // update the value state (conditionally capitalize the value)
@@ -506,6 +507,10 @@ class RegistrationForms1 extends Component {
       formValidation = stateInfo[key].valid && formValidation;
     }
     stateInfo.formValidation = formValidation;
+
+    for (let key in state) {
+      console.log(state[key]);
+    }
 
     // return the state
     return { stateInfo, formValidation };
@@ -551,9 +556,17 @@ class RegistrationForms1 extends Component {
   };
 
   updateFieldInfo = (event, inputIdentifier) => {
-    let fieldInfo = this.onChangeHandler(event, inputIdentifier, "fieldInfo");
+    let returnedValue = this.onChangeHandler(
+      event,
+      inputIdentifier,
+      "fieldInfo"
+    );
 
-    this.setState({ ...this.state, fieldInfo });
+    this.setState({
+      ...this.state,
+      fieldInfo: returnedValue.stateInfo,
+      formIsValid: returnedValue.formValidation
+    });
   };
 
   updateChurchInfo = (event, inputIdentifier) => {
