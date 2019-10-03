@@ -445,24 +445,25 @@ class RegistrationForms1 extends Component {
         valid: false,
         touched: false,
         visible: true
-      },
-      typeChurch: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          label: "Type your church",
-          placeholder: "Name of the church",
-          warning: "Please, enter a valid name"
-        },
-        value: "",
-        validation: {
-          required: true
-        },
-        valid: true,
-        touched: false,
-        visible: false
       }
-    }
+      // typeChurch: {
+      //   elementType: "input",
+      //   elementConfig: {
+      //     type: "text",
+      //     label: "Type your church",
+      //     placeholder: "Name of the church",
+      //     warning: "Please, enter a valid name"
+      //   },
+      //   value: "",
+      //   validation: {
+      //     required: true
+      //   },
+      //   valid: false,
+      //   touched: false,
+      //   visible: false
+      // }
+    },
+    formIsValid: false
   };
 
   capitalizeInput = input => {
@@ -487,11 +488,11 @@ class RegistrationForms1 extends Component {
     deepClonedStateInfo.touched = true;
 
     // check if church is not listed to enable type in field
-    if (deepClonedStateInfo.value === "church-not listed") {
-      stateInfo["typeChurch"].valid = false;
-    } else {
-      stateInfo["typeChurch"].valid = true;
-    }
+    // if (deepClonedStateInfo.value === "church-not listed") {
+    //   stateInfo["typeChurch"].valid = false;
+    // } else {
+    //   stateInfo["typeChurch"].valid = true;
+    // }
 
     // assign the state
     stateInfo[inputIdentifier] = deepClonedStateInfo;
@@ -507,7 +508,7 @@ class RegistrationForms1 extends Component {
     stateInfo.formValidation = formValidation;
 
     // return the state
-    return stateInfo;
+    return { stateInfo, formValidation };
   };
 
   checkValidity = state => {
@@ -536,9 +537,17 @@ class RegistrationForms1 extends Component {
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
-    let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
+    let returnedValue = this.onChangeHandler(
+      event,
+      inputIdentifier,
+      "basicInfo"
+    );
 
-    this.setState({ ...this.state, basicInfo });
+    this.setState({
+      ...this.state,
+      basicInfo: returnedValue.stateInfo,
+      formIsValid: returnedValue.formValidation
+    });
   };
 
   updateFieldInfo = (event, inputIdentifier) => {
@@ -548,15 +557,23 @@ class RegistrationForms1 extends Component {
   };
 
   updateChurchInfo = (event, inputIdentifier) => {
-    let churchInfo = this.onChangeHandler(event, inputIdentifier, "churchInfo");
+    let returnedValue = this.onChangeHandler(
+      event,
+      inputIdentifier,
+      "churchInfo"
+    );
     // show / hide typeChurch input
-    if (churchInfo["selectChurch"].value === "church-not listed") {
-      churchInfo["typeChurch"].visible = true;
-    } else {
-      churchInfo["typeChurch"].visible = false;
-    }
+    // if (churchInfo["selectChurch"].value === "church-not listed") {
+    //   churchInfo["typeChurch"].visible = true;
+    // } else {
+    //   churchInfo["typeChurch"].visible = false;
+    // }
 
-    this.setState({ ...this.state, churchInfo });
+    this.setState({
+      ...this.state,
+      churchInfo: returnedValue.stateInfo,
+      formIsValid: returnedValue.formValidation
+    });
   };
 
   render() {
@@ -580,9 +597,10 @@ class RegistrationForms1 extends Component {
           <RegularButton
             buttonClass={"Registration-blue-button button-1-2--global"}
             disable={
-              !// basicInfo.formValidation &&
-              // fieldInfo.formValidation &&
-              churchInfo.formValidation
+              // !basicInfo.formValidation &&
+              // !fieldInfo.formValidation &&
+              // !churchInfo.formValidation
+              !this.state.formIsValid
             }
             directTo={"/Registration/step1"}
           >
