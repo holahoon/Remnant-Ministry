@@ -12,9 +12,9 @@ export {
 } from "./signupActionCreator";
 
 export {
-  registrationPage1Complete,
-  registrationPage2Complete,
-  registrationPage3Complete
+  completeRegistrationPage1,
+  completeRegistrationPage2,
+  completeRegistrationPage3
 } from "./registrationActionCreator";
 
 // export { authentication } from "./authenticationActionCreator";

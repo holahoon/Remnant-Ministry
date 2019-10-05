@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import RegistrationBasicInfo from "./RegistrationForms1Contents/RegistrationBasicInfo/RegistrationBasicInfo";
 import RegistrationFieldInfo from "./RegistrationForms1Contents/RegistrationFieldInfo/RegistrationFieldInfo";
 import RegistrationChurchInfo from "./RegistrationForms1Contents/RegistrationChurchInfo/RegistrationChurchInfo";
 import { RegularButton } from "../../../UI/Button/Button";
+import * as actions from "../../../../store/actions/indexAction";
 
 import ArrowRight16 from "@carbon/icons-react/es/arrow--right/16";
 
@@ -462,8 +464,7 @@ class RegistrationForms1 extends Component {
       //   touched: false,
       //   visible: false
       // }
-    },
-    formIsValid: false
+    }
   };
 
   capitalizeInput = input => {
@@ -471,9 +472,8 @@ class RegistrationForms1 extends Component {
   };
 
   onChangeHandler = (event, inputIdentifier, stateElement) => {
-    const state = this.state;
     // clone the state of the passed in element
-    const stateInfo = { ...state[stateElement] };
+    const stateInfo = { ...this.state[stateElement] };
     // deep clone the specified state
     const deepClonedStateInfo = { ...stateInfo[inputIdentifier] };
     // update the value state (conditionally capitalize the value)
@@ -508,12 +508,8 @@ class RegistrationForms1 extends Component {
     }
     stateInfo.formValidation = formValidation;
 
-    for (let key in state) {
-      console.log(state[key]);
-    }
-
     // return the state
-    return { stateInfo, formValidation };
+    return stateInfo;
   };
 
   checkValidity = state => {
@@ -542,39 +538,25 @@ class RegistrationForms1 extends Component {
   };
 
   updateBasicInfo = (event, inputIdentifier) => {
-    let returnedValue = this.onChangeHandler(
-      event,
-      inputIdentifier,
-      "basicInfo"
-    );
+    let basicInfo = this.onChangeHandler(event, inputIdentifier, "basicInfo");
 
     this.setState({
       ...this.state,
-      basicInfo: returnedValue.stateInfo,
-      formIsValid: returnedValue.formValidation
+      basicInfo
     });
   };
 
   updateFieldInfo = (event, inputIdentifier) => {
-    let returnedValue = this.onChangeHandler(
-      event,
-      inputIdentifier,
-      "fieldInfo"
-    );
+    let fieldInfo = this.onChangeHandler(event, inputIdentifier, "fieldInfo");
 
     this.setState({
       ...this.state,
-      fieldInfo: returnedValue.stateInfo,
-      formIsValid: returnedValue.formValidation
+      fieldInfo
     });
   };
 
   updateChurchInfo = (event, inputIdentifier) => {
-    let returnedValue = this.onChangeHandler(
-      event,
-      inputIdentifier,
-      "churchInfo"
-    );
+    let churchInfo = this.onChangeHandler(event, inputIdentifier, "churchInfo");
     // show / hide typeChurch input
     // if (churchInfo["selectChurch"].value === "church-not listed") {
     //   churchInfo["typeChurch"].visible = true;
@@ -584,13 +566,13 @@ class RegistrationForms1 extends Component {
 
     this.setState({
       ...this.state,
-      churchInfo: returnedValue.stateInfo,
-      formIsValid: returnedValue.formValidation
+      churchInfo
     });
   };
 
   render() {
     const { basicInfo, fieldInfo, churchInfo } = this.state;
+
     return (
       <div>
         <RegistrationBasicInfo
@@ -609,12 +591,7 @@ class RegistrationForms1 extends Component {
         <div className={"Registration-button-container margin-left-6"}>
           <RegularButton
             buttonClass={"Registration-blue-button button-1-2--global"}
-            disable={
-              // !basicInfo.formValidation &&
-              // !fieldInfo.formValidation &&
-              // !churchInfo.formValidation
-              !this.state.formIsValid
-            }
+            disable={!this.props.page1Complete}
             directTo={"/Registration/step1"}
           >
             Next
@@ -626,4 +603,19 @@ class RegistrationForms1 extends Component {
   }
 }
 
-export default RegistrationForms1;
+const mapStateToProps = state => {
+  return {
+    page1Complete: state.globalRegistration.page1Complete
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    completePage1: () => dispatch(actions.completeRegistrationPage1())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegistrationForms1);

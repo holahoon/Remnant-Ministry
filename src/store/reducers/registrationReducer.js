@@ -12,7 +12,14 @@ const initialState = {
   registrationPage: 1,
   page1Complete: false,
   page2Complete: false,
-  page3Complete: false
+  page3Complete: false,
+  userInformations: null,
+  // firstName: "",
+  // lastName: "",
+  // koreanName: "",
+  // dateOfBirth: "",
+  // gender: "",
+  // preferredLanguage: ""
 };
 
 const registrationReducer = (state = initialState, action) => {
@@ -32,21 +39,29 @@ const registrationReducer = (state = initialState, action) => {
     case REGISTRATION_PAGE_1:
       return {
         ...state,
-        registrationPage: 1,
-        page1Complete: true
+        // registrationPage: 1,
+        page1Complete: true,
+        userInformations: {
+          firstName: action.userInformations.firstName,
+          lastName: action.userInformations.lastName,
+          koreanName: action.userInformations.koreanName,
+          dateOfBirth: action.userInformations.dateOfBirth,
+          gender: action.userInformations.gender,
+          preferredLanguage: action.userInformations.preferredLanguage
+        }
       };
 
     case REGISTRATION_PAGE_2:
       return {
         ...state,
-        registrationPage: 2,
+        // registrationPage: 2,
         page2Complete: true
       };
 
     case REGISTRATION_PAGE_3:
       return {
         ...state,
-        registrationPage: 3,
+        // registrationPage: 3,
         page3Complete: true
       };
 
